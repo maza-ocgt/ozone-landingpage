@@ -16,34 +16,197 @@ export default function BottomSection() {
   ];
 
   return (
-    <section className="relative min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Top Purple Line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+    <section className="relative min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(94, 234, 212, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(94, 234, 212, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: "60px 60px",
+          }}
+        />
+      </div>
 
-      {/* Bottom Purple Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+      {/* Animated Background Glows */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/15 rounded-full blur-3xl"
+          animate={{
+            x: [0, 80, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, -60, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/8 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </div>
 
-      <div className="mx-auto max-w-7xl relative z-10 pt-20">
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1.5 h-1.5 bg-teal-400/40 rounded-full blur-sm"
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${15 + i * 10}%`,
+            }}
+            animate={{
+              y: [0, -40, 0],
+              opacity: [0.4, 0.7, 0.4],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 5 + i * 0.5,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.4,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Top Purple Line with Scan Effect */}
+      <div className="absolute top-0 left-0 right-0 h-px z-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/70 to-transparent shadow-[0_0_15px_rgba(168,85,247,0.6)]" />
+        <motion.div
+          className="absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-purple-400/80 to-transparent blur-sm"
+          animate={{
+            x: ["-100%", "200%"],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      </div>
+
+      {/* Bottom Purple Line with Scan Effect */}
+      <div className="absolute bottom-0 left-0 right-0 h-px z-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/70 to-transparent shadow-[0_0_15px_rgba(168,85,247,0.6)]" />
+        <motion.div
+          className="absolute bottom-0 right-0 h-full w-32 bg-gradient-to-l from-purple-400/80 to-transparent blur-sm"
+          animate={{
+            x: ["100%", "-200%"],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "linear",
+            delay: 1.5,
+          }}
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl relative z-10 pt-12 sm:pt-16 md:pt-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="space-y-12"
+          className="space-y-8 sm:space-y-10 md:space-y-12"
         >
-          {/* Title - Movie Gallery */}
-          <motion.h2
+          {/* Title with Enhanced Futuristic Styling */}
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-left"
+            className="relative"
           >
-            <span className="text-white">Movie</span>{" "}
-            <span className="bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">
-              Gallery
-            </span>
-          </motion.h2>
+            {/* Glow behind title */}
+            <div className="absolute -left-6 md:-left-8 top-0 w-1 h-full bg-gradient-to-b from-teal-500/40 via-cyan-500/40 to-transparent blur-md hidden sm:block" />
+            
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-left relative">
+              <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">Movie</span>{" "}
+              <span className="relative inline-block">
+                <motion.span
+                  className="bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent relative z-10"
+                  animate={{
+                    backgroundPosition: ["0%", "100%", "0%"],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  style={{
+                    backgroundSize: "200% 200%",
+                  }}
+                >
+                  Gallery
+                </motion.span>
+                <motion.div
+                  className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400 rounded-full shadow-[0_0_15px_rgba(94,234,212,0.6)]"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+                />
+                {/* Pulsing glow under underline */}
+                <motion.div
+                  className="absolute -bottom-2 left-0 h-2 bg-teal-400/30 rounded-full blur-sm"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true }}
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    width: { duration: 1.2, delay: 0.5 },
+                    opacity: {
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    },
+                  }}
+                />
+              </span>
+              
+              {/* Side accent line */}
+              <motion.div
+                className="absolute -right-6 md:-right-8 top-0 w-px h-full bg-gradient-to-b from-transparent via-teal-500/50 to-transparent hidden sm:block"
+                initial={{ opacity: 0, scaleY: 0 }}
+                whileInView={{ opacity: 1, scaleY: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, delay: 0.8 }}
+                style={{ transformOrigin: "top" }}
+              />
+            </h2>
+          </motion.div>
 
           {/* Video Thumbnails Grid - 2x3 */}
           <motion.div
@@ -56,38 +219,106 @@ export default function BottomSection() {
             {videoThumbnails.map((video, index) => (
               <motion.div
                 key={video.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="relative group aspect-video rounded-lg overflow-hidden cursor-pointer border border-teal-400/30"
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.3 + index * 0.1,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+                whileHover={{ 
+                  scale: 1.03, 
+                  y: -5,
+                  transition: { duration: 0.3 }
+                }}
+                className="relative group aspect-video rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
               >
-                {/* Thumbnail Image */}
-                <div className="relative w-full h-full">
+                {/* Outer Glow Effect */}
+                <motion.div
+                  className="absolute -inset-1 bg-gradient-to-r from-teal-500/30 via-cyan-500/30 to-teal-500/30 rounded-xl sm:rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  animate={{
+                    opacity: [0, 0.4, 0],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+
+                {/* Glassmorphism Border with Glow */}
+                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-teal-500/20 via-cyan-500/10 to-purple-500/20 backdrop-blur-sm border border-white/10 shadow-[0_8px_32px_0_rgba(94,234,212,0.1)] group-hover:border-teal-400/40 group-hover:shadow-[0_8px_32px_0_rgba(94,234,212,0.3)] transition-all duration-500" />
+                
+                {/* Animated Border Glow */}
+                <motion.div
+                  className="absolute -inset-px rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100"
+                  style={{
+                    background: "linear-gradient(90deg, transparent, rgba(94,234,212,0.5), transparent)",
+                    backgroundSize: "200% 100%",
+                  }}
+                  animate={{
+                    backgroundPosition: ["200%", "-200%"],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+
+                {/* Thumbnail Image with Overlay */}
+                <div className="relative w-full h-full z-0">
                   <Image
                     src={video.thumbnail}
                     alt={`Video thumbnail ${video.id}`}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-xl sm:rounded-2xl"
                     unoptimized
                   />
+                  {/* Dark overlay for better contrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl sm:rounded-2xl" />
                 </div>
 
-                {/* Play Button Overlay */}
+                {/* Enhanced Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-green-400/80 bg-black/30 backdrop-blur-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <motion.div
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative w-16 h-16 md:w-20 md:h-20 rounded-full backdrop-blur-xl border-2 border-teal-400/80 bg-gradient-to-br from-teal-500/20 via-cyan-500/20 to-teal-500/20 flex items-center justify-center shadow-[0_0_30px_rgba(94,234,212,0.5)] group-hover:shadow-[0_0_40px_rgba(94,234,212,0.7)] transition-all duration-300"
+                  >
+                    {/* Animated Ring */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full border-2 border-teal-400/30"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 0, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeOut",
+                      }}
+                    />
                     {/* Play Icon */}
-                    <div className="w-0 h-0 border-l-[12px] md:border-l-[16px] border-l-green-400 border-t-[8px] md:border-t-[10px] border-t-transparent border-b-[8px] md:border-b-[10px] border-b-transparent ml-1" />
-                  </div>
+                    <div className="relative z-10 w-0 h-0 border-l-[12px] md:border-l-[16px] border-l-teal-300 border-t-[8px] md:border-t-[10px] border-t-transparent border-b-[8px] md:border-b-[10px] border-b-transparent ml-1" />
+                  </motion.div>
                 </div>
 
-                {/* Hover Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-teal-400/20 via-transparent to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg" />
+                {/* Enhanced Hover Glow Effects */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-teal-400/30 via-transparent to-cyan-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl sm:rounded-2xl" />
+                <div className="absolute inset-0 bg-gradient-to-bl from-purple-400/10 via-transparent to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl" />
+
+                {/* Corner Accents */}
+                <div className="absolute top-2 left-2 w-6 h-0.5 bg-gradient-to-r from-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-2 left-2 w-0.5 h-6 bg-gradient-to-b from-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-2 right-2 w-6 h-0.5 bg-gradient-to-l from-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-2 right-2 w-0.5 h-6 bg-gradient-to-t from-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Watch More Button */}
+          {/* Watch More Button - Enhanced Futuristic Design */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -96,21 +327,51 @@ export default function BottomSection() {
             className="flex justify-center pt-8"
           >
             <motion.button
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
-              className="relative group px-8 py-4 md:px-12 md:py-5 rounded-full overflow-hidden"
+              className="relative group px-10 py-5 md:px-14 md:py-6 rounded-full overflow-hidden"
             >
-              {/* Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 rounded-full" />
+              {/* Animated Gradient Background */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 rounded-full"
+                animate={{
+                  backgroundPosition: ["0%", "100%", "0%"],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                style={{
+                  backgroundSize: "200% 200%",
+                }}
+              />
               
-              {/* Purple Glow on Right and Bottom */}
-              <div className="absolute -right-1 top-0 bottom-0 w-1 bg-purple-400/50 rounded-r-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute -bottom-1 left-0 right-0 h-1 bg-purple-400/50 rounded-b-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Animated Shine Effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full"
+                animate={{
+                  x: ["-100%", "100%"],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                  ease: "easeInOut",
+                }}
+              />
+
+              {/* Glowing Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
               
-              {/* Button Text */}
-              <span className="relative z-10 text-white text-sm md:text-base font-semibold uppercase tracking-widest">
+              {/* Button Text with Glow */}
+              <span className="relative z-10 text-white text-sm md:text-base font-semibold uppercase tracking-widest drop-shadow-[0_0_8px_rgba(94,234,212,0.5)]">
                 Watch More
               </span>
+
+              {/* Corner Accents */}
+              <div className="absolute top-1 left-4 w-2 h-2 bg-teal-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute top-1 right-4 w-2 h-2 bg-cyan-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.button>
           </motion.div>
         </motion.div>

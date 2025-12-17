@@ -37,7 +37,7 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="relative min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Bottom Purple Line */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
 
@@ -47,7 +47,7 @@ export default function FAQSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="space-y-12"
+          className="space-y-8 sm:space-y-10 md:space-y-12"
         >
           {/* Title */}
           <motion.h2

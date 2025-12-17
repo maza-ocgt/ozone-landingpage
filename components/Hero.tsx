@@ -38,7 +38,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-16 left-1/2 -translate-x-1/2 z-10 flex items-center gap-3 text-base sm:text-lg font-semibold tracking-widest text-white uppercase"
+        className="absolute top-8 sm:top-12 md:top-16 left-1/2 -translate-x-1/2 z-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm md:text-base lg:text-lg font-semibold tracking-wider sm:tracking-widest text-white uppercase px-4"
       >
         <span>OZONE</span>
         <span className="text-teal-300">✦</span>
@@ -99,7 +99,7 @@ export default function Hero() {
         transition={{ delay: 0.7, duration: 0.8 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="relative z-10 mt-10 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-10 py-4 text-sm font-semibold uppercase tracking-widest text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/50"
+        className="relative z-10 mt-8 sm:mt-10 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/50"
       >
         Preregister Now
       </motion.button>
