@@ -8,9 +8,9 @@ import BottomSection from "@/components/BottomSection";
 import OfferSection from "@/components/OfferSection";
 import FAQSection from "@/components/FAQSection";
 import TeamSection from "@/components/TeamSection";
+import ComingSoon from "@/components/ComingSoon";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
-import ComingSoon from "@/components/ComingSoon";
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);

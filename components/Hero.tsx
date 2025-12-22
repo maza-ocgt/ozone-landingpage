@@ -42,9 +42,15 @@ export default function Hero() {
         transition={{ duration: 0.8 }}
         className="absolute top-8 sm:top-12 md:top-16 left-1/2 -translate-x-1/2 z-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm md:text-base lg:text-lg font-semibold tracking-wider sm:tracking-widest text-white uppercase px-4"
       >
-        <span>OZONE</span>
-        <span className="text-teal-300">✦</span>
-        <span>OC GLOBAL TECHNOLOGY</span>
+        <div className="relative overflow-hidden rounded-full border border-white/40 bg-white/5 px-4 py-2 backdrop-blur-3xl shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+          <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.18),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.14),transparent_35%)]" />
+          <div className="pointer-events-none absolute inset-[-1px] rounded-full border border-white/10" />
+          <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-1">
+            <span>OZONE</span>
+            <span className="text-teal-300">✦</span>
+            <span>OC GLOBAL TECHNOLOGY</span>
+          </div>
+        </div>
       </motion.div>
 
     
@@ -56,7 +62,7 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.2 }}
         className="relative z-10 mb-10"
       >
-        <div className="relative h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56">
+        <div className="relative h-40 w-40 sm:h-48 sm:w-48 md:h-75 md:w-75">
           <Image
             src="/3dlogo.png"
             alt="OZONE Logo"

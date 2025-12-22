@@ -15,7 +15,13 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const hasCheckedStorageRef = useRef(false);
 
   const completeSplash = useCallback(() => {
-    localStorage.setItem("splashPlayed", "true");
+    try {
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.setItem("splashPlayed", "true");
+      }
+    } catch (error) {
+      console.error("Error setting localStorage:", error);
+    }
     setIsVisible(false);
 
     setTimeout(() => {
@@ -32,15 +38,21 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     if (hasCheckedStorageRef.current) return;
     hasCheckedStorageRef.current = true;
 
-    const hasPlayed = localStorage.getItem("splashPlayed");
+    try {
+      if (typeof window !== "undefined" && window.localStorage) {
+        const hasPlayed = localStorage.getItem("splashPlayed");
 
-    if (hasPlayed === "true") {
-      // Skip splash if already played - hide immediately and complete
-      setIsVisible(false);
-      setTimeout(() => {
-        onComplete();
-      }, 100);
-      return;
+        if (hasPlayed === "true") {
+          // Skip splash if already played - hide immediately and complete
+          setIsVisible(false);
+          setTimeout(() => {
+            onComplete();
+          }, 100);
+          return;
+        }
+      }
+    } catch (error) {
+      console.error("Error reading localStorage:", error);
     }
 
     // Keep splash visible (already set to true in useState)

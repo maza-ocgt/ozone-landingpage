@@ -283,18 +283,23 @@ export default function OfferSection() {
 
                   {/* Icon for dark variant with enhanced styling and glow */}
                   {offer.variant === "dark" && offer.icon && (
-                    <motion.div 
-                      className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 relative z-10"
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      className="absolute top-4 right-4 relative z-10"
                       whileHover={{ scale: 1.15, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
                     >
-                      <Image
-                        src={offer.icon}
-                        alt={offer.title}
-                        fill
-                        className="object-contain opacity-90 relative z-10"
-                        unoptimized
-                      />
+                      <div className="relative h-12 w-12 md:h-16 md:w-16">
+                        <Image
+                          src={offer.icon}
+                          alt={offer.title}
+                          fill
+                          className="object-contain"
+                          priority
+                        />
+                      </div>
                     </motion.div>
                   )}
 

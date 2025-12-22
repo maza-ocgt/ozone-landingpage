@@ -17,28 +17,28 @@ export default function TeamSection() {
       image: "/john.png", 
       name: "John",
       title: "Chief Innovation Officer",
-      quote: "testing2"
+      quote: "At Oz, technology is not just a backbone—it’s the storyteller. We’re building an intelligent streaming ecosystem where innovation amplifies creativity and connects audiences without limits"
     },
     { 
       id: 3, 
       image: "/zizi.png", 
       name: "Zizi",
       title: "Lead Developer",
-      quote: ""
+      quote: "Ozone is developed with one purpose - giving creators and viewers a platform they can finally call their own."
     },
     { 
       id: 4, 
       image: "/lim.png",
       name: "Lim",
-      title: "Chief Technology Officer",
-      quote: "testing4"
+      title: "UI/UX Designer Lead",
+      quote: "Landing to peak your interest, explore it like you’re an adventurer. Welcome to Ozone."
     },
     { 
       id: 5,
       image: "/maza.png",
       name: "Maza",
       title: "Junior Frontend App Developer",
-      quote: "testing5"
+      quote: "A new atmosphere for streaming, built for you."
     },
 
   ];
@@ -61,7 +61,7 @@ export default function TeamSection() {
   }
 
   return (
-    <section className="relative min-h-screen bg-black py-20 px-4 overflow-hidden">
+    <section className="relative bg-black pt-18 md:pt-22 pb-26 md:pb-41 px-4 overflow-visible">
       {/* Background */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <div
@@ -110,7 +110,7 @@ export default function TeamSection() {
                   transition: { duration: 0.3 },
                 },
               }}
-              className={`relative group w-40 h-40 md:w-48 md:h-48 rounded-full ${
+              className={`relative group w-56 h-56 md:w-64 md:h-64 rounded-full ${
                 index > 0 ? "-ml-6 md:-ml-8" : ""
               }`}
               style={{ zIndex: teamMembers.length - index }}

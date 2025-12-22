@@ -127,13 +127,28 @@ export default function FAQSection() {
             {faqs.map((faq, index) => (
               <motion.div
                 key={faq.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ scale: 0.8, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="relative rounded-2xl p-6 md:p-8 border border-purple-500/30 bg-black/50 hover:border-purple-500/50 transition-all duration-300"
+                transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
+                className="relative group rounded-2xl p-6 md:p-8 border border-white/[0.08] bg-black/50 backdrop-blur-xl backdrop-saturate-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:border-purple-500/50 transition-all duration-300 overflow-hidden"
+                style={{
+                  backdropFilter: "blur(40px) saturate(200%)",
+                  WebkitBackdropFilter: "blur(40px) saturate(200%)",
+                  backgroundColor: "rgba(255,255,255,0.05)",
+                }}
               >
-                <div className="space-y-4">
+                {/* iOS glass light reflection */}
+                <div className="pointer-events-none absolute inset-0 rounded-2xl overflow-hidden">
+                  {/* top highlight */}
+                  <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/20" />
+                  {/* soft light gradient - iOS style */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-transparent to-transparent" />
+                  {/* subtle inner glow */}
+                  <div className="absolute inset-[1px] rounded-2xl bg-gradient-to-br from-white/[0.05] via-transparent to-transparent" />
+                </div>
+
+                <div className="space-y-4 relative z-10">
                   <h3 className="text-white text-lg md:text-xl font-bold leading-tight">
                     {faq.question}
                   </h3>
