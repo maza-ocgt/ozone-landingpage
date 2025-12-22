@@ -37,9 +37,63 @@ export default function FAQSection() {
   ];
 
   return (
-    <section className="relative min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url(/bg2.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      
+      {/* Dark Overlay*/}
+      <div 
+        className="absolute inset-0 z-0 bg-black/60"
+      />
+
+      {/* Static Background Gradient Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79, 70, 229, 0.08) 0%, transparent 80%),
+            radial-gradient(ellipse 80% 50% at 50% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 80%),
+            linear-gradient(180deg, 
+              rgba(30, 41, 59, 0.3) 0%, 
+              transparent 20%, 
+              transparent 80%, 
+              rgba(30, 41, 59, 0.3) 100%
+            )
+          `,
+        }}
+      />
+
+      {/* Subtle Static Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(139, 92, 246, 0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.15) 1px, transparent 1px)
+            `,
+            backgroundSize: "80px 80px",
+          }}
+        />
+      </div>
+
+      {/* Top Subtle Divider Line */}
+      <div className="absolute top-0 left-0 right-0 h-px z-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+      </div>
+
       {/* Bottom Purple Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px z-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+      </div>
 
       <div className="mx-auto max-w-7xl relative z-10">
         <motion.div

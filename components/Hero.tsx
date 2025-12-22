@@ -7,27 +7,29 @@ import VantaBackground from "@/components/VantaBackground";
 
 export default function Hero() {
   const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
-  const springCount = useSpring(rounded, {
+  const springCount = useSpring(count, {
     damping: 60,
     stiffness: 100,
   });
+  
   const [displayValue, setDisplayValue] = useState("0");
-
+  
   useEffect(() => {
-    count.set(12000);
+    count.set(12000); 
   }, [count]);
-
+  
   useMotionValueEvent(springCount, "change", (latest) => {
     if (latest >= 1000) {
       const kValue = latest / 1000;
-      // Format as "12k" if whole number, otherwise "12.1k"
       const rounded = Math.round(kValue * 10) / 10;
-      setDisplayValue(rounded % 1 === 0 ? `${rounded}k` : `${rounded.toFixed(1)}k`);
+      setDisplayValue(
+        rounded % 1 === 0 ? `${rounded}k` : `${rounded.toFixed(1)}k`
+      );
     } else {
       setDisplayValue(Math.round(latest).toString());
     }
   });
+  
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center text-white overflow-hidden">
       {/* Vanta Halo Background */}
@@ -44,6 +46,8 @@ export default function Hero() {
         <span className="text-teal-300">✦</span>
         <span>OC GLOBAL TECHNOLOGY</span>
       </motion.div>
+
+    
 
       {/* Logo */}
       <motion.div
@@ -106,3 +110,4 @@ export default function Hero() {
     </section>
   );
 }
+

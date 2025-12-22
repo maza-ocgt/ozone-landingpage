@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 
@@ -15,12 +15,11 @@ import { useEffect, useState } from 'react';
  * - Optimized for 16:9 wide screen hero sections
  */
 export default function AnimatedBackground() {
-  const { scrollYProgress } = useScroll();
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number }>>([]);
 
   // Generate particles on mount
   useEffect(() => {
-    const particleCount = 30;
+    const particleCount = 20; // Reduced from 30 for better performance
     const newParticles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -31,15 +30,10 @@ export default function AnimatedBackground() {
     setParticles(newParticles);
   }, []);
 
-  // Transform scroll progress for subtle effects
-  const gradientX = useTransform(scrollYProgress, [0, 1], ['0%', '5%']);
-  const gradientY = useTransform(scrollYProgress, [0, 1], ['0%', '8%']);
-  const backgroundOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
-
   return (
     <div
       className="fixed inset-0 -z-10 overflow-hidden"
-      style={{ willChange: 'transform' }}
+      style={{ willChange: 'auto' }}
     >
       {/* Base Gradient Background - Soft vibrant teal/cyan */}
       <motion.div
@@ -52,10 +46,7 @@ export default function AnimatedBackground() {
             linear-gradient(135deg, #0a0a0f 0%, #0f1419 25%, #0a0f14 50%, #0f1419 75%, #0a0a0f 100%)
           `,
           backgroundSize: '200% 200%',
-          x: gradientX,
-          y: gradientY,
-          opacity: backgroundOpacity,
-          willChange: 'transform, opacity',
+          willChange: 'transform',
         }}
         animate={{
           scale: [1, 1.02, 1],
@@ -68,13 +59,12 @@ export default function AnimatedBackground() {
       />
 
       {/* Hero Focus - Brighter center glow */}
-      <motion.div
+      <div
         className="absolute inset-0"
         style={{
           background: `
             radial-gradient(ellipse 100% 60% at 50% 50%, rgba(94, 234, 212, 0.08) 0%, transparent 70%)
           `,
-          willChange: 'opacity',
         }}
       />
 
@@ -221,7 +211,7 @@ export default function AnimatedBackground() {
       ))}
 
       {/* Subtle overlay for depth */}
-      <motion.div
+      <div
         className="absolute inset-0"
         style={{
           background: `
@@ -230,7 +220,6 @@ export default function AnimatedBackground() {
           `,
           mixBlendMode: 'screen',
           opacity: 0.8,
-          willChange: 'opacity',
         }}
       />
     </div>

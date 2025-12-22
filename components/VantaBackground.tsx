@@ -41,11 +41,10 @@ export default function VantaBackground({ className = "" }: VantaBackgroundProps
         amplitudeFactor: 1.0,
         xOffset: 0.0,
         yOffset: 0.0,
-        size: 2.0,
+        size: 2.5,
       });
     };
 
-    // Wait for Vanta to be available
     if (window.VANTA) {
       initVanta();
     } else {

@@ -1,162 +1,136 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
+import { useState, useRef } from "react";
+
 
 export default function OfferSection() {
   const offers = [
     {
       id: 1,
       title: "Long-form Streaming",
+      description: "High-quality films, series, dramas, and documentaries.",
       icon: "/logo1.png",
-      variant: "dark" as const, // dark with border and icon
+      variant: "dark" as const, 
     },
     {
       id: 2,
-      title: "AI-Generated Entertainment",
+      title: "Smart Discovery Feed",
+      description: "Feed adapts using smart suggestions tailored to your viewing habits.",
       icon: null,
-      variant: "teal" as const, // solid teal background
+      variant: "teal" as const, 
     },
     {
       id: 3,
       title: "Creator Monetization",
+      description: "Earn revenue through ads and global viewership.",
       icon: "/logo2.png",
       variant: "dark" as const,
     },
     {
       id: 4,
       title: "Watch-to-Earn Rewards",
+      description: "Earn rewards based on your watch-time and engagement.",
       icon: "/logo3.png",
       variant: "dark" as const,
     },
     {
       id: 5,
       title: "Global Malaysia Content",
+      description: "Showcasing local creators to the world.",
       icon: "/logo4.png",
       variant: "dark" as const,
     },
     {
       id: 6,
-      title: "AI-Powered Recommendations",
+      title: "Creator Upload Studio",
+      description: "Complete dashboard for uploading, managing, and tracking videos.",
       icon: null,
       variant: "teal" as const,
     },
   ];
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const glassBlur = useTransform(scrollYProgress, [0, 0.5], [40, 60]);
+  const glassOpacity = useTransform(scrollYProgress, [0, 0.5], [0.05, 0.08]);
+
+  const [blurValue, setBlurValue] = useState(40);
+  const [opacityValue, setOpacityValue] = useState(0.05);
+
+  useMotionValueEvent(glassBlur, "change", (latest) => {
+    setBlurValue(latest);
+  });
+
+  useMotionValueEvent(glassOpacity, "change", (latest) => {
+    setOpacityValue(latest);
+  });
+
   return (
-    <section className="relative min-h-screen bg-black py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+    <section
+      ref={sectionRef} 
+      className="relative min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+    >
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url(/bg.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+      
+      {/* Dark Overlay*/}
+      <div 
+        className="absolute inset-0 z-0 bg-black/60"
+      />
+
+      {/* Static Background Gradient Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79, 70, 229, 0.08) 0%, transparent 80%),
+            radial-gradient(ellipse 80% 50% at 50% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 80%),
+            linear-gradient(180deg, 
+              rgba(30, 41, 59, 0.3) 0%, 
+              transparent 20%, 
+              transparent 80%, 
+              rgba(30, 41, 59, 0.3) 100%
+            )
+          `,
+        }}
+      />
+
+      {/* Subtle Static Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <div
           className="w-full h-full"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(94, 234, 212, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(94, 234, 212, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(139, 92, 246, 0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.15) 1px, transparent 1px)
             `,
-            backgroundSize: "60px 60px",
+            backgroundSize: "80px 80px",
           }}
         />
       </div>
 
-      {/* Animated Background Glows */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/15 rounded-full blur-3xl"
-          animate={{
-            x: [0, 80, 0],
-            y: [0, 60, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl"
-          animate={{
-            x: [0, -80, 0],
-            y: [0, -60, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/8 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1.5 h-1.5 bg-teal-400/40 rounded-full blur-sm"
-            style={{
-              left: `${10 + i * 12}%`,
-              top: `${15 + i * 10}%`,
-            }}
-            animate={{
-              y: [0, -40, 0],
-              opacity: [0.4, 0.7, 0.4],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 5 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.4,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Top Purple Line with Scan Effect */}
+      {/* Top Subtle Divider Line */}
       <div className="absolute top-0 left-0 right-0 h-px z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/70 to-transparent shadow-[0_0_15px_rgba(168,85,247,0.6)]" />
-        <motion.div
-          className="absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-purple-400/80 to-transparent blur-sm"
-          animate={{
-            x: ["-100%", "200%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
       </div>
 
-      {/* Bottom Purple Line with Scan Effect */}
+      {/* Bottom Subtle Divider Line */}
       <div className="absolute bottom-0 left-0 right-0 h-px z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/70 to-transparent shadow-[0_0_15px_rgba(168,85,247,0.6)]" />
-        <motion.div
-          className="absolute bottom-0 right-0 h-full w-32 bg-gradient-to-l from-purple-400/80 to-transparent blur-sm"
-          animate={{
-            x: ["100%", "-200%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 1.5,
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
       </div>
 
       <div className="mx-auto max-w-7xl relative z-10">
@@ -257,38 +231,35 @@ export default function OfferSection() {
                     delay: 0.3 + index * 0.1,
                     ease: [0.25, 0.46, 0.45, 0.94]
                   }}
-                  whileHover={{ 
+                  whileHover={offer.variant === "dark" ? { 
+                    scale: 1.01,
+                    transition: { type: "spring", stiffness: 200, damping: 22 }
+                  } : {
                     scale: 1.02, 
                     y: -5,
                     transition: { duration: 0.3 }
                   }}
-                  className={`relative group rounded-2xl sm:rounded-3xl p-6 md:p-8 min-h-[220px] sm:min-h-[240px] flex flex-col overflow-hidden ${
+                  style={offer.variant === "dark" ? {
+                    backdropFilter: `blur(${blurValue}px) saturate(200%)`,
+                    backgroundColor: `rgba(255,255,255,${opacityValue})`,
+                    WebkitBackdropFilter: `blur(${blurValue}px) saturate(200%)`,
+                  } : {}}
+                  className={`relative group rounded-3xl p-6 md:p-8 min-h-[220px] sm:min-h-[240px] flex flex-col overflow-hidden ${
                     offer.variant === "dark"
-                      ? "bg-black/50 border border-purple-500/30 backdrop-blur-md shadow-[0_8px_32px_0_rgba(168,85,247,0.1)]"
+                      ? "border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
                       : "bg-gradient-to-br from-teal-400 to-cyan-400 shadow-[0_8px_32px_0_rgba(94,234,212,0.2)]"
                   }`}
                 >
-                  {/* Outer Glow Effect */}
+                  {/* iOS glass light reflection - more subtle */}
                   {offer.variant === "dark" && (
-                    <motion.div
-                      className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-cyan-500/20 to-teal-500/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      animate={{
-                        opacity: [0, 0.3, 0],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  )}
-
-                  {/* Glassmorphism Overlay for Dark Variant */}
-                  {offer.variant === "dark" && (
-                    <>
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-purple-500/8 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/15 via-transparent to-cyan-500/15 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </>
+                    <div className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
+                      {/* top highlight - very subtle */}
+                      <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/20" />
+                      {/* soft light gradient - iOS style */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-transparent to-transparent" />
+                      {/* subtle inner glow */}
+                      <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-white/[0.05] via-transparent to-transparent" />
+                    </div>
                   )}
 
                   {/* Animated Gradient for Teal Variant */}
@@ -310,50 +281,18 @@ export default function OfferSection() {
                     />
                   )}
 
-                  {/* Animated Border Glow for Dark Variant */}
-                  {offer.variant === "dark" && (
-                    <motion.div
-                      className="absolute -inset-px rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100"
-                      style={{
-                        background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent)",
-                        backgroundSize: "200% 100%",
-                      }}
-                      animate={{
-                        backgroundPosition: ["200%", "-200%"],
-                      }}
-                      transition={{
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    />
-                  )}
-
                   {/* Icon for dark variant with enhanced styling and glow */}
                   {offer.variant === "dark" && offer.icon && (
                     <motion.div 
-                      className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 opacity-80 group-hover:opacity-100 transition-opacity duration-300 relative z-10"
+                      className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 relative z-10"
                       whileHover={{ scale: 1.15, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                     >
-                      {/* Glowing background behind icon */}
-                      <motion.div
-                        className="absolute inset-0 bg-teal-400/20 rounded-full blur-xl"
-                        animate={{
-                          opacity: [0.3, 0.6, 0.3],
-                          scale: [1, 1.2, 1],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
                       <Image
                         src={offer.icon}
                         alt={offer.title}
                         fill
-                        className="object-contain drop-shadow-[0_0_15px_rgba(94,234,212,0.5)] relative z-10"
+                        className="object-contain opacity-90 relative z-10"
                         unoptimized
                       />
                     </motion.div>
@@ -368,25 +307,17 @@ export default function OfferSection() {
                         whileHover={{ x: "100%" }}
                         transition={{ duration: 0.8, ease: "easeInOut" }}
                       />
-                      {/* Pulsing inner glow */}
-                      <motion.div
-                        className="absolute inset-4 bg-white/10 rounded-xl sm:rounded-2xl"
-                        animate={{
-                          opacity: [0.1, 0.2, 0.1],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
+                      {/* Static inner glow */}
+                      <div className="absolute inset-4 bg-white/10 rounded-xl sm:rounded-2xl" />
                     </>
                   )}
 
-                  {/* Title at bottom with enhanced styling */}
+                  {/* Title and Description */}
                   <div className="mt-auto relative z-10">
                     <motion.h3
-                      className={`text-lg md:text-xl font-semibold leading-tight ${
+                      className={`text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
+                        offer.description ? "mb-2 group-hover:mb-3" : ""
+                      } ${
                         offer.variant === "dark" 
                           ? "text-white" 
                           : "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
@@ -396,17 +327,19 @@ export default function OfferSection() {
                     >
                       {offer.title}
                     </motion.h3>
+                    {offer.description && (
+                      <p
+                        className={`text-sm md:text-base leading-relaxed overflow-hidden transition-all duration-400 ease-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-[200px] group-hover:translate-y-0 ${
+                          offer.variant === "dark"
+                            ? "text-white/70"
+                            : "text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
+                        }`}
+                      >
+                        {offer.description}
+                      </p>
+                    )}
                   </div>
 
-                  {/* Enhanced Corner Accents for Dark Variant */}
-                  {offer.variant === "dark" && (
-                    <>
-                      <div className="absolute top-2 left-2 w-8 h-0.5 bg-gradient-to-r from-purple-400 via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
-                      <div className="absolute top-2 left-2 w-0.5 h-8 bg-gradient-to-b from-purple-400 via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
-                      <div className="absolute bottom-2 right-2 w-8 h-0.5 bg-gradient-to-l from-cyan-400 via-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(94,234,212,0.5)]" />
-                      <div className="absolute bottom-2 right-2 w-0.5 h-8 bg-gradient-to-t from-cyan-400 via-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(94,234,212,0.5)]" />
-                    </>
-                  )}
 
                   {/* Corner Accents for Teal Variant */}
                   {offer.variant === "teal" && (
@@ -441,38 +374,35 @@ export default function OfferSection() {
                       delay: 0.7 + index * 0.1,
                       ease: [0.25, 0.46, 0.45, 0.94]
                     }}
-                    whileHover={{ 
+                    whileHover={offer.variant === "dark" ? { 
+                      scale: 1.01,
+                      transition: { type: "spring", stiffness: 200, damping: 22 }
+                    } : {
                       scale: 1.02, 
                       y: -5,
                       transition: { duration: 0.3 }
                     }}
-                    className={`relative group rounded-2xl sm:rounded-3xl p-6 md:p-8 min-h-[220px] sm:min-h-[240px] flex flex-col overflow-hidden ${
+                    style={offer.variant === "dark" ? {
+                      backdropFilter: `blur(${blurValue}px) saturate(200%)`,
+                      backgroundColor: `rgba(255,255,255,${opacityValue})`,
+                      WebkitBackdropFilter: `blur(${blurValue}px) saturate(200%)`,
+                    } : {}}
+                    className={`relative group rounded-3xl p-6 md:p-8 min-h-[220px] sm:min-h-[240px] flex flex-col overflow-hidden ${
                       offer.variant === "dark"
-                        ? "bg-black/50 border border-purple-500/30 backdrop-blur-md shadow-[0_8px_32px_0_rgba(168,85,247,0.1)]"
+                        ? "border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
                         : "bg-gradient-to-br from-teal-400 to-cyan-400 shadow-[0_8px_32px_0_rgba(94,234,212,0.2)]"
                     }`}
                   >
-                    {/* Outer Glow Effect */}
+                    {/* iOS glass light reflection - more subtle */}
                     {offer.variant === "dark" && (
-                      <motion.div
-                        className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 via-cyan-500/20 to-teal-500/20 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                        animate={{
-                          opacity: [0, 0.3, 0],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    )}
-
-                    {/* Glassmorphism Overlay for Dark Variant */}
-                    {offer.variant === "dark" && (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/8 via-transparent to-purple-500/8 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/15 via-transparent to-cyan-500/15 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      </>
+                      <div className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
+                        {/* top highlight - very subtle */}
+                        <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/20" />
+                        {/* soft light gradient - iOS style */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-transparent to-transparent" />
+                        {/* subtle inner glow */}
+                        <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-white/[0.05] via-transparent to-transparent" />
+                      </div>
                     )}
 
                     {/* Animated Gradient for Teal Variant */}
@@ -494,50 +424,18 @@ export default function OfferSection() {
                       />
                     )}
 
-                    {/* Animated Border Glow for Dark Variant */}
-                    {offer.variant === "dark" && (
-                      <motion.div
-                        className="absolute -inset-px rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100"
-                        style={{
-                          background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), transparent)",
-                          backgroundSize: "200% 100%",
-                        }}
-                        animate={{
-                          backgroundPosition: ["200%", "-200%"],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    )}
-
                     {/* Icon for dark variant with enhanced styling and glow */}
                     {offer.variant === "dark" && offer.icon && (
                       <motion.div 
-                        className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 opacity-80 group-hover:opacity-100 transition-opacity duration-300 relative z-10"
+                        className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 relative z-10"
                         whileHover={{ scale: 1.15, rotate: 5 }}
                         transition={{ duration: 0.3 }}
                       >
-                        {/* Glowing background behind icon */}
-                        <motion.div
-                          className="absolute inset-0 bg-teal-400/20 rounded-full blur-xl"
-                          animate={{
-                            opacity: [0.3, 0.6, 0.3],
-                            scale: [1, 1.2, 1],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                        />
                         <Image
                           src={offer.icon}
                           alt={offer.title}
                           fill
-                          className="object-contain drop-shadow-[0_0_15px_rgba(94,234,212,0.5)] relative z-10"
+                          className="object-contain opacity-90 relative z-10"
                           unoptimized
                         />
                       </motion.div>
@@ -567,10 +465,12 @@ export default function OfferSection() {
                       </>
                     )}
 
-                    {/* Title at bottom with enhanced styling */}
+                    {/* Title and Description */}
                     <div className="mt-auto relative z-10">
                       <motion.h3
-                        className={`text-lg md:text-xl font-semibold leading-tight ${
+                        className={`text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
+                          offer.description ? "mb-2 group-hover:mb-3" : ""
+                        } ${
                           offer.variant === "dark" 
                             ? "text-white" 
                             : "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
@@ -580,17 +480,19 @@ export default function OfferSection() {
                       >
                         {offer.title}
                       </motion.h3>
+                    {offer.description && (
+                      <p
+                        className={`text-sm md:text-base leading-relaxed overflow-hidden transition-all duration-400 ease-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-[200px] group-hover:translate-y-0 ${
+                          offer.variant === "dark"
+                            ? "text-white/70"
+                            : "text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
+                        }`}
+                      >
+                        {offer.description}
+                      </p>
+                    )}
                     </div>
 
-                    {/* Enhanced Corner Accents for Dark Variant */}
-                    {offer.variant === "dark" && (
-                      <>
-                        <div className="absolute top-2 left-2 w-8 h-0.5 bg-gradient-to-r from-purple-400 via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
-                        <div className="absolute top-2 left-2 w-0.5 h-8 bg-gradient-to-b from-purple-400 via-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
-                        <div className="absolute bottom-2 right-2 w-8 h-0.5 bg-gradient-to-l from-cyan-400 via-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(94,234,212,0.5)]" />
-                        <div className="absolute bottom-2 right-2 w-0.5 h-8 bg-gradient-to-t from-cyan-400 via-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_8px_rgba(94,234,212,0.5)]" />
-                      </>
-                    )}
 
                     {/* Corner Accents for Teal Variant */}
                     {offer.variant === "teal" && (

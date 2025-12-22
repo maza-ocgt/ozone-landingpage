@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 
 export default function AimSection() {
@@ -25,16 +25,6 @@ export default function AimSection() {
     }
   }, []);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
-  const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
-  const imageX = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, -50]);
-  const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
-
   return (
     <section
       ref={ref}
@@ -54,118 +44,31 @@ export default function AimSection() {
         />
       </div>
 
-      {/* Enhanced Animated Background Glows */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
-          animate={{
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        {/* Additional accent glows */}
-        <motion.div
-          className="absolute top-1/3 right-1/3 w-64 h-64 bg-cyan-500/15 rounded-full blur-2xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-        />
-      </div>
+      {/* Static Background Gradient Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79, 70, 229, 0.06) 0%, transparent 50%),
+            radial-gradient(ellipse 80% 50% at 50% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+            linear-gradient(180deg, 
+              rgba(30, 41, 59, 0.2) 0%, 
+              transparent 20%, 
+              transparent 80%, 
+              rgba(30, 41, 59, 0.2) 100%
+            )
+          `,
+        }}
+      />
 
-      {/* Floating Geometric Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-teal-400/30 rounded-full blur-sm"
-            style={{
-              left: `${15 + i * 15}%`,
-              top: `${20 + i * 12}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.3, 0.6, 0.3],
-              scale: [1, 1.5, 1],
-            }}
-            transition={{
-              duration: 4 + i * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.3,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Enhanced Top Purple Line with Scan Effect */}
+      {/* Top Subtle Divider Line */}
       <div className="absolute top-0 left-0 right-0 h-px z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/70 to-transparent shadow-[0_0_15px_rgba(168,85,247,0.6)]" />
-        <motion.div
-          className="absolute top-0 left-0 h-full w-32 bg-gradient-to-r from-purple-400/80 to-transparent blur-sm"
-          animate={{
-            x: ["-100%", "200%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
       </div>
 
-      {/* Enhanced Bottom Purple Line with Scan Effect */}
+      {/* Bottom Subtle Divider Line */}
       <div className="absolute bottom-0 left-0 right-0 h-px z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/70 to-transparent shadow-[0_0_15px_rgba(168,85,247,0.6)]" />
-        <motion.div
-          className="absolute bottom-0 right-0 h-full w-32 bg-gradient-to-l from-purple-400/80 to-transparent blur-sm"
-          animate={{
-            x: ["100%", "-200%"],
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "linear",
-            delay: 1.5,
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
       </div>
 
       {/* Blue Wavy Texture on Right - Enhanced */}
@@ -177,10 +80,7 @@ export default function AimSection() {
       </div>
 
       <div className="mx-auto max-w-7xl relative z-10">
-        <motion.div
-          style={{ opacity, y }}
-          className="space-y-8 sm:space-y-12 md:space-y-16"
-        >
+        <div className="space-y-8 sm:space-y-12 md:space-y-16">
           {/* Title - Top Left with Futuristic Styling */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -257,7 +157,10 @@ export default function AimSection() {
 
           {/* Landscape Video - Center with Futuristic Holographic Border */}
           <motion.div
-            style={{ x: imageX, opacity: imageOpacity }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
             className="relative w-full aspect-video group"
           >
             {/* Outer Glow Layers */}
@@ -394,7 +297,7 @@ export default function AimSection() {
               </motion.p>
             </div>
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
