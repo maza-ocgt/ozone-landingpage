@@ -1,9 +1,10 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform, useMotionValueEvent } from "motion/react";
+import { motion, useMotionValue, useSpring, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import VantaBackground from "@/components/VantaBackground";
+import SurveyModal from "@/components/SurveyModal";
 
 export default function Hero() {
   const count = useMotionValue(0);
@@ -13,6 +14,7 @@ export default function Hero() {
   });
   
   const [displayValue, setDisplayValue] = useState("0");
+  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
   
   useEffect(() => {
     count.set(12000); 
@@ -31,6 +33,7 @@ export default function Hero() {
   });
   
   return (
+    <>
     <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center text-white overflow-hidden">
       {/* Vanta Halo Background */}
       <VantaBackground />
@@ -60,9 +63,11 @@ export default function Hero() {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="relative z-10 mb-10"
+        className="relative z-10 mb-10 mt-10"
       >
         <div className="relative h-40 w-40 sm:h-48 sm:w-48 md:h-75 md:w-75">
+          {/* <div className="absolute -inset-4 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(94,234,212,0.25),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(34,211,238,0.2),transparent_60%)] blur-xl opacity-60 pointer-events-none" />
+          <div className="absolute -inset-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.4)]" /> */}
           <Image
             src="/3dlogo.png"
             alt="OZONE Logo"
@@ -70,6 +75,11 @@ export default function Hero() {
             className="object-contain"
             priority
           />
+        </div>
+        <div className="mt-1 text-center">
+          <span className="px-2 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-[0.22em] uppercase bg-gradient-to-b from-cyan-200 via-teal-300 to-cyan-500 bg-clip-text text-transparent drop-shadow-[0_6px_24px_rgba(34,211,238,0.35)]">
+            ozone
+          </span>
         </div>
       </motion.div>
 
@@ -110,10 +120,12 @@ export default function Hero() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="relative z-10 mt-8 sm:mt-10 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/50"
+        onClick={() => setIsSurveyOpen(true)}
       >
         Preregister Now
       </motion.button>
     </section>
+    <SurveyModal isOpen={isSurveyOpen} onClose={() => setIsSurveyOpen(false)} />
+    </>
   );
 }
-
