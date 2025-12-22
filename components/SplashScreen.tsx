@@ -15,7 +15,13 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
   const hasCheckedStorageRef = useRef(false);
 
   const completeSplash = useCallback(() => {
-    localStorage.setItem("splashPlayed", "true");
+    try {
+      if (typeof window !== "undefined" && window.localStorage) {
+        localStorage.setItem("splashPlayed", "true");
+      }
+    } catch (error) {
+      console.error("Error setting localStorage:", error);
+    }
     setIsVisible(false);
 
     setTimeout(() => {
@@ -32,15 +38,21 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     if (hasCheckedStorageRef.current) return;
     hasCheckedStorageRef.current = true;
 
-    const hasPlayed = localStorage.getItem("splashPlayed");
+    try {
+      if (typeof window !== "undefined" && window.localStorage) {
+        const hasPlayed = localStorage.getItem("splashPlayed");
 
-    if (hasPlayed === "true") {
-      // Skip splash if already played - hide immediately and complete
-      setIsVisible(false);
-      setTimeout(() => {
-        onComplete();
-      }, 100);
-      return;
+        if (hasPlayed === "true") {
+          // Skip splash if already played - hide immediately and complete
+          setIsVisible(false);
+          setTimeout(() => {
+            onComplete();
+          }, 100);
+          return;
+        }
+      }
+    } catch (error) {
+      console.error("Error reading localStorage:", error);
     }
 
     // Keep splash visible (already set to true in useState)
@@ -116,7 +128,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{
-              scale: isVideoLoaded ? 1.15 : 0.8,
+              scale: isVideoLoaded ? 1.8 : 0.8,
               opacity: isVideoLoaded ? 1 : 0,
             }}
             transition={{ duration: 0.5 }}
@@ -124,7 +136,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           >
             <video
               ref={videoRef}
-              className="w-full h-full object-contain max-w-[95vw] max-h-[95vh]"
+              className="w-full h-full object-contain"
               playsInline
               muted
               autoPlay
