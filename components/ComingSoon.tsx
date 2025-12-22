@@ -2,9 +2,10 @@
 
 export default function ComingSoon() {
   return (
-    <section className="w-full py-16 md:py-24 flex items-center justify-center">
+
+    <section className="w-full pt-0 pb-16 md:pt-0 md:pb-24 flex items-center justify-center">
       <div className="container mx-auto px-4">
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center -mt-32 md:-mt-40">
           <img
             src="/coming-soon.png"
             alt="Coming Soon"

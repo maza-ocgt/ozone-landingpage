@@ -116,7 +116,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{
-              scale: isVideoLoaded ? 1.15 : 0.8,
+              scale: isVideoLoaded ? 1.8 : 0.8,
               opacity: isVideoLoaded ? 1 : 0,
             }}
             transition={{ duration: 0.5 }}
@@ -124,7 +124,7 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           >
             <video
               ref={videoRef}
-              className="w-full h-full object-contain max-w-[95vw] max-h-[95vh]"
+              className="w-full h-full object-contain"
               playsInline
               muted
               autoPlay
