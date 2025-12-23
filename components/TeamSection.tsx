@@ -5,36 +5,36 @@ import Image from "next/image";
 
 export default function TeamSection() {
   const teamMembers = [
-    { 
-      id: 1, 
-      image: "/mrlim.png",
-      name: "Mr Lim ",
-      title: "Managing Director",
-      quote: "At Ozone, we turn vision into action. Guided by innovation and collaboration, we strive to create lasting value, embrace opportunities, and set new benchmarks in our industry. Together, we will transform challenges into growth and drive Ozone to its fullest potential."
-    },
+    // { 
+    //   id: 1, 
+    //   image: "/mrlim.png",
+    //   name: "Mr Lim ",
+    //   title: "Managing Director",
+    //   quote: "At Ozone, we turn vision into action. Guided by innovation and collaboration, we strive to create lasting value, embrace opportunities, and set new benchmarks in our industry. Together, we will transform challenges into growth and drive Ozone to its fullest potential."
+    // },
     {
-      id: 2,
+      id: 1,
       image: "/john.png", 
       name: "John",
       title: "Chief Innovation Officer",
       quote: "At Oz, technology is not just a backbone—it’s the storyteller. We’re building an intelligent streaming ecosystem where innovation amplifies creativity and connects audiences without limits"
     },
     { 
-      id: 3, 
+      id: 2, 
       image: "/zizi.png", 
       name: "Zizi",
       title: "Lead Developer",
       quote: "Ozone is developed with one purpose - giving creators and viewers a platform they can finally call their own."
     },
     { 
-      id: 4, 
+      id: 3, 
       image: "/lim.png",
       name: "Lim",
       title: "UI/UX Designer Lead",
       quote: "Landing to peak your interest, explore it like you’re an adventurer. Welcome to Ozone."
     },
     { 
-      id: 5,
+      id: 4,
       image: "/maza.png",
       name: "Maza",
       title: "Junior Frontend App Developer",
@@ -133,12 +133,12 @@ export default function TeamSection() {
                 />
               </div>
 
-              {/* Quote Panel */}
-              <div className="absolute top-full mt-9 left-1/2 -translate-x-1/2 w-56 pointer-events-none
+              {/* Info Panel */}
+              <div className="absolute top-full mt-6 left-1/2 -translate-x-1/2 w-64 pointer-events-none
                               opacity-0 translate-y-4 scale-95
                               group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
                               transition-all duration-300 ease-out">
-                <div className="relative bg-black/70 backdrop-blur-md border border-teal-400/30 rounded-xl p-4 shadow-[0_0_25px_rgba(94,234,212,0.3)] overflow-hidden">
+                <div className="relative bg-black/70 backdrop-blur-md border border-teal-400/30 rounded-xl p-5 shadow-[0_0_25px_rgba(94,234,212,0.3)] overflow-hidden">
                   
                   {/* Scan Line */}
                   <motion.div
@@ -147,17 +147,29 @@ export default function TeamSection() {
                     transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                   />
 
-                  <p className="relative z-10 text-sm text-teal-200 text-center">
-                    “{member.quote}”
-                  </p>
-                </div>
-              </div>
+                  <div className="relative z-10 text-center space-y-3">
+                    {/* Name */}
+                    <div>
+                      <span className="text-base font-semibold bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent block">
+                        {member.name}
+                      </span>
+                    </div>
+                    
+                    {/* Title */}
+                    <div>
+                      <span className="text-xs text-teal-400/70 block">
+                        {member.title}
+                      </span>
+                    </div>
 
-              {/* Name */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-sm font-semibold bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">
-                  {member.name}
-                </span>
+                    {/* Quote */}
+                    <div className="pt-2 border-t border-teal-400/20">
+                      <p className="text-sm text-teal-200 leading-relaxed">
+                        "{member.quote}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
