@@ -36,7 +36,7 @@ export default function VantaBackground({ className = "" }: VantaBackgroundProps
         gyroControls: false,
         minHeight: 200.0,
         minWidth: 200.0,
-        baseColor: 0x1a59,
+        baseColor: 0x00d4aa,
         backgroundColor: 0x131a43,
         amplitudeFactor: 1.0,
         xOffset: 0.0,

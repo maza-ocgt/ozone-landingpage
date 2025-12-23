@@ -93,7 +93,7 @@ export default function AimSection() {
             <div className="hidden sm:block absolute -left-6 md:-left-8 top-0 w-1 h-full bg-gradient-to-b from-teal-500/40 via-cyan-500/40 to-transparent blur-md" />
             
             <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight text-left relative"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0"
             >
               <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">Our</span>{" "}
               <span className="relative inline-block">
@@ -236,23 +236,23 @@ export default function AimSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative max-w-4xl mx-4 sm:mx-6 md:ml-12 lg:ml-24 xl:ml-32 group"
+            className="relative max-w-4xl mx-4 sm:mx-6 md:mx-8 lg:ml-12 xl:ml-24 group"
           >
             {/* Enhanced Glass Morphism Background */}
             <div className="absolute -inset-4 sm:-inset-6 bg-black/40 rounded-2xl sm:rounded-3xl" />
             
-            <div className="relative space-y-4 sm:space-y-6 text-white text-left p-6 sm:p-8 md:p-10 lg:p-12">
+            <div className="relative space-y-4 sm:space-y-6 text-white text-left p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12">
               <div className="space-y-4">
                 <motion.p
                   initial={{ opacity: 0.7 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-light text-white/90"
+                  className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed font-light text-white/90"
                 >
                   Experience Malaysia's first global streaming revolution -
                 </motion.p>
                 <motion.p
-                  className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed font-light text-white"
+                  className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed font-light text-white"
                   initial={{ opacity: 0.8 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -291,7 +291,7 @@ export default function AimSection() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-white/75 font-light"
+                className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed text-white/75 font-light"
               >
                 Join thousands waiting for early access. Your input helps shape the platform.
               </motion.p>

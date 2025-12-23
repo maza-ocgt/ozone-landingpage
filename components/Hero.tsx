@@ -2,7 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import VantaBackground from "@/components/VantaBackground";
 import SurveyModal from "@/components/SurveyModal";
 
@@ -16,25 +16,33 @@ export default function Hero() {
   const [displayValue, setDisplayValue] = useState("0");
   const [isSurveyOpen, setIsSurveyOpen] = useState(false);
   
+  const lastUpdateRef = useRef(0);
+  const throttleDelay = 16; // ~60fps
+
   useEffect(() => {
     count.set(12000); 
   }, [count]);
   
+  // Throttle updates for better performance
   useMotionValueEvent(springCount, "change", (latest) => {
-    if (latest >= 1000) {
-      const kValue = latest / 1000;
-      const rounded = Math.round(kValue * 10) / 10;
-      setDisplayValue(
-        rounded % 1 === 0 ? `${rounded}k` : `${rounded.toFixed(1)}k`
-      );
-    } else {
-      setDisplayValue(Math.round(latest).toString());
+    const now = Date.now();
+    if (now - lastUpdateRef.current >= throttleDelay) {
+      if (latest >= 1000) {
+        const kValue = latest / 1000;
+        const rounded = Math.round(kValue * 10) / 10;
+        setDisplayValue(
+          rounded % 1 === 0 ? `${rounded}k` : `${rounded.toFixed(1)}k`
+        );
+      } else {
+        setDisplayValue(Math.round(latest).toString());
+      }
+      lastUpdateRef.current = now;
     }
   });
   
   return (
     <>
-    <section className="relative flex min-h-screen flex-col items-center justify-center px-6 text-center text-white overflow-hidden">
+    <section className="relative flex min-h-screen flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center text-white overflow-hidden">
       {/* Vanta Halo Background */}
       <VantaBackground />
       
@@ -63,9 +71,9 @@ export default function Hero() {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="relative z-10 mb-10 mt-10"
+        className="relative z-10 mb-6 sm:mb-8 md:mb-10 mt-6 sm:mt-8 md:mt-10"
       >
-        <div className="relative h-40 w-40 sm:h-48 sm:w-48 md:h-75 md:w-75">
+        <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-48 md:w-48 lg:h-60 lg:w-60">
           {/* <div className="absolute -inset-4 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(94,234,212,0.25),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(34,211,238,0.2),transparent_60%)] blur-xl opacity-60 pointer-events-none" />
           <div className="absolute -inset-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.4)]" /> */}
           <Image
@@ -74,6 +82,7 @@ export default function Hero() {
             fill
             className="object-contain"
             priority
+            sizes="(max-width: 640px) 160px, (max-width: 768px) 192px, 300px"
           />
         </div>
         <div className="mt-1 text-center">
@@ -88,7 +97,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.3 }}
-        className="relative z-10 max-w-4xl text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+        className="relative z-10 max-w-4xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-white px-2"
       >
         Malaysia's Global <br />
         Streaming{" "}
@@ -102,10 +111,10 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.8 }}
-        className="relative z-10 mt-8 text-xl text-white sm:text-2xl"
+        className="relative z-10 mt-6 sm:mt-8 text-lg sm:text-xl md:text-2xl text-white px-4"
       >
         <motion.span
-          className="text-4xl font-bold bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent sm:text-5xl"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent"
         >
           {displayValue}
         </motion.span>{" "}
@@ -119,7 +128,7 @@ export default function Hero() {
         transition={{ delay: 0.7, duration: 0.8 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="relative z-10 mt-8 sm:mt-10 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-6 sm:px-8 md:px-10 py-3 sm:py-4 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/50"
+        className="relative z-10 mt-6 sm:mt-8 md:mt-10 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/50"
         onClick={() => setIsSurveyOpen(true)}
       >
         Preregister Now

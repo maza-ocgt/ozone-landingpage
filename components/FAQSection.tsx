@@ -122,7 +122,7 @@ export default function FAQSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
           >
             {faqs.map((faq, index) => (
               <motion.div
@@ -131,7 +131,7 @@ export default function FAQSection() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
-                className="relative group rounded-2xl p-6 md:p-8 border border-white/[0.08] bg-black/50 backdrop-blur-xl backdrop-saturate-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:border-purple-500/50 transition-all duration-300 overflow-hidden"
+                className="relative group rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-white/[0.08] bg-black/50 backdrop-blur-xl backdrop-saturate-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:border-purple-500/50 transition-all duration-300 overflow-hidden"
                 style={{
                   backdropFilter: "blur(40px) saturate(200%)",
                   WebkitBackdropFilter: "blur(40px) saturate(200%)",
@@ -149,10 +149,10 @@ export default function FAQSection() {
                 </div>
 
                 <div className="space-y-4 relative z-10">
-                  <h3 className="text-white text-lg md:text-xl font-bold leading-tight">
+                  <h3 className="text-white text-base sm:text-lg md:text-xl font-bold leading-tight">
                     {faq.question}
                   </h3>
-                  <p className="text-white text-base md:text-lg leading-relaxed">
+                  <p className="text-white text-sm sm:text-base md:text-lg leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

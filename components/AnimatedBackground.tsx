@@ -16,10 +16,30 @@ import { useEffect, useState } from 'react';
  */
 export default function AnimatedBackground() {
   const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; delay: number }>>([]);
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
-  // Generate particles on mount
+  // Detect mobile and reduced motion preference
   useEffect(() => {
-    const particleCount = 20; // Reduced from 30 for better performance
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    mediaQuery.addEventListener('change', (e) => setPrefersReducedMotion(e.matches));
+
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+      mediaQuery.removeEventListener('change', (e) => setPrefersReducedMotion(e.matches));
+    };
+  }, []);
+
+  // Generate particles on mount - fewer on mobile
+  useEffect(() => {
+    const particleCount = isMobile ? 8 : 20; // Reduced for mobile
     const newParticles = Array.from({ length: particleCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
@@ -28,7 +48,7 @@ export default function AnimatedBackground() {
       delay: Math.random() * 2,
     }));
     setParticles(newParticles);
-  }, []);
+  }, [isMobile]);
 
   return (
     <div
@@ -46,12 +66,12 @@ export default function AnimatedBackground() {
             linear-gradient(135deg, #0a0a0f 0%, #0f1419 25%, #0a0f14 50%, #0f1419 75%, #0a0a0f 100%)
           `,
           backgroundSize: '200% 200%',
-          willChange: 'transform',
+          willChange: prefersReducedMotion ? 'auto' : 'transform',
         }}
-        animate={{
+        animate={prefersReducedMotion ? {} : {
           scale: [1, 1.02, 1],
         }}
-        transition={{
+        transition={prefersReducedMotion ? {} : {
           duration: 30,
           repeat: Infinity,
           ease: 'easeInOut',
@@ -70,121 +90,131 @@ export default function AnimatedBackground() {
 
       {/* Abstract Geometric Shapes */}
       
-      {/* Large Circle - Top Right */}
-      <motion.div
-        className="absolute"
-        style={{
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          border: '1px solid rgba(94, 234, 212, 0.1)',
-          top: '-100px',
-          right: '-100px',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.5, 0.3],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      {/* Large Circle - Top Right - Hidden on mobile */}
+      {!isMobile && (
+        <motion.div
+          className="absolute"
+          style={{
+            width: '400px',
+            height: '400px',
+            borderRadius: '50%',
+            border: '1px solid rgba(94, 234, 212, 0.1)',
+            top: '-100px',
+            right: '-100px',
+          }}
+          animate={prefersReducedMotion ? {} : {
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={prefersReducedMotion ? {} : {
+            duration: 8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      )}
 
-      {/* Medium Circle - Bottom Left */}
-      <motion.div
-        className="absolute"
-        style={{
-          width: '300px',
-          height: '300px',
-          borderRadius: '50%',
-          border: '1px solid rgba(34, 211, 238, 0.08)',
-          bottom: '-50px',
-          left: '-50px',
-        }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.2, 0.4, 0.2],
-          rotate: [0, 180, 360],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      {/* Medium Circle - Bottom Left - Hidden on mobile */}
+      {!isMobile && (
+        <motion.div
+          className="absolute"
+          style={{
+            width: '300px',
+            height: '300px',
+            borderRadius: '50%',
+            border: '1px solid rgba(34, 211, 238, 0.08)',
+            bottom: '-50px',
+            left: '-50px',
+          }}
+          animate={prefersReducedMotion ? {} : {
+            scale: [1, 1.15, 1],
+            opacity: [0.2, 0.4, 0.2],
+            rotate: [0, 180, 360],
+          }}
+          transition={prefersReducedMotion ? {} : {
+            duration: 12,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      )}
 
-      {/* Small Circle - Center Right */}
-      <motion.div
-        className="absolute"
-        style={{
-          width: '200px',
-          height: '200px',
-          borderRadius: '50%',
-          border: '1px solid rgba(20, 184, 166, 0.1)',
-          top: '50%',
-          right: '10%',
-          transform: 'translateY(-50%)',
-        }}
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.35, 0.2],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      {/* Small Circle - Center Right - Hidden on mobile */}
+      {!isMobile && (
+        <motion.div
+          className="absolute"
+          style={{
+            width: '200px',
+            height: '200px',
+            borderRadius: '50%',
+            border: '1px solid rgba(20, 184, 166, 0.1)',
+            top: '50%',
+            right: '10%',
+            transform: 'translateY(-50%)',
+          }}
+          animate={prefersReducedMotion ? {} : {
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.35, 0.2],
+          }}
+          transition={prefersReducedMotion ? {} : {
+            duration: 6,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      )}
 
-      {/* Geometric Line - Diagonal Top Left */}
-      <motion.div
-        className="absolute"
-        style={{
-          width: '300px',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.2), transparent)',
-          top: '20%',
-          left: '10%',
-          transform: 'rotate(45deg)',
-          transformOrigin: 'left center',
-        }}
-        animate={{
-          opacity: [0.2, 0.4, 0.2],
-          scaleX: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      {/* Geometric Line - Diagonal Top Left - Hidden on mobile */}
+      {!isMobile && (
+        <motion.div
+          className="absolute"
+          style={{
+            width: '300px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.2), transparent)',
+            top: '20%',
+            left: '10%',
+            transform: 'rotate(45deg)',
+            transformOrigin: 'left center',
+          }}
+          animate={prefersReducedMotion ? {} : {
+            opacity: [0.2, 0.4, 0.2],
+            scaleX: [1, 1.2, 1],
+          }}
+          transition={prefersReducedMotion ? {} : {
+            duration: 5,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      )}
 
-      {/* Geometric Line - Diagonal Bottom Right */}
-      <motion.div
-        className="absolute"
-        style={{
-          width: '250px',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.15), transparent)',
-          bottom: '15%',
-          right: '15%',
-          transform: 'rotate(-45deg)',
-          transformOrigin: 'right center',
-        }}
-        animate={{
-          opacity: [0.15, 0.3, 0.15],
-          scaleX: [1, 1.3, 1],
-        }}
-        transition={{
-          duration: 7,
-          repeat: Infinity,
-          ease: 'easeInOut',
-        }}
-      />
+      {/* Geometric Line - Diagonal Bottom Right - Hidden on mobile */}
+      {!isMobile && (
+        <motion.div
+          className="absolute"
+          style={{
+            width: '250px',
+            height: '1px',
+            background: 'linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.15), transparent)',
+            bottom: '15%',
+            right: '15%',
+            transform: 'rotate(-45deg)',
+            transformOrigin: 'right center',
+          }}
+          animate={prefersReducedMotion ? {} : {
+            opacity: [0.15, 0.3, 0.15],
+            scaleX: [1, 1.3, 1],
+          }}
+          transition={prefersReducedMotion ? {} : {
+            duration: 7,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      )}
 
-      {/* Particle Effects */}
+      {/* Particle Effects - Reduced animation on mobile */}
       {particles.map((particle) => (
         <motion.div
           key={particle.id}
@@ -195,14 +225,15 @@ export default function AnimatedBackground() {
             left: `${particle.x}%`,
             top: `${particle.y}%`,
             boxShadow: `0 0 ${particle.size * 2}px rgba(94, 234, 212, 0.3)`,
+            willChange: prefersReducedMotion ? 'auto' : 'transform, opacity',
           }}
-          animate={{
-            y: [0, -30, 0],
+          animate={prefersReducedMotion ? {} : {
+            y: isMobile ? [0, -15, 0] : [0, -30, 0],
             opacity: [0.2, 0.6, 0.2],
             scale: [1, 1.5, 1],
           }}
-          transition={{
-            duration: 4 + Math.random() * 2,
+          transition={prefersReducedMotion ? {} : {
+            duration: isMobile ? 6 + Math.random() * 2 : 4 + Math.random() * 2,
             repeat: Infinity,
             ease: 'easeInOut',
             delay: particle.delay,

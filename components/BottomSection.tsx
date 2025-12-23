@@ -91,7 +91,7 @@ export default function BottomSection() {
             {/* Glow behind title */}
             <div className="absolute -left-6 md:-left-8 top-0 w-1 h-full bg-gradient-to-b from-teal-500/40 via-cyan-500/40 to-transparent blur-md hidden sm:block" />
             
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-left relative">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0">
               <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">Movie</span>{" "}
               <span className="relative inline-block">
                 <motion.span
@@ -155,7 +155,7 @@ export default function BottomSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
           >
             {videoThumbnails.map((video, index) => (
               <motion.div
@@ -173,7 +173,7 @@ export default function BottomSection() {
                   y: -5,
                   transition: { duration: 0.3 }
                 }}
-                className="relative group aspect-video rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer"
+                className="relative group aspect-video rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden cursor-pointer"
               >
                 {/* Outer Glow Effect - Only on hover */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-teal-500/30 via-cyan-500/30 to-teal-500/30 rounded-xl sm:rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -202,12 +202,12 @@ export default function BottomSection() {
                   <motion.div
                     whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.95 }}
-                    className="relative w-16 h-16 md:w-20 md:h-20 rounded-full backdrop-blur-xl border-2 border-teal-400/80 bg-gradient-to-br from-teal-500/20 via-cyan-500/20 to-teal-500/20 flex items-center justify-center shadow-[0_0_30px_rgba(94,234,212,0.5)] group-hover:shadow-[0_0_40px_rgba(94,234,212,0.7)] transition-all duration-300"
+                    className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full backdrop-blur-xl border-2 border-teal-400/80 bg-gradient-to-br from-teal-500/20 via-cyan-500/20 to-teal-500/20 flex items-center justify-center shadow-[0_0_30px_rgba(94,234,212,0.5)] group-hover:shadow-[0_0_40px_rgba(94,234,212,0.7)] transition-all duration-300"
                   >
                     {/* Static Ring */}
                     <div className="absolute inset-0 rounded-full border-2 border-teal-400/30" />
                     {/* Play Icon */}
-                    <div className="relative z-10 w-0 h-0 border-l-[12px] md:border-l-[16px] border-l-teal-300 border-t-[8px] md:border-t-[10px] border-t-transparent border-b-[8px] md:border-b-[10px] border-b-transparent ml-1" />
+                    <div className="relative z-10 w-0 h-0 border-l-[8px] sm:border-l-[12px] md:border-l-[16px] border-l-teal-300 border-t-[5px] sm:border-t-[8px] md:border-t-[10px] border-t-transparent border-b-[5px] sm:border-b-[8px] md:border-b-[10px] border-b-transparent ml-0.5 sm:ml-1" />
                   </motion.div>
                 </div>
 

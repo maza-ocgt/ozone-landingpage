@@ -6,6 +6,7 @@ import { useState, useRef } from "react";
 
 
 export default function OfferSection() {
+  const [expandedCardId, setExpandedCardId] = useState<number | null>(null);
   const offers = [
     {
       id: 1,
@@ -63,12 +64,24 @@ export default function OfferSection() {
   const [blurValue, setBlurValue] = useState(40);
   const [opacityValue, setOpacityValue] = useState(0.05);
 
+  // Throttle updates for better performance
+  const lastUpdateRef = useRef(0);
+  const throttleDelay = 16; // ~60fps
+
   useMotionValueEvent(glassBlur, "change", (latest) => {
-    setBlurValue(latest);
+    const now = Date.now();
+    if (now - lastUpdateRef.current >= throttleDelay) {
+      setBlurValue(latest);
+      lastUpdateRef.current = now;
+    }
   });
 
   useMotionValueEvent(glassOpacity, "change", (latest) => {
-    setOpacityValue(latest);
+    const now = Date.now();
+    if (now - lastUpdateRef.current >= throttleDelay) {
+      setOpacityValue(latest);
+      lastUpdateRef.current = now;
+    }
   });
 
   return (
@@ -152,7 +165,7 @@ export default function OfferSection() {
             {/* Glow behind title */}
             <div className="absolute -left-6 md:-left-8 top-0 w-1 h-full bg-gradient-to-b from-teal-500/40 via-cyan-500/40 to-transparent blur-md hidden sm:block" />
             
-            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-left relative">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0">
               <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">What we</span>{" "}
               <span className="relative inline-block">
                 <motion.span
@@ -218,7 +231,7 @@ export default function OfferSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
             >
               {offers.slice(0, 4).map((offer, index) => (
                 <motion.div
@@ -230,6 +243,12 @@ export default function OfferSection() {
                     duration: 0.6, 
                     delay: 0.3 + index * 0.1,
                     ease: [0.25, 0.46, 0.45, 0.94]
+                  }}
+                  onClick={() => {
+                    // Toggle on mobile
+                    if (window.innerWidth < 1024) {
+                      setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
+                    }
                   }}
                   whileHover={offer.variant === "dark" ? { 
                     scale: 1.01,
@@ -244,7 +263,7 @@ export default function OfferSection() {
                     backgroundColor: `rgba(255,255,255,${opacityValue})`,
                     WebkitBackdropFilter: `blur(${blurValue}px) saturate(200%)`,
                   } : {}}
-                  className={`relative group rounded-3xl p-6 md:p-8 min-h-[220px] sm:min-h-[240px] flex flex-col overflow-hidden ${
+                  className={`relative group rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[240px] flex flex-col overflow-hidden ${expandedCardId === offer.id ? 'cursor-pointer' : ''} ${
                     offer.variant === "dark"
                       ? "border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
                       : "bg-gradient-to-br from-teal-400 to-cyan-400 shadow-[0_8px_32px_0_rgba(94,234,212,0.2)]"
@@ -288,10 +307,10 @@ export default function OfferSection() {
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 1, delay: 0.2 }}
-                      className="absolute top-4 right-4 relative z-10"
+                      className="absolute top-3 right-3 sm:top-4 sm:right-4 relative z-10"
                       whileHover={{ scale: 1.15, rotate: 5 }}
                     >
-                      <div className="relative h-12 w-12 md:h-16 md:w-16">
+                      <div className="relative h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16">
                         <Image
                           src={offer.icon}
                           alt={offer.title}
@@ -320,7 +339,7 @@ export default function OfferSection() {
                   {/* Title and Description */}
                   <div className="mt-auto relative z-10">
                     <motion.h3
-                      className={`text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
+                      className={`text-base sm:text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
                         offer.description ? "mb-2 group-hover:mb-3" : ""
                       } ${
                         offer.variant === "dark" 
@@ -379,6 +398,12 @@ export default function OfferSection() {
                       delay: 0.7 + index * 0.1,
                       ease: [0.25, 0.46, 0.45, 0.94]
                     }}
+                    onClick={() => {
+                      // Toggle on mobile
+                      if (window.innerWidth < 1024) {
+                        setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
+                      }
+                    }}
                     whileHover={offer.variant === "dark" ? { 
                       scale: 1.01,
                       transition: { type: "spring", stiffness: 200, damping: 22 }
@@ -391,12 +416,12 @@ export default function OfferSection() {
                       backdropFilter: `blur(${blurValue}px) saturate(200%)`,
                       backgroundColor: `rgba(255,255,255,${opacityValue})`,
                       WebkitBackdropFilter: `blur(${blurValue}px) saturate(200%)`,
-                    } : {}}
-                    className={`relative group rounded-3xl p-6 md:p-8 min-h-[220px] sm:min-h-[240px] flex flex-col overflow-hidden ${
-                      offer.variant === "dark"
-                        ? "border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
-                        : "bg-gradient-to-br from-teal-400 to-cyan-400 shadow-[0_8px_32px_0_rgba(94,234,212,0.2)]"
-                    }`}
+                  } : {}}
+                  className={`relative group rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[240px] flex flex-col overflow-hidden ${expandedCardId === offer.id ? 'cursor-pointer' : ''} ${
+                    offer.variant === "dark"
+                      ? "border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+                      : "bg-gradient-to-br from-teal-400 to-cyan-400 shadow-[0_8px_32px_0_rgba(94,234,212,0.2)]"
+                  }`}
                   >
                     {/* iOS glass light reflection - more subtle */}
                     {offer.variant === "dark" && (
@@ -473,13 +498,13 @@ export default function OfferSection() {
                     {/* Title and Description */}
                     <div className="mt-auto relative z-10">
                       <motion.h3
-                        className={`text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
-                          offer.description ? "mb-2 group-hover:mb-3" : ""
-                        } ${
-                          offer.variant === "dark" 
-                            ? "text-white" 
-                            : "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
-                        }`}
+                      className={`text-base sm:text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
+                        offer.description ? "mb-2 group-hover:mb-3" : ""
+                      } ${
+                        offer.variant === "dark" 
+                          ? "text-white" 
+                          : "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
+                      }`}
                         whileHover={{ x: 5 }}
                         transition={{ duration: 0.3 }}
                       >
@@ -487,7 +512,11 @@ export default function OfferSection() {
                       </motion.h3>
                     {offer.description && (
                       <p
-                        className={`text-sm md:text-base leading-relaxed overflow-hidden transition-all duration-400 ease-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-[200px] group-hover:translate-y-0 ${
+                        className={`text-xs sm:text-sm md:text-base leading-relaxed overflow-hidden transition-all duration-400 ease-out ${
+                          expandedCardId === offer.id 
+                            ? 'opacity-100 max-h-[200px] translate-y-0' 
+                            : 'opacity-0 max-h-0 translate-y-2'
+                        } md:opacity-0 md:max-h-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:max-h-[200px] md:group-hover:translate-y-0 ${
                           offer.variant === "dark"
                             ? "text-white/70"
                             : "text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
