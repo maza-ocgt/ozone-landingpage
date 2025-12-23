@@ -2,6 +2,8 @@
 
 import { motion } from "motion/react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/firebase/firebase";
 
 type Role = "creator" | "viewer";
 
@@ -136,7 +138,8 @@ type SurveyModalProps = {
 export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [formValues, setFormValues] = useState<FormState>(() => createEmptyState());
-  const [note, setNote] = useState("");
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const activeFields = useMemo(
     () => (selectedRole ? roleFields[selectedRole] : []),
@@ -147,9 +150,15 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     if (!isOpen) {
       setSelectedRole(null);
       setFormValues(createEmptyState());
-      setNote("");
+      setToast(null);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    if (!toast) return;
+    const timer = setTimeout(() => setToast(null), 3500);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   if (!isOpen) {
     return null;
@@ -184,11 +193,40 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!selectedRole) return;
 
-    setNote("Captured. We'll wire this to Firestore next.");
+    if (
+      selectedRole === "viewer" &&
+      formValues.viewer.influencer === "Yes" &&
+      !formValues.viewer.influencerType
+    ) {
+      setToast({ message: "Please specify what kind of influencer you are.", type: "error" });
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      setToast(null);
+
+      const collectionName = selectedRole === "creator" ? "surveyCreators" : "surveyViewers";
+      const payload = {
+        role: selectedRole,
+        ...formValues[selectedRole],
+        createdAt: serverTimestamp(),
+      };
+
+      await addDoc(collection(db, collectionName), payload);
+      setToast({ message: "Saved to Firestore!", type: "success" });
+      setFormValues(createEmptyState());
+      setSelectedRole(null);
+    } catch (error) {
+      console.error(error);
+      setToast({ message: "Could not save right now. Please try again.", type: "error" });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -204,6 +242,20 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
         transition={{ duration: 0.25 }}
         className="relative z-10 w-full max-w-5xl max-h-[85vh] overflow-hidden rounded-3xl border border-white/10 bg-black/30 shadow-[0_30px_120px_rgba(0,0,0,0.35)] backdrop-blur-3xl"
       >
+        {toast && (
+          <div className="pointer-events-none absolute top-4 right-4 z-20">
+            <div
+              className={`pointer-events-auto rounded-2xl px-4 py-3 text-sm font-semibold shadow-[0_12px_40px_rgba(0,0,0,0.4)] backdrop-blur-xl border ${
+                toast.type === "success"
+                  ? "bg-emerald-500/20 border-emerald-300/60 text-emerald-50"
+                  : "bg-rose-500/20 border-rose-300/60 text-rose-50"
+              }`}
+            >
+              {toast.message}
+            </div>
+          </div>
+        )}
+
         <div className="absolute inset-0 bg-gradient-to-br from-teal-500/6 via-cyan-500/3 to-transparent pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.06),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.08),transparent_30%)] pointer-events-none" />
 
@@ -247,7 +299,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                 key={role}
                 onClick={() => {
                   setSelectedRole(role);
-                  setNote("");
+                  setToast(null);
                 }}
                 className={`flex items-center justify-between gap-4 rounded-2xl border px-4 py-4 text-left transition-all ${
                   selectedRole === role
@@ -390,12 +442,12 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
               Fields with * are required.
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              {note && <span className="text-sm text-teal-200">{note}</span>}
               <button
                 type="submit"
                 className="rounded-full border border-white/15 bg-gradient-to-r from-teal-300/40 via-cyan-400/40 to-blue-500/40 px-5 py-3 text-sm font-semibold uppercase tracking-widest text-white shadow-[0_10px_40px_rgba(59,130,246,0.4)] backdrop-blur-xl transition hover:border-teal-200/70 hover:shadow-[0_10px_55px_rgba(59,130,246,0.55)] disabled:opacity-40 disabled:cursor-not-allowed"
+                disabled={isSubmitting || !selectedRole}
               >
-                Submit response
+                {isSubmitting ? "Saving..." : "Submit response"}
               </button>
             </div>
           </div>
