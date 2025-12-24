@@ -11,9 +11,14 @@ import TeamSection from "@/components/TeamSection";
 import ComingSoon from "@/components/ComingSoon";
 import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
+import SurveyModal from "@/components/SurveyModal";
 
 export default function Home() {
   const [showSplash, setShowSplash] = useState(true);
+  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
+
+  const openSurvey = () => setIsSurveyOpen(true);
+  const closeSurvey = () => setIsSurveyOpen(false);
 
   return (
     <>
@@ -26,17 +31,19 @@ export default function Home() {
 
           {/* Main Content */}
           <main className="relative z-10">
-            <Hero />
+            <Hero onOpenSurvey={openSurvey} />
             <AimSection />
-            <BottomSection />
+            <BottomSection onOpenSurvey={openSurvey} />
             <OfferSection />
             <FAQSection />
             <TeamSection />
-            <ComingSoon />
+            <ComingSoon onOpenSurvey={openSurvey} />
           </main>
           
           {/* Footer */}
           <Footer />
+
+          <SurveyModal isOpen={isSurveyOpen} onClose={closeSurvey} />
         </div>
       )}
     </>

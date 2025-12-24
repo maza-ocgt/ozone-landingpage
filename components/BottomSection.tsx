@@ -2,17 +2,78 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useState } from "react";
 
-export default function BottomSection() {
+type BottomSectionProps = {
+  onOpenSurvey: () => void;
+};
+
+export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
 
   const videoThumbnails = [
-    { id: 1, thumbnail: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=600&fit=crop" },
-    { id: 2, thumbnail: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&h=600&fit=crop" },
-    { id: 3, thumbnail: "https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&h=600&fit=crop" },
-    { id: 4, thumbnail: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop" },
-    { id: 5, thumbnail: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&h=600&fit=crop" },
-    { id: 6, thumbnail: "https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=800&h=600&fit=crop" },
+    {
+      id: 1,
+      title: "Neon Streets",
+      thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=1600&fit=crop",
+      description: "A gritty cyber-noir where a data courier uncovers a secret that could collapse the grid.",
+      genre: ["Sci-Fi", "Thriller"],
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    },
+    {
+      id: 2,
+      title: "Silent Tides",
+      thumbnail: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=1600&fit=crop",
+      description: "Two strangers stranded on an island learn the cost of trust as a storm approaches.",
+      genre: ["Drama", "Survival"],
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    },
+    {
+      id: 3,
+      title: "Chromatic Pulse",
+      thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=1600&fit=crop",
+      description: "A DJ races against time to stop a rogue AI from hijacking the world’s airwaves.",
+      genre: ["Action", "Music"],
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    },
+    {
+      id: 4,
+      title: "Glass Skies",
+      thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1200&h=1600&fit=crop",
+      description: "A pilot discovers a hidden city above the clouds and a conspiracy to erase it.",
+      genre: ["Adventure", "Mystery"],
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    },
+    {
+      id: 5,
+      title: "Last Broadcast",
+      thumbnail: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=1200&h=1600&fit=crop",
+      description: "An independent journalist streams the truth as a blackout rolls across the globe.",
+      genre: ["Thriller", "Tech"],
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+    },
+    {
+      id: 6,
+      title: "Moonlit Echoes",
+      thumbnail: "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=1200&h=1600&fit=crop",
+      description: "A singer hears voices in her melodies that lead her to a forgotten lunar archive.",
+      genre: ["Fantasy", "Romance"],
+      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+    },
   ];
+
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [modalVideo, setModalVideo] = useState<typeof videoThumbnails[0] | null>(null);
+  const [autoPlay, setAutoPlay] = useState(false);
+
+  const openModal = (video: (typeof videoThumbnails)[0], play: boolean) => {
+    setModalVideo(video);
+    setAutoPlay(play);
+  };
+
+  const closeModal = () => {
+    setModalVideo(null);
+    setAutoPlay(false);
+  };
 
   return (
     <section 
@@ -155,11 +216,11 @@ export default function BottomSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
-          >
-            {videoThumbnails.map((video, index) => (
-              <motion.div
-                key={video.id}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
+        >
+          {videoThumbnails.map((video, index) => (
+            <motion.div
+              key={video.id}
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -174,52 +235,64 @@ export default function BottomSection() {
                   transition: { duration: 0.3 }
                 }}
                 className="relative group aspect-video rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden cursor-pointer"
+                onMouseEnter={() => setHoveredId(video.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                onClick={() => openModal(video, false)}
               >
-                {/* Outer Glow Effect - Only on hover */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-teal-500/30 via-cyan-500/30 to-teal-500/30 rounded-xl sm:rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Outer Glow */}
+                <div className="absolute -inset-1 rounded-xl sm:rounded-2xl bg-gradient-to-r from-teal-400/25 via-cyan-400/20 to-teal-400/25 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Glassmorphism Border with Glow */}
-                <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-teal-500/20 via-cyan-500/10 to-purple-500/20 backdrop-blur-sm border border-white/10 shadow-[0_8px_32px_0_rgba(94,234,212,0.1)] group-hover:border-teal-400/40 group-hover:shadow-[0_8px_32px_0_rgba(94,234,212,0.3)] transition-all duration-500" />
-                
-                {/* Border Glow - Only on hover, no animation */}
-                <div className="absolute -inset-px rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 bg-gradient-to-r from-teal-400/30 via-cyan-400/30 to-teal-400/30" />
-
-                {/* Thumbnail Image with Overlay */}
+                {/* Thumbnail */}
                 <div className="relative w-full h-full z-0">
                   <Image
                     src={video.thumbnail}
-                    alt={`Video thumbnail ${video.id}`}
+                    alt={`Video thumbnail ${video.title}`}
                     fill
                     className="object-cover rounded-xl sm:rounded-2xl"
                     unoptimized
                   />
-                  {/* Dark overlay for better contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent rounded-xl sm:rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent rounded-xl sm:rounded-2xl" />
+                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2.5 py-1 rounded-full border border-white/20 bg-white/15 backdrop-blur-xl shadow-[0_8px_20px_rgba(0,0,0,0.3)] text-[10px] sm:text-xs font-semibold text-white tracking-wide">
+                    Play
+                  </div>
                 </div>
 
-                {/* Enhanced Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
+                {/* Hover Card */}
+                {hoveredId === video.id && (
                   <motion.div
-                    whileHover={{ scale: 1.15 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full backdrop-blur-xl border-2 border-teal-400/80 bg-gradient-to-br from-teal-500/20 via-cyan-500/20 to-teal-500/20 flex items-center justify-center shadow-[0_0_30px_rgba(94,234,212,0.5)] group-hover:shadow-[0_0_40px_rgba(94,234,212,0.7)] transition-all duration-300"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    className="absolute inset-2 sm:inset-3 rounded-2xl bg-white/6 backdrop-blur-xl border border-white/8 shadow-[0_12px_36px_rgba(0,0,0,0.28)] p-3 sm:p-4 flex flex-col gap-2 z-20 overflow-hidden"
                   >
-                    {/* Static Ring */}
-                    <div className="absolute inset-0 rounded-full border-2 border-teal-400/30" />
-                    {/* Play Icon */}
-                    <div className="relative z-10 w-0 h-0 border-l-[8px] sm:border-l-[12px] md:border-l-[16px] border-l-teal-300 border-t-[5px] sm:border-t-[8px] md:border-t-[10px] border-t-transparent border-b-[5px] sm:border-b-[8px] md:border-b-[10px] border-b-transparent ml-0.5 sm:ml-1" />
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.12),transparent_60%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.1),transparent_45%)]" />
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/10 via-white/4 to-transparent" />
+                    <div className="relative flex items-start justify-between gap-3">
+                      <div className="space-y-1">
+                        <p className="text-white text-sm sm:text-base font-semibold">{video.title}</p>
+                        <div className="flex flex-wrap gap-1">
+                          {video.genre.map((g) => (
+                            <span key={g} className="text-[10px] sm:text-xs px-2 py-1 rounded-full bg-white/10 text-white/80 border border-white/10">
+                              {g}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openModal(video, true);
+                        }}
+                        className="h-10 w-10 rounded-full bg-gradient-to-r from-teal-300 to-cyan-400 text-black font-semibold shadow-[0_8px_25px_rgba(94,234,212,0.35)] hover:scale-105 transition"
+                      >
+                        ►
+                      </button>
+                    </div>
+                    <p className="relative text-xs sm:text-sm text-white/85 line-clamp-3">
+                      {video.description}
+                    </p>
                   </motion.div>
-                </div>
-
-                {/* Enhanced Hover Glow Effects */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-teal-400/30 via-transparent to-cyan-400/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl sm:rounded-2xl" />
-                <div className="absolute inset-0 bg-gradient-to-bl from-purple-400/10 via-transparent to-teal-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl" />
-
-                {/* Corner Accents */}
-                <div className="absolute top-2 left-2 w-6 h-0.5 bg-gradient-to-r from-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute top-2 left-2 w-0.5 h-6 bg-gradient-to-b from-teal-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-2 right-2 w-6 h-0.5 bg-gradient-to-l from-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-2 right-2 w-0.5 h-6 bg-gradient-to-t from-cyan-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                )}
               </motion.div>
             ))}
           </motion.div>
@@ -236,6 +309,7 @@ export default function BottomSection() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               className="relative group px-10 py-5 md:px-14 md:py-6 rounded-full overflow-hidden"
+              onClick={onOpenSurvey}
             >
               {/* Animated Gradient Background */}
               <motion.div
@@ -282,7 +356,59 @@ export default function BottomSection() {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* Detail Modal */}
+      {modalVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-3 sm:px-4 py-6 bg-black/70 backdrop-blur-sm">
+          <div className="absolute inset-0" onClick={closeModal} />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="relative z-10 w-full max-w-5xl rounded-3xl border border-white/12 bg-white/10 shadow-[0_30px_120px_rgba(0,0,0,0.45)] backdrop-blur-3xl overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.12),transparent_42%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.1),transparent_35%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-br from-white/12 via-white/6 to-transparent pointer-events-none" />
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 p-3 sm:p-6 md:p-8">
+              <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+                <video
+                  key={modalVideo.videoUrl}
+                  src={modalVideo.videoUrl}
+                  controls
+                  autoPlay={autoPlay}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="text-white text-xl sm:text-2xl font-semibold">{modalVideo.title}</h3>
+                  <button
+                    onClick={closeModal}
+                    className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-white hover:border-teal-300/70 hover:text-teal-100 transition"
+                  >
+                    ✕
+                  </button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {modalVideo.genre.map((g) => (
+                    <span key={g} className="text-xs px-3 py-1 rounded-full bg-white/10 text-white/80 border border-white/10">
+                      {g}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-white/80 text-sm sm:text-base leading-relaxed">{modalVideo.description}</p>
+                <div className="flex flex-wrap gap-3 pt-2">
+                  <button
+                    onClick={onOpenSurvey}
+                    className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl transition hover:border-teal-200/70 hover:shadow-[0_10px_40px_rgba(94,234,212,0.35)]"
+                  >
+                    Preregister
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }
-

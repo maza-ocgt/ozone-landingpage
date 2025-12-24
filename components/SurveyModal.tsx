@@ -218,7 +218,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
       };
 
       await addDoc(collection(db, collectionName), payload);
-      setToast({ message: "Saved to Firestore!", type: "success" });
+      setToast({ message: "Saved! Thank you for the response.", type: "success" });
       setFormValues(createEmptyState());
       setSelectedRole(null);
     } catch (error) {

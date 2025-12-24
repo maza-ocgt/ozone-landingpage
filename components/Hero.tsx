@@ -2,11 +2,15 @@
 
 import { motion, useMotionValue, useSpring, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import VantaBackground from "@/components/VantaBackground";
-import SurveyModal from "@/components/SurveyModal";
 
-export default function Hero() {
+type HeroProps = {
+  onOpenSurvey: () => void;
+};
+
+export default function Hero({ onOpenSurvey }: HeroProps) {
   const count = useMotionValue(0);
   const springCount = useSpring(count, {
     damping: 60,
@@ -14,7 +18,6 @@ export default function Hero() {
   });
   
   const [displayValue, setDisplayValue] = useState("0");
-  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
   
   const lastUpdateRef = useRef(0);
   const throttleDelay = 16; // ~60fps
@@ -51,17 +54,24 @@ export default function Hero() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="absolute top-8 sm:top-12 md:top-16 left-1/2 -translate-x-1/2 z-10 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm md:text-base lg:text-lg font-semibold tracking-wider sm:tracking-widest text-white uppercase px-4"
+        className="absolute top-8 sm:top-12 md:top-16 left-1/2 -translate-x-1/2 z-10"
       >
-        <div className="relative overflow-hidden rounded-full border border-white/40 bg-white/5 px-4 py-2 backdrop-blur-3xl shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
-          <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.18),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.14),transparent_35%)]" />
-          <div className="pointer-events-none absolute inset-[-1px] rounded-full border border-white/10" />
-          <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-1">
-            <span>OZONE</span>
-            <span className="text-teal-300">✦</span>
-            <span>OC GLOBAL TECHNOLOGY</span>
+        <Link
+          href="https://www.ocglobaltech.com/"
+          target="_blank"
+          rel="noreferrer"
+          className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs sm:text-sm md:text-base lg:text-lg font-semibold tracking-wider sm:tracking-widest text-white uppercase px-4"
+        >
+          <div className="relative overflow-hidden rounded-full border border-white/40 bg-white/5 px-4 py-2 backdrop-blur-3xl shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
+            <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.18),transparent_45%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.14),transparent_35%)]" />
+            <div className="pointer-events-none absolute inset-[-1px] rounded-full border border-white/10" />
+            <div className="relative flex items-center justify-center gap-2 sm:gap-3 px-1">
+              <span>OZONE</span>
+              <span className="text-teal-300">✦</span>
+              <span>OC GLOBAL TECHNOLOGY</span>
+            </div>
           </div>
-        </div>
+        </Link>
       </motion.div>
 
     
@@ -129,12 +139,11 @@ export default function Hero() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         className="relative z-10 mt-6 sm:mt-8 md:mt-10 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/50"
-        onClick={() => setIsSurveyOpen(true)}
+        onClick={onOpenSurvey}
       >
         Preregister Now
       </motion.button>
     </section>
-    <SurveyModal isOpen={isSurveyOpen} onClose={() => setIsSurveyOpen(false)} />
     </>
   );
 }
