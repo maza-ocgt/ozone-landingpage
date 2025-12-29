@@ -251,7 +251,6 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
                     className="object-cover rounded-xl sm:rounded-2xl"
                     unoptimized
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent rounded-xl sm:rounded-2xl" />
                   <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2.5 py-1 rounded-full border border-white/20 bg-white/15 backdrop-blur-xl shadow-[0_8px_20px_rgba(0,0,0,0.3)] text-[10px] sm:text-xs font-semibold text-white tracking-wide">
                     Play
                   </div>

@@ -7,32 +7,32 @@ export default function FAQSection() {
     {
       id: 1,
       question: "Is This App Free?",
-      answer: "Yes. It will be free to use with ads, there will be a premium option down the line.",
+      answer: "Yes. Ozone will launch as a free platform supported by ads. A premium, ad-free option will be available later.",
     },
     {
       id: 2,
       question: "Will this platform allow creator to upload their video?",
-      answer: "Yes. Once the creator complete their verification progress.",
+      answer: "Yes. Creators will be able to upload content after completing a simple verification process.",
     },
     {
       id: 3,
-      question: "Does this platform allow AI production video?",
-      answer: "Yes. AI films will be allow for streaming in this platform.",
+      question: "Will creators earn money on Ozone?",
+      answer: "Yes. Monetization features such as ads, analytics, and rewards will be available for verified creators.",
     },
     {
       id: 4,
-      question: "What's 9+10",
-      answer: "19, not 21.",
+      question: "When will Ozone officially launch?",
+      answer: "We are currently in the preparation and testing phase. Early users who pre-register will be the first to get updates, special premium offers and early access.",
     },
     {
       id: 5,
-      question: "Will AI-Recommendation disrupt my feed?",
-      answer: "No. Our smart AI will not be disruptive towards your feed.",
+      question: "How does Ozone’s recommendation system work?",
+      answer: "Our AI recommendation engine suggests content based on your interests, without disrupting your feed or overwhelming you with irrelevant content.",
     },
     {
       id: 6,
-      question: "How Long is the wait time",
-      answer: "It is still in the preparation phase.",
+      question: "What is Watch-to-Earn on Ozone?",
+      answer: "Watch-to-Earn lets viewers collect tokens every time they watch or engage with content. Over time, tokens can be exchanged for rewards or cashed out once you hit the minimum amount.",
     },
   ];
 

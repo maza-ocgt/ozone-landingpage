@@ -66,9 +66,6 @@ export default function OfferSection() {
     offset: ["start end", "end start"]
   });
 
-  const glassBlur = useTransform(scrollYProgress, [0, 0.5], [40, 60]);
-  const glassOpacity = useTransform(scrollYProgress, [0, 0.5], [0.05, 0.08]);
-
   return (
     <section
       ref={sectionRef} 
@@ -182,14 +179,13 @@ export default function OfferSection() {
               <motion.div
                 key={offer.id}
                 variants={{
-                  hidden: { opacity: 0, y: 28 },
+                  hidden: { opacity: 0, y: 16 },
                   visible: { opacity: 1, y: 0 },
                 }}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                whileHover={{ scale: 1.03, y: -6, transition: { type: "spring", stiffness: 200, damping: 22 } }}
-                transition={{ type: "spring", stiffness: 160, damping: 20 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
                 onClick={() => {
                   if (window.innerWidth < 1024) {
                     setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
@@ -210,16 +206,6 @@ export default function OfferSection() {
                 />
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.18),transparent_38%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.14),transparent_34%)]" />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/14 via-white/8 to-transparent" />
-                <motion.div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
-                  style={{
-                    background:
-                      "linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%)",
-                  }}
-                />
 
                 <div className="relative space-y-3">
                   <div className="inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-teal-300/70 via-cyan-400/70 to-blue-500/70 border border-white/25 backdrop-blur-xl text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-base sm:text-lg font-semibold">
