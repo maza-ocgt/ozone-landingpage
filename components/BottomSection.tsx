@@ -359,16 +359,16 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
 
       {/* Detail Modal */}
       {modalVideo && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center px-3 sm:px-4 py-6 bg-black/70 backdrop-blur-sm overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-3 sm:px-4 py-6 bg-black/70 backdrop-blur-sm overflow-y-auto">
           <div className="absolute inset-0" onClick={closeModal} />
           <motion.div
             initial={{ opacity: 0, scale: 0.97, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="relative z-10 w-full max-w-5xl rounded-3xl border border-white/12 bg-white/10 shadow-[0_30px_120px_rgba(0,0,0,0.45)] backdrop-blur-3xl overflow-hidden max-h-[90vh]"
+            className="relative z-10 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-5xl rounded-3xl border border-white/12 bg-white/10 shadow-[0_30px_120px_rgba(0,0,0,0.45)] backdrop-blur-3xl overflow-hidden max-h-[90vh]"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.12),transparent_42%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.1),transparent_35%)] pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-br from-white/12 via-white/6 to-transparent pointer-events-none" />
-            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 p-3 sm:p-6 md:p-8 overflow-y-auto">
+            <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 p-3 sm:p-6 md:p-8 max-h-[80vh] overflow-y-auto">
               <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10 bg-white/5">
                 <video
                   key={modalVideo.videoUrl}
