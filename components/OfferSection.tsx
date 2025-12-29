@@ -2,53 +2,61 @@
 
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
-import { useState, useRef } from "react";
-
+import { useState, useRef, useEffect } from "react";
 
 export default function OfferSection() {
   const [expandedCardId, setExpandedCardId] = useState<number | null>(null);
+  const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(typeof window !== "undefined" && window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   const offers = [
     {
       id: 1,
       title: "Long-form Streaming",
       description: "High-quality films, series, dramas, and documentaries.",
-      icon: "/logo1.png",
-      variant: "dark" as const, 
+      image: "/offer/lfs.jpg",
+      features: ["HD & 4K Ready", "Curated picks", "Global library"],
     },
     {
       id: 2,
       title: "Smart Discovery Feed",
       description: "Feed adapts using smart suggestions tailored to your viewing habits.",
-      icon: null,
-      variant: "teal" as const, 
+      image: "/offer/sd.jpg",
+      features: ["Personalized", "AI-Powered", "For you"],
     },
     {
       id: 3,
       title: "Creator Monetization",
       description: "Earn revenue through ads and global viewership.",
-      icon: "/logo2.png",
-      variant: "dark" as const,
+      image: "/offer/money.jpg",
+      features: ["Ads monetization", "Analytics", "Global reach"],
     },
     {
       id: 4,
       title: "Watch-to-Earn Rewards",
       description: "Earn rewards based on your watch-time and engagement.",
-      icon: "/logo3.png",
-      variant: "dark" as const,
+      image: "/offer/watch.jpeg",
+      features: ["Points", "Badges", "Drops"],
     },
     {
       id: 5,
       title: "Global Malaysia Content",
       description: "Showcasing local creators to the world.",
-      icon: "/logo4.png",
-      variant: "dark" as const,
+      image: "/offer/malaysia2.jpg",
+      features: ["Local gems", "Subtitles", "Multi-language"],
     },
     {
       id: 6,
       title: "Creator Upload Studio",
       description: "Complete dashboard for uploading, managing, and tracking videos.",
-      icon: null,
-      variant: "teal" as const,
+      image: "https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?w=1200&auto=format&fit=crop",
+      features: ["Bulk upload", "Scheduling", "Team collab"],
     },
   ];
 
@@ -61,80 +69,14 @@ export default function OfferSection() {
   const glassBlur = useTransform(scrollYProgress, [0, 0.5], [40, 60]);
   const glassOpacity = useTransform(scrollYProgress, [0, 0.5], [0.05, 0.08]);
 
-  const [blurValue, setBlurValue] = useState(40);
-  const [opacityValue, setOpacityValue] = useState(0.05);
-
-  // Throttle updates for better performance
-  const lastUpdateRef = useRef(0);
-  const throttleDelay = 16; // ~60fps
-
-  useMotionValueEvent(glassBlur, "change", (latest) => {
-    const now = Date.now();
-    if (now - lastUpdateRef.current >= throttleDelay) {
-      setBlurValue(latest);
-      lastUpdateRef.current = now;
-    }
-  });
-
-  useMotionValueEvent(glassOpacity, "change", (latest) => {
-    const now = Date.now();
-    if (now - lastUpdateRef.current >= throttleDelay) {
-      setOpacityValue(latest);
-      lastUpdateRef.current = now;
-    }
-  });
-
   return (
     <section
       ref={sectionRef} 
       className="relative min-h-screen py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(/bg.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
-      
-      {/* Dark Overlay*/}
-      <div 
-        className="absolute inset-0 z-0 bg-black/60"
-      />
-
-      {/* Static Background Gradient Overlay */}
-      <div 
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse 80% 50% at 50% 0%, rgba(79, 70, 229, 0.08) 0%, transparent 80%),
-            radial-gradient(ellipse 80% 50% at 50% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 80%),
-            linear-gradient(180deg, 
-              rgba(30, 41, 59, 0.3) 0%, 
-              transparent 20%, 
-              transparent 80%, 
-              rgba(30, 41, 59, 0.3) 100%
-            )
-          `,
-        }}
-      />
-
-      {/* Subtle Static Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(139, 92, 246, 0.15) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(139, 92, 246, 0.15) 1px, transparent 1px)
-            `,
-            backgroundSize: "80px 80px",
-          }}
-        />
-      </div>
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_90%_60%_at_20%_10%,rgba(79,70,229,0.08),transparent),radial-gradient(ellipse_80%_50%_at_80%_0%,rgba(34,211,238,0.08),transparent),radial-gradient(ellipse_80%_50%_at_50%_90%,rgba(20,184,166,0.06),transparent),linear-gradient(180deg,#0b0c10_0%,#0b1118_30%,#0a0f14_70%,#0a0a0f_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:120px_120px] opacity-[0.04] pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/3 to-transparent opacity-10 pointer-events-none" />
 
       {/* Top Subtle Divider Line */}
       <div className="absolute top-0 left-0 right-0 h-px z-10">
@@ -223,328 +165,99 @@ export default function OfferSection() {
             </h2>
           </motion.div>
 
-          {/* Cards Grid */}
-          <div className="space-y-8">
-            {/* Top Row - 4 Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6"
-            >
-              {offers.slice(0, 4).map((offer, index) => (
+          {/* Cards Grid - Fancy glass grid */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: {},
+              visible: {
+                transition: { staggerChildren: 0.08 },
+              },
+            }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+          >
+            {offers.map((offer, index) => (
+              <motion.div
+                key={offer.id}
+                variants={{
+                  hidden: { opacity: 0, y: 24 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                animate={
+                  hoveredCardId === offer.id
+                    ? { scale: 1.03, y: -6 }
+                    : { scale: 1, y: 0 }
+                }
+                transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                onClick={() => {
+                  if (window.innerWidth < 1024) {
+                    setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
+                  }
+                }}
+                onHoverStart={() => setHoveredCardId(offer.id)}
+                onHoverEnd={() => setHoveredCardId(null)}
+                className="group relative overflow-hidden rounded-3xl bg-white/8 border border-white/12 backdrop-blur-2xl shadow-[0_15px_60px_rgba(0,0,0,0.35)] p-5 sm:p-6 md:p-7 flex flex-col gap-4"
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.35)), url(${offer.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    filter: "saturate(1.05)",
+                  }}
+                />
+                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(94,234,212,0.18),transparent_38%),radial-gradient(circle_at_80%_0%,rgba(34,211,238,0.14),transparent_34%)]" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/14 via-white/8 to-transparent" />
                 <motion.div
-                  key={offer.id}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 0.3 + index * 0.1,
-                    ease: [0.25, 0.46, 0.45, 0.94]
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
+                  style={{
+                    background:
+                      "linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%)",
                   }}
-                  onClick={() => {
-                    // Toggle on mobile
-                    if (window.innerWidth < 1024) {
-                      setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
-                    }
-                  }}
-                  whileHover={offer.variant === "dark" ? { 
-                    scale: 1.01,
-                    transition: { type: "spring", stiffness: 200, damping: 22 }
-                  } : {
-                    scale: 1.02, 
-                    y: -5,
-                    transition: { duration: 0.3 }
-                  }}
-                  style={offer.variant === "dark" ? {
-                    backdropFilter: `blur(${blurValue}px) saturate(200%)`,
-                    backgroundColor: `rgba(255,255,255,${opacityValue})`,
-                    WebkitBackdropFilter: `blur(${blurValue}px) saturate(200%)`,
-                  } : {}}
-                  className={`relative group rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[240px] flex flex-col overflow-hidden ${expandedCardId === offer.id ? 'cursor-pointer' : ''} ${
-                    offer.variant === "dark"
-                      ? "border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
-                      : "bg-gradient-to-br from-teal-400 to-cyan-400 shadow-[0_8px_32px_0_rgba(94,234,212,0.2)]"
-                  }`}
-                >
-                  {/* iOS glass light reflection - more subtle */}
-                  {offer.variant === "dark" && (
-                    <div className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
-                      {/* top highlight - very subtle */}
-                      <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/20" />
-                      {/* soft light gradient - iOS style */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-transparent to-transparent" />
-                      {/* subtle inner glow */}
-                      <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-white/[0.05] via-transparent to-transparent" />
-                    </div>
-                  )}
+                />
 
-                  {/* Animated Gradient for Teal Variant */}
-                  {offer.variant === "teal" && (
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-teal-400 via-cyan-400 to-teal-400 rounded-2xl sm:rounded-3xl"
-                      animate={{
-                        background: [
-                          "linear-gradient(to bottom right, rgb(94, 234, 212), rgb(34, 211, 238))",
-                          "linear-gradient(to bottom right, rgb(34, 211, 238), rgb(94, 234, 212))",
-                          "linear-gradient(to bottom right, rgb(94, 234, 212), rgb(34, 211, 238))",
-                        ],
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  )}
-
-                  {/* Icon for dark variant with enhanced styling and glow */}
-                  {offer.variant === "dark" && offer.icon && (
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, delay: 0.2 }}
-                      className="absolute top-3 right-3 sm:top-4 sm:right-4 relative z-10"
-                      whileHover={{ scale: 1.15, rotate: 5 }}
-                    >
-                      <div className="relative h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16">
-                        <Image
-                          src={offer.icon}
-                          alt={offer.title}
-                          fill
-                          className="object-contain"
-                          priority
-                        />
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Enhanced Gradient Shimmer for Teal Variant */}
-                  {offer.variant === "teal" && (
-                    <>
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.8, ease: "easeInOut" }}
-                      />
-                      {/* Static inner glow */}
-                      <div className="absolute inset-4 bg-white/10 rounded-xl sm:rounded-2xl" />
-                    </>
-                  )}
-
-                  {/* Title and Description */}
-                  <div className="mt-auto relative z-10">
-                    <motion.h3
-                      className={`text-base sm:text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
-                        offer.description ? "mb-2 group-hover:mb-3" : ""
-                      } ${
-                        offer.variant === "dark" 
-                          ? "text-white" 
-                          : "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
-                      }`}
-                      whileHover={{ x: 5 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {offer.title}
-                    </motion.h3>
-                    {offer.description && (
-                      <p
-                        className={`text-sm md:text-base leading-relaxed overflow-hidden transition-all duration-400 ease-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-[200px] group-hover:translate-y-0 ${
-                          offer.variant === "dark"
-                            ? "text-white/70"
-                            : "text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
-                        }`}
-                      >
-                        {offer.description}
-                      </p>
-                    )}
+                <div className="relative space-y-3">
+                  <div className="inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-teal-300/70 via-cyan-400/70 to-blue-500/70 border border-white/25 backdrop-blur-xl text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-base sm:text-lg font-semibold">
+                    {offer.title}
                   </div>
-
-
-                  {/* Corner Accents for Teal Variant */}
-                  {offer.variant === "teal" && (
-                    <>
-                      <div className="absolute top-3 left-3 w-6 h-0.5 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute top-3 left-3 w-0.5 h-6 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-3 right-3 w-6 h-0.5 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-3 right-3 w-0.5 h-6 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </>
-                  )}
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Bottom Row - 2 Cards Centered */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex justify-center"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-4xl">
-                {offers.slice(4, 6).map((offer, index) => (
                   <motion.div
-                    key={offer.id}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 0.7 + index * 0.1,
-                      ease: [0.25, 0.46, 0.45, 0.94]
-                    }}
-                    onClick={() => {
-                      // Toggle on mobile
-                      if (window.innerWidth < 1024) {
-                        setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
-                      }
-                    }}
-                    whileHover={offer.variant === "dark" ? { 
-                      scale: 1.01,
-                      transition: { type: "spring", stiffness: 200, damping: 22 }
-                    } : {
-                      scale: 1.02, 
-                      y: -5,
-                      transition: { duration: 0.3 }
-                    }}
-                    style={offer.variant === "dark" ? {
-                      backdropFilter: `blur(${blurValue}px) saturate(200%)`,
-                      backgroundColor: `rgba(255,255,255,${opacityValue})`,
-                      WebkitBackdropFilter: `blur(${blurValue}px) saturate(200%)`,
-                  } : {}}
-                  className={`relative group rounded-xl sm:rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 min-h-[180px] sm:min-h-[200px] md:min-h-[220px] lg:min-h-[240px] flex flex-col overflow-hidden ${expandedCardId === offer.id ? 'cursor-pointer' : ''} ${
-                    offer.variant === "dark"
-                      ? "border border-white/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
-                      : "bg-gradient-to-br from-teal-400 to-cyan-400 shadow-[0_8px_32px_0_rgba(94,234,212,0.2)]"
-                  }`}
+                    className={`inline-flex max-w-full rounded-2xl px-4 py-3 bg-black/45 border border-white/15 backdrop-blur shadow-[0_12px_28px_rgba(0,0,0,0.35)] overflow-hidden ${
+                      expandedCardId === offer.id || isMobile
+                        ? "opacity-100 translate-x-0"
+                        : "opacity-80 translate-x-0 md:opacity-0 md:-translate-x-2 md:group-hover:opacity-100 md:group-hover:translate-x-0"
+                    }`}
+                    initial={isMobile ? { opacity: 0, x: -14 } : false}
+                    whileInView={isMobile ? { opacity: 1, x: 0 } : undefined}
+                    viewport={isMobile ? { once: true, amount: 0.4 } : undefined}
+                    transition={isMobile ? { duration: 0.25, ease: "easeOut" } : { duration: 0.2 }}
                   >
-                    {/* iOS glass light reflection - more subtle */}
-                    {offer.variant === "dark" && (
-                      <div className="pointer-events-none absolute inset-0 rounded-3xl overflow-hidden">
-                        {/* top highlight - very subtle */}
-                        <div className="absolute top-0 left-0 right-0 h-[1px] bg-white/20" />
-                        {/* soft light gradient - iOS style */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-transparent to-transparent" />
-                        {/* subtle inner glow */}
-                        <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-white/[0.05] via-transparent to-transparent" />
-                      </div>
-                    )}
-
-                    {/* Animated Gradient for Teal Variant */}
-                    {offer.variant === "teal" && (
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-br from-teal-400 via-cyan-400 to-teal-400 rounded-2xl sm:rounded-3xl"
-                        animate={{
-                          background: [
-                            "linear-gradient(to bottom right, rgb(94, 234, 212), rgb(34, 211, 238))",
-                            "linear-gradient(to bottom right, rgb(34, 211, 238), rgb(94, 234, 212))",
-                            "linear-gradient(to bottom right, rgb(94, 234, 212), rgb(34, 211, 238))",
-                          ],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    )}
-
-                    {/* Icon for dark variant with enhanced styling and glow */}
-                    {offer.variant === "dark" && offer.icon && (
-                      <motion.div 
-                        className="absolute top-4 right-4 w-12 h-12 md:w-16 md:h-16 relative z-10"
-                        whileHover={{ scale: 1.15, rotate: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Image
-                          src={offer.icon}
-                          alt={offer.title}
-                          fill
-                          className="object-contain opacity-90 relative z-10"
-                          unoptimized
-                        />
-                      </motion.div>
-                    )}
-
-                    {/* Enhanced Gradient Shimmer for Teal Variant */}
-                    {offer.variant === "teal" && (
-                      <>
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 group-hover:opacity-100"
-                          initial={{ x: "-100%" }}
-                          whileHover={{ x: "100%" }}
-                          transition={{ duration: 0.8, ease: "easeInOut" }}
-                        />
-                        {/* Pulsing inner glow */}
-                        <motion.div
-                          className="absolute inset-4 bg-white/10 rounded-xl sm:rounded-2xl"
-                          animate={{
-                            opacity: [0.1, 0.2, 0.1],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                          }}
-                        />
-                      </>
-                    )}
-
-                    {/* Title and Description */}
-                    <div className="mt-auto relative z-10">
-                      <motion.h3
-                      className={`text-base sm:text-lg md:text-xl font-semibold leading-tight transition-all duration-300 ${
-                        offer.description ? "mb-2 group-hover:mb-3" : ""
-                      } ${
-                        offer.variant === "dark" 
-                          ? "text-white" 
-                          : "text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
-                      }`}
-                        whileHover={{ x: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        {offer.title}
-                      </motion.h3>
-                    {offer.description && (
-                      <p
-                        className={`text-xs sm:text-sm md:text-base leading-relaxed overflow-hidden transition-all duration-400 ease-out ${
-                          expandedCardId === offer.id 
-                            ? 'opacity-100 max-h-[200px] translate-y-0' 
-                            : 'opacity-0 max-h-0 translate-y-2'
-                        } md:opacity-0 md:max-h-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:max-h-[200px] md:group-hover:translate-y-0 ${
-                          offer.variant === "dark"
-                            ? "text-white/70"
-                            : "text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
-                        }`}
-                      >
-                        {offer.description}
-                      </p>
-                    )}
-                    </div>
-
-
-                    {/* Corner Accents for Teal Variant */}
-                    {offer.variant === "teal" && (
-                      <>
-                        <div className="absolute top-3 left-3 w-6 h-0.5 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute top-3 left-3 w-0.5 h-6 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute bottom-3 right-3 w-6 h-0.5 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <div className="absolute bottom-3 right-3 w-0.5 h-6 bg-white/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      </>
-                    )}
+                    <p className="text-sm text-white/90 leading-relaxed">
+                      {offer.description}
+                    </p>
                   </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+                </div>
+
+                <div className="relative flex flex-wrap gap-2 pt-2">
+                  {offer.features.map((feature) => (
+                    <span
+                      key={feature}
+                      className="text-[11px] px-3 py-1 rounded-full bg-white/12 border border-white/15 text-white/90 backdrop-blur shadow-[0_8px_24px_rgba(0,0,0,0.25)]"
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </div>
     </section>
   );
 }
-

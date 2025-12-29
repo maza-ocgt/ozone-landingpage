@@ -13,16 +13,16 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
   const videoThumbnails = [
     {
       id: 1,
-      title: "Neon Streets",
-      thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=1600&fit=crop",
-      description: "A gritty cyber-noir where a data courier uncovers a secret that could collapse the grid.",
-      genre: ["Sci-Fi", "Thriller"],
+      title: "Duruva : The Summit 1997",
+      thumbnail: "/gallery/duruva.jpg",
+      description: "A cinematic retelling of the extraordinary journey of two Malaysians.",
+      genre: ["Adventure", "Thriller"],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     },
     {
       id: 2,
       title: "Silent Tides",
-      thumbnail: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&h=1600&fit=crop",
+      thumbnail: "/gallery/silentide.jpg",
       description: "Two strangers stranded on an island learn the cost of trust as a storm approaches.",
       genre: ["Drama", "Survival"],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
@@ -30,7 +30,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
     {
       id: 3,
       title: "Chromatic Pulse",
-      thumbnail: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=1600&fit=crop",
+      thumbnail: "/gallery/chromatic.jpg",
       description: "A DJ races against time to stop a rogue AI from hijacking the world’s airwaves.",
       genre: ["Action", "Music"],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
@@ -397,12 +397,12 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
                 </div>
                 <p className="text-white/80 text-sm sm:text-base leading-relaxed">{modalVideo.description}</p>
                 <div className="flex flex-wrap gap-3 pt-2">
-                  <button
+                  {/* <button
                     onClick={onOpenSurvey}
                     className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] backdrop-blur-xl transition hover:border-teal-200/70 hover:shadow-[0_10px_40px_rgba(94,234,212,0.35)]"
                   >
                     Preregister
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
