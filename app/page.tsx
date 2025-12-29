@@ -25,7 +25,7 @@ export default function Home() {
       {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
       
       {!showSplash && (
-        <div className="relative min-h-screen bg-black">
+        <div className="relative min-h-screen bg-black overflow-x-hidden">
           {/* Animated Background */}
           <AnimatedBackground />
 
