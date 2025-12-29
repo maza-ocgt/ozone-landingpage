@@ -178,19 +178,18 @@ export default function OfferSection() {
             }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
           >
-            {offers.map((offer, index) => (
+            {offers.map((offer) => (
               <motion.div
                 key={offer.id}
                 variants={{
-                  hidden: { opacity: 0, y: 24 },
+                  hidden: { opacity: 0, y: 28 },
                   visible: { opacity: 1, y: 0 },
                 }}
-                animate={
-                  hoveredCardId === offer.id
-                    ? { scale: 1.03, y: -6 }
-                    : { scale: 1, y: 0 }
-                }
-                transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                whileHover={{ scale: 1.03, y: -6, transition: { type: "spring", stiffness: 200, damping: 22 } }}
+                transition={{ type: "spring", stiffness: 160, damping: 20 }}
                 onClick={() => {
                   if (window.innerWidth < 1024) {
                     setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
