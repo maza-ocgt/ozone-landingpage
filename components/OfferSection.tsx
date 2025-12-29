@@ -42,7 +42,7 @@ export default function OfferSection() {
       title: "Watch-to-Earn Rewards",
       description: "Earn rewards based on your watch-time and engagement.",
       image: "/offer/watch.jpeg",
-      features: ["Points", "Badges", "Drops"],
+      features: ["Points", "Badges", "Tokens"],
     },
     {
       id: 5,

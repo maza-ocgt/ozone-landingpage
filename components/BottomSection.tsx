@@ -133,7 +133,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
       </div>
 
-      <div className="mx-auto max-w-7xl relative z-10 pt-12 sm:pt-16 md:pt-20">
+      <div className="mx-auto max-w-7xl relative z-10 pt-1.5 sm:pt-2 md:pt-2.5">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
