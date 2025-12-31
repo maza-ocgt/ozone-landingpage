@@ -15,9 +15,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://ozone.ocglobaltech.com"),
+
   title: "Ozone",
-  description: "Malaysia's Global Streaming Platform",
+  description: "A next-generation streaming platform. Coming soon.",
+
+  openGraph: {
+    title: "Ozone",
+    description: "A next-generation streaming platform. Coming soon.",
+    siteName: "Ozone",
+    url: "https://ozone.ocglobaltech.com",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Ozone",
+    description: "A next-generation streaming platform. Coming soon.",
+  },
 };
+
 
 export default function RootLayout({
   children,
