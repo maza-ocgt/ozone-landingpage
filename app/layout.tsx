@@ -14,26 +14,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://ozone.ocglobaltech.com"),
-
-  title: "Ozone",
+export const metadata = {
+  title: "Ozone (OZ)",
   description: "A next-generation streaming platform. Coming soon.",
-
-  openGraph: {
-    title: "Ozone",
-    description: "A next-generation streaming platform. Coming soon.",
-    siteName: "Ozone",
-    url: "https://ozone.ocglobaltech.com",
-    type: "website",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-touch-icon.png",
   },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Ozone",
+  openGraph: {
+    title: "Ozone (OZ)",
     description: "A next-generation streaming platform. Coming soon.",
+    url: "https://ozone.ocglobaltech.com",
+    siteName: "Ozone",
+    images: [{ url: "/icon.png", width: 512, height: 512 }],
+  },
+  twitter: {
+    card: "summary",
+    title: "Ozone (OZ)",
+    description: "A next-generation streaming platform. Coming soon.",
+    images: ["/icon.png"],
   },
 };
+
 
 
 export default function RootLayout({
