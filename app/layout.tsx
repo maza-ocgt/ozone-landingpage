@@ -14,24 +14,32 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Ozone (OZ)",
-  description: "A next-generation streaming platform. Coming soon.",
+export const metadata: Metadata = {
+  title: "Ozone | OC Global Technology",
+  description:
+    "Ozone is OC Global Technology’s streaming platform for movies, creators, and AI-driven entertainment. Sign up for early access.",
   icons: {
-    icon: "/icon.png",
-    apple: "/apple-touch-icon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
+    ],
   },
   openGraph: {
-    title: "Ozone (OZ)",
-    description: "A next-generation streaming platform. Coming soon.",
+    title: "Ozone | OC Global Technology",
+    description:
+      "Ozone is OC Global Technology’s streaming platform for movies, creators, and AI-driven entertainment. Sign up for early access.",
     url: "https://ozone.ocglobaltech.com",
     siteName: "Ozone",
     images: [{ url: "/icon.png", width: 512, height: 512 }],
   },
   twitter: {
     card: "summary",
-    title: "Ozone (OZ)",
-    description: "A next-generation streaming platform. Coming soon.",
+    title: "Ozone | OC Global Technology",
+    description:
+      "Ozone is OC Global Technology’s streaming platform for movies, creators, and AI-driven entertainment. Sign up for early access.",
     images: ["/icon.png"],
   },
 };
