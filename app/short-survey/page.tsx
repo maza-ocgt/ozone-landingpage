@@ -124,9 +124,9 @@ export default function ShortSurveyPage() {
 
           <div className="space-y-2">
             <label className="text-sm text-white/80">Phone (optional)</label>
-            <div className="flex gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-2 sm:gap-3">
               <select
-                className="w-35 sm:w-35 rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
+                className="w-full min-w-0 rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
                 value={form.phoneCode}
                 onChange={(e) => handleChange("phoneCode", e.target.value)}
               >
@@ -138,7 +138,7 @@ export default function ShortSurveyPage() {
               </select>
               <input
                 type="tel"
-                className="flex-1 rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
+                className="w-full min-w-0 rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
                 value={form.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
                 placeholder="Phone number"

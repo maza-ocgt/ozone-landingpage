@@ -29,8 +29,8 @@ const roleFields: Record<Role, Field[]> = {
     {
       id: "birthdate",
       label: "Birthdate",
-      placeholder: "YYYY-MM-DD",
-      required: true,
+      placeholder: "DD-MM-YYYY",
+      helper: "Optional. Birthday rewards for lucky ones.",
     },
     {
       id: "country",
@@ -61,7 +61,7 @@ const roleFields: Record<Role, Field[]> = {
     },
     {
       id: "platforms",
-      label: "Where do you publish today?",
+      label: "Where do you publish?",
       placeholder: "YouTube, TikTok, IG, others",
     },
     {
@@ -82,9 +82,8 @@ const roleFields: Record<Role, Field[]> = {
     {
       id: "birthdate",
       label: "Birthdate",
-      placeholder: "YYYY-MM-DD",
-      required: true,
-      helper: "Optional, helps us tailor the experience.",
+      placeholder: "DD-MM-YYYY",
+      helper: "Optional. Birthday rewards for lucky ones.",
     },
     {
       id: "country",
@@ -177,12 +176,24 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     return null;
   }
 
+  const formatBirthdate = (input: string) => {
+    const digits = input.replace(/\D/g, "").slice(0, 8);
+    const dd = digits.slice(0, 2);
+    const mm = digits.slice(2, 4);
+    const yyyy = digits.slice(4, 8);
+    const parts = [dd, mm, yyyy].filter(Boolean);
+    return parts.join("-").slice(0, 10);
+  };
+
   const handleChange = (role: Role, id: string, value: FormValue) => {
+    const nextValue =
+      id === "birthdate" && typeof value === "string" ? formatBirthdate(value) : value;
+
     setFormValues((prev) => ({
       ...prev,
       [role]: {
         ...prev[role],
-        [id]: value,
+        [id]: nextValue,
       },
     }));
   };
@@ -210,12 +221,21 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
     event.preventDefault();
     if (!selectedRole) return;
 
+    const birthdateRaw = formValues[selectedRole].birthdate;
+    const birthdate = typeof birthdateRaw === "string" ? birthdateRaw.trim() : "";
+    const birthdateValid = birthdate === "" || /^\d{2}-\d{2}-\d{4}$/.test(birthdate);
+
     if (
       selectedRole === "viewer" &&
       formValues.viewer.influencer === "Yes" &&
       !formValues.viewer.influencerType
     ) {
       setToast({ message: "Please specify what kind of influencer you are.", type: "error" });
+      return;
+    }
+
+    if (!birthdateValid) {
+      setToast({ message: "Birthdate must be in DD-MM-YYYY format.", type: "error" });
       return;
     }
 
@@ -436,6 +456,9 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                           placeholder={field.placeholder}
                           value={stringValue}
                           required={field.required}
+                          inputMode={field.id === "birthdate" ? "numeric" : undefined}
+                          pattern={field.id === "birthdate" ? "\\d{2}-\\d{2}-\\d{4}" : undefined}
+                          maxLength={field.id === "birthdate" ? 10 : undefined}
                           onChange={(event) =>
                             handleChange(selectedRole, field.id, event.target.value)
                           }
