@@ -27,6 +27,12 @@ const roleFields: Record<Role, Field[]> = {
     { id: "name", label: "Name or stage name", placeholder: "Ariana / @yourhandle", required: true },
     { id: "email", label: "Email", placeholder: "you@email.com", type: "email", required: true },
     {
+      id: "birthdate",
+      label: "Birthdate",
+      placeholder: "YYYY-MM-DD",
+      required: true,
+    },
+    {
       id: "country",
       label: "Country",
       type: "select",
@@ -59,20 +65,27 @@ const roleFields: Record<Role, Field[]> = {
       placeholder: "YouTube, TikTok, IG, others",
     },
     {
+      id: "link",
+      label: "Portfolio or channel link (optional)",
+      placeholder: "https://",
+    },
+    {
       id: "goals",
       label: "What do you want from Ozone as a creator?",
       placeholder: "Monetization, global reach, tools you need...",
       type: "textarea",
     },
-    {
-      id: "link",
-      label: "Portfolio or channel link (optional)",
-      placeholder: "https://",
-    },
   ],
   viewer: [
     { id: "name", label: "Name", placeholder: "Your name", required: true },
     { id: "email", label: "Email", placeholder: "you@email.com", type: "email", required: true },
+    {
+      id: "birthdate",
+      label: "Birthdate",
+      placeholder: "YYYY-MM-DD",
+      required: true,
+      helper: "Optional, helps us tailor the experience.",
+    },
     {
       id: "country",
       label: "Country",
@@ -91,13 +104,12 @@ const roleFields: Record<Role, Field[]> = {
       id: "influencerType",
       label: "If yes, what kind of influencer?",
       placeholder: "Tech, lifestyle, travel, gaming, etc.",
-      helper: "Answer if you selected Yes above.",
     },
     {
-      id: "features",
-      label: "Features you want in Ozone",
-      placeholder: "Smart recommendations, rewards, offline viewing...",
-      type: "textarea",
+      id: "devices",
+      label: "Devices you watch on (choose all that apply)",
+      type: "multiselect",
+      options: ["Phone", "Tablet", "Laptop", "Desktop", "Smart TV", "Streaming stick"],
     },
     {
       id: "genres",
@@ -106,11 +118,12 @@ const roleFields: Record<Role, Field[]> = {
       options: ["Movies", "Series", "Vlogs", "Documentaries", "Sports", "Drama"],
     },
     {
-      id: "devices",
-      label: "Devices you watch on (choose all that apply)",
-      type: "multiselect",
-      options: ["Phone", "Tablet", "Laptop", "Desktop", "Smart TV", "Streaming stick"],
+      id: "features",
+      label: "Features you want in Ozone",
+      placeholder: "Smart recommendations, rewards, offline viewing...",
+      type: "textarea",
     },
+
   ],
 };
 
@@ -438,8 +451,14 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="text-xs text-white/60">
-              Fields with * are required.
+            <div className="text-xs text-white/80">
+              For more information, email us at{" "}
+              <a
+                href="mailto:marketing.admin@ocglobaltech.com"
+                className="text-teal-200 underline underline-offset-2 hover:text-teal-100"
+              >
+                marketing.admin@ocglobaltech.com
+              </a>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <button

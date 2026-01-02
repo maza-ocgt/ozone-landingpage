@@ -13,9 +13,9 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
   const videoThumbnails = [
     {
       id: 1,
-      title: "Duruva : The Summit 1997",
+      title: "Duruva : The Summit 1993",
       thumbnail: "/gallery/duruva.jpg",
-      description: "A cinematic retelling of the extraordinary journey of two Malaysians.",
+      description: "A cinematic adventurous triller of the extraordinary journey of four climbers from different nation.",
       genre: ["Adventure", "Thriller"],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     },

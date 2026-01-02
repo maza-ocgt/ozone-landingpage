@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function AimSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -81,7 +82,7 @@ export default function AimSection() {
 
       <div className="mx-auto max-w-7xl relative z-10">
         <div className="space-y-8 sm:space-y-12 md:space-y-16">
-          {/* Title - Top Left with Futuristic Styling */}
+          {/* Title - Top Left with Futuristic Styling (secret link to short survey) */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -92,67 +93,69 @@ export default function AimSection() {
             {/* Glow behind title - hidden on mobile */}
             <div className="hidden sm:block absolute -left-6 md:-left-8 top-0 w-1 h-full bg-gradient-to-b from-teal-500/40 via-cyan-500/40 to-transparent blur-md" />
             
-            <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0"
-            >
-              <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">Our</span>{" "}
-              <span className="relative inline-block">
-                {/* Holographic gradient effect */}
-                <motion.span
-                  className="bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent relative z-10"
-                  animate={{
-                    backgroundPosition: ["0%", "100%", "0%"],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  style={{
-                    backgroundSize: "200% 200%",
-                  }}
-                >
-                  aim
-                </motion.span>
-                
-                {/* Animated underline with glow */}
-                <motion.div
-                  className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400 rounded-full shadow-[0_0_20px_rgba(94,234,212,0.8)]"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
-                />
-                
-                {/* Pulsing glow effect */}
-                <motion.div
-                  className="absolute -bottom-2 left-0 h-1.5 bg-teal-400/50 rounded-full blur-sm"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  viewport={{ once: true }}
-                  animate={{
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    opacity: {
-                      duration: 2,
+            <Link href="/short-survey" className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300/60 rounded-lg">
+              <motion.h2
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0"
+              >
+                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">Our</span>{" "}
+                <span className="relative inline-block">
+                  {/* Holographic gradient effect */}
+                  <motion.span
+                    className="bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent relative z-10"
+                    animate={{
+                      backgroundPosition: ["0%", "100%", "0%"],
+                    }}
+                    transition={{
+                      duration: 5,
                       repeat: Infinity,
-                      ease: "easeInOut",
-                    },
-                  }}
+                      ease: "linear",
+                    }}
+                    style={{
+                      backgroundSize: "200% 200%",
+                    }}
+                  >
+                    aim
+                  </motion.span>
+                  
+                  {/* Animated underline with glow */}
+                  <motion.div
+                    className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400 rounded-full shadow-[0_0_20px_rgba(94,234,212,0.8)]"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+                  />
+                  
+                  {/* Pulsing glow effect */}
+                  <motion.div
+                    className="absolute -bottom-2 left-0 h-1.5 bg-teal-400/50 rounded-full blur-sm"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    viewport={{ once: true }}
+                    animate={{
+                      opacity: [0.5, 1, 0.5],
+                    }}
+                    transition={{
+                      opacity: {
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      },
+                    }}
+                  />
+                </span>
+                
+                {/* Side accent line - hidden on mobile */}
+                <motion.div
+                  className="hidden sm:block absolute -right-6 md:-right-8 top-0 w-px h-full bg-gradient-to-b from-transparent via-teal-500/50 to-transparent"
+                  initial={{ opacity: 0, scaleY: 0 }}
+                  whileInView={{ opacity: 1, scaleY: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.8 }}
+                  style={{ transformOrigin: "top" }}
                 />
-              </span>
-              
-              {/* Side accent line - hidden on mobile */}
-              <motion.div
-                className="hidden sm:block absolute -right-6 md:-right-8 top-0 w-px h-full bg-gradient-to-b from-transparent via-teal-500/50 to-transparent"
-                initial={{ opacity: 0, scaleY: 0 }}
-                whileInView={{ opacity: 1, scaleY: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.8 }}
-                style={{ transformOrigin: "top" }}
-              />
-            </motion.h2>
+              </motion.h2>
+            </Link>
           </motion.div>
 
           {/* Landscape Video - Center with Futuristic Holographic Border */}
@@ -302,4 +305,3 @@ export default function AimSection() {
     </section>
   );
 }
-
