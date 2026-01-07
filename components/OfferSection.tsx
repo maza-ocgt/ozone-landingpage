@@ -215,7 +215,7 @@ export default function OfferSection() {
                     {offer.title}
                   </div>
                   <motion.div
-                    className={`inline-flex max-w-full rounded-2xl px-4 py-3 bg-black/45 border border-white/15 backdrop-blur shadow-[0_12px_28px_rgba(0,0,0,0.35)] overflow-hidden ${
+                    className={`block max-w-full rounded-2xl px-4 py-3 bg-black/45 border border-white/15 backdrop-blur shadow-[0_12px_28px_rgba(0,0,0,0.35)] overflow-hidden ${
                       expandedCardId === offer.id || isMobile
                         ? "opacity-100 translate-x-0"
                         : "opacity-80 translate-x-0 md:opacity-0 md:-translate-x-2 md:group-hover:opacity-100 md:group-hover:translate-x-0"
