@@ -273,6 +273,9 @@
       "southKorea": "South Korea (+82)",
       "usaCanada": "USA/Canada (+1)"
     },
+    "social": {
+      "follow": "Follow OZONE on our pages for exciting updates and exclusive reveals."
+    },
     "messages": {
       "submit": "Submit",
       "submitting": "Submitting...",
@@ -282,4 +285,3 @@
     }
   }
 }
-

@@ -273,6 +273,9 @@
       "southKorea": "韩国 (+82)",
       "usaCanada": "美国/加拿大 (+1)"
     },
+    "social": {
+      "follow": "关注 OZONE，获取精彩更新和独家预告。"
+    },
     "messages": {
       "submit": "提交",
       "submitting": "提交中...",

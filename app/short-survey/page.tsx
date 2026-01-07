@@ -12,6 +12,23 @@ import LanguageSwitcher from "@/components/LanguageSwitcher";
 export default function ShortSurveyPage() {
   const { t } = useTranslation("common");
   const router = useRouter();
+  const socialLinks = [
+    {
+      href: "https://www.tiktok.com/@__0zone__?_r=1&_t=ZS-92rwGtCppay",
+      icon: "/tiktok.png",
+      alt: "TikTok",
+    },
+    {
+      href: "https://www.instagram.com/ozoneocgt?igsh=MjdsaTg2c2Jlenpn",
+      icon: "/insta.png",
+      alt: "Instagram",
+    },
+    {
+      href: "https://www.facebook.com/share/1CF6fuuhf4/",
+      icon: "/fb.png",
+      alt: "Facebook",
+    },
+  ];
   const [form, setForm] = useState({
     name: "",
     role: "",
@@ -74,6 +91,7 @@ export default function ShortSurveyPage() {
   };
 
   return (
+    <>
     <div className="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black text-white flex items-center justify-center px-4 py-10 relative">
       <motion.div
         initial={{ opacity: 0, x: 20 }}
@@ -179,5 +197,66 @@ export default function ShortSurveyPage() {
         </form>
       </div>
     </div>
+
+    {/* Mobile: social block below survey */}
+    <div className="sm:hidden w-full max-w-lg mx-auto px-4 pb-6">
+      <div className="space-y-2">
+        <p className="text-sm font-semibold text-white leading-tight">
+          {t("shortSurvey.social.follow")}
+        </p>
+        <div className="flex items-center gap-2.5">
+          {socialLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="relative h-12 w-12 rounded-full overflow-hidden border border-white/60"
+              aria-label={link.alt}
+            >
+              <Image
+                src={link.icon}
+                alt={link.alt}
+                fill
+                className="object-cover"
+                sizes="48px"
+                priority
+              />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    {/* Desktop: floating bottom-right social block */}
+    <div className="hidden sm:flex fixed bottom-5 right-4 z-30">
+      <div className="space-y-2">
+        <p className="text-xs font-semibold text-white max-w-[240px] leading-tight">
+          {t("shortSurvey.social.follow")}
+        </p>
+        <div className="flex items-center gap-2">
+          {socialLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+              className="relative h-12 w-12 rounded-full overflow-hidden border border-white/100"
+              aria-label={link.alt}
+            >
+              <Image
+                src={link.icon}
+                alt={link.alt}
+                fill
+                className="object-cover"
+                sizes="48px"
+                priority
+              />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+    </>
   );
 }
