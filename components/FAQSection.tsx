@@ -99,41 +99,19 @@ export default function FAQSection() {
       </div>
 
       <div className="mx-auto max-w-7xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="space-y-8 sm:space-y-10 md:space-y-12"
-        >
+        <div className="space-y-8 sm:space-y-10 md:space-y-12">
           {/* Title */}
-          <motion.h2
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-left"
-          >
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-left">
             <span className="bg-gradient-to-r from-cyan-300 to-cyan-400 bg-clip-text text-transparent">
               {t("faq.title")}
             </span>
-          </motion.h2>
+          </h2>
 
           {/* FAQ Grid - 2 rows, 3 columns */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
             {faqs.map((faq, index) => (
-              <motion.div
+              <div
                 key={faq.id}
-                initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.2 + index * 0.1 }}
                 className="relative group rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-white/[0.08] bg-black/50 backdrop-blur-xl backdrop-saturate-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:border-purple-500/50 transition-all duration-300 overflow-hidden"
                 style={{
                   backdropFilter: "blur(40px) saturate(200%)",
@@ -159,12 +137,11 @@ export default function FAQSection() {
                     {faq.answer}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
-

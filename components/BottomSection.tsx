@@ -213,34 +213,15 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
           </motion.div>
 
           {/* Video Thumbnails Grid - 2x3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6"
-        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {videoThumbnails.map((video, index) => (
-            <motion.div
+            <div
               key={video.id}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: 0.3 + index * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                whileHover={{ 
-                  scale: 1.03, 
-                  y: -5,
-                  transition: { duration: 0.3 }
-                }}
                 className="relative group aspect-video rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden cursor-pointer"
                 onMouseEnter={() => setHoveredId(video.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 onClick={() => openModal(video, false)}
-              >
+            >
                 {/* Outer Glow */}
                 <div className="absolute -inset-1 rounded-xl sm:rounded-2xl bg-gradient-to-r from-teal-400/25 via-cyan-400/20 to-teal-400/25 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -294,9 +275,9 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
                     </p>
                   </motion.div>
                 )}
-              </motion.div>
-            ))}
-          </motion.div>
+            </div>
+          ))}
+          </div>
 
           {/* Watch More Button - Enhanced Futuristic Design */}
           <motion.div

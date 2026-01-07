@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 export default function OfferSection() {
   const { t } = useTranslation("common");
   const [expandedCardId, setExpandedCardId] = useState<number | null>(null);
-  const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -166,36 +165,15 @@ export default function OfferSection() {
           </motion.div>
 
           {/* Cards Grid - Fancy glass grid */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.08 },
-              },
-            }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {offers.map((offer) => (
-              <motion.div
+              <div
                 key={offer.id}
-                variants={{
-                  hidden: { opacity: 0, y: 16 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.35, ease: "easeOut" }}
                 onClick={() => {
                   if (window.innerWidth < 1024) {
                     setExpandedCardId(expandedCardId === offer.id ? null : offer.id);
                   }
                 }}
-                onHoverStart={() => setHoveredCardId(offer.id)}
-                onHoverEnd={() => setHoveredCardId(null)}
                 className="group relative overflow-hidden rounded-3xl bg-white/8 border border-white/12 backdrop-blur-2xl shadow-[0_15px_60px_rgba(0,0,0,0.35)] p-5 sm:p-6 md:p-7 flex flex-col gap-4"
               >
                 <div
@@ -214,21 +192,17 @@ export default function OfferSection() {
                   <div className="inline-flex px-4 py-2 rounded-full bg-gradient-to-r from-teal-300/70 via-cyan-400/70 to-blue-500/70 border border-white/25 backdrop-blur-xl text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] text-base sm:text-lg font-semibold">
                     {offer.title}
                   </div>
-                  <motion.div
+                  <div
                     className={`block max-w-full rounded-2xl px-4 py-3 bg-black/45 border border-white/15 backdrop-blur shadow-[0_12px_28px_rgba(0,0,0,0.35)] overflow-hidden ${
                       expandedCardId === offer.id || isMobile
                         ? "opacity-100 translate-x-0"
-                        : "opacity-80 translate-x-0 md:opacity-0 md:-translate-x-2 md:group-hover:opacity-100 md:group-hover:translate-x-0"
+                        : "opacity-80 translate-x-0 md:opacity-100 md:translate-x-0"
                     }`}
-                    initial={isMobile ? { opacity: 0, x: -14 } : false}
-                    whileInView={isMobile ? { opacity: 1, x: 0 } : undefined}
-                    viewport={isMobile ? { once: true, amount: 0.4 } : undefined}
-                    transition={isMobile ? { duration: 0.25, ease: "easeOut" } : { duration: 0.2 }}
                   >
                     <p className="text-sm text-white/90 leading-relaxed">
                       {offer.description}
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
 
                 <div className="relative flex flex-wrap gap-2 pt-2">
@@ -241,9 +215,9 @@ export default function OfferSection() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
