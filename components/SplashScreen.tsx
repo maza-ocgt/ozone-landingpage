@@ -126,9 +126,9 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           className="fixed inset-0 z-[9999] bg-black flex items-center justify-center"
         >
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 1, opacity: 0 }}
             animate={{
-              scale: isVideoLoaded ? 1.8 : 0.8,
+              scale: isVideoLoaded ? 1 : 1,
               opacity: isVideoLoaded ? 1 : 0,
             }}
             transition={{ duration: 0.5 }}
@@ -136,13 +136,13 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
           >
             <video
               ref={videoRef}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-cover"
               playsInline
               muted
               autoPlay
               preload="auto"
             >
-              <source src="/splash.mp4" type="video/mp4" />
+              <source src="/splash2.mp4" type="video/mp4" />
             </video>
           </motion.div>
 
@@ -156,6 +156,5 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
     </AnimatePresence>
   );
 }
-
 
 
