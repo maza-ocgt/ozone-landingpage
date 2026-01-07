@@ -6,6 +6,8 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import { motion } from "motion/react";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function ShortSurveyPage() {
   const { t } = useTranslation("common");
@@ -72,7 +74,16 @@ export default function ShortSurveyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black text-white flex items-center justify-center px-4 py-10">
+    <div className="min-h-screen bg-gradient-to-b from-black via-slate-900 to-black text-white flex items-center justify-center px-4 py-10 relative">
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="absolute top-4 right-3 sm:top-8 sm:right-4 md:top-12 md:right-6 lg:top-16 lg:right-8 z-20"
+      >
+        <LanguageSwitcher />
+      </motion.div>
+
       <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_20px_70px_rgba(0,0,0,0.5)] p-6 sm:p-8 space-y-6">
         <div className="space-y-3 text-center">
           <div className="mx-auto h-17 w-17 relative">
