@@ -1,26 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
 import Image from "next/image";
-
-const roles = ["Creator", "Viewer", "Influencer", "Other"];
-const countryCodes = [
-  { code: "+60", label: "Malaysia (+60)" },
-  { code: "+65", label: "Singapore (+65)" },
-  { code: "+62", label: "Indonesia (+62)" },
-  { code: "+91", label: "India (+91)" },
-  { code: "+86", label: "China (+86)" },
-  { code: "+63", label: "Philippines (+63)" },
-  { code: "+84", label: "Vietnam (+84)" },
-  { code: "+81", label: "Japan (+81)" },
-  { code: "+82", label: "South Korea (+82)" },
-  { code: "+1", label: "USA/Canada (+1)" },
-];
+import { useTranslation } from "react-i18next";
 
 export default function ShortSurveyPage() {
+  const { t } = useTranslation("common");
   const router = useRouter();
   const [form, setForm] = useState({
     name: "",
@@ -33,6 +21,26 @@ export default function ShortSurveyPage() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const roles = useMemo(() => [
+    t("shortSurvey.roles.creator"),
+    t("shortSurvey.roles.viewer"),
+    t("shortSurvey.roles.influencer"),
+    t("shortSurvey.roles.other"),
+  ], [t]);
+
+  const countryCodes = useMemo(() => [
+    { code: "+60", label: t("shortSurvey.countryCodes.malaysia") },
+    { code: "+65", label: t("shortSurvey.countryCodes.singapore") },
+    { code: "+62", label: t("shortSurvey.countryCodes.indonesia") },
+    { code: "+91", label: t("shortSurvey.countryCodes.india") },
+    { code: "+86", label: t("shortSurvey.countryCodes.china") },
+    { code: "+63", label: t("shortSurvey.countryCodes.philippines") },
+    { code: "+84", label: t("shortSurvey.countryCodes.vietnam") },
+    { code: "+81", label: t("shortSurvey.countryCodes.japan") },
+    { code: "+82", label: t("shortSurvey.countryCodes.southKorea") },
+    { code: "+1", label: t("shortSurvey.countryCodes.usaCanada") },
+  ], [t]);
+
   const handleChange = (key: keyof typeof form, value: string) => {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
@@ -43,7 +51,7 @@ export default function ShortSurveyPage() {
     setSuccess("");
 
     if (!form.name || !form.role || !form.email) {
-      setError("Please fill in name, role, and email.");
+      setError(t("shortSurvey.messages.errorRequired"));
       return;
     }
 
@@ -54,10 +62,10 @@ export default function ShortSurveyPage() {
         phoneFull: form.phone ? `${form.phoneCode} ${form.phone}` : "",
         createdAt: serverTimestamp(),
       });
-      setSuccess("Thanks! We’ll be in touch.");
+      setSuccess(t("shortSurvey.messages.success"));
       setTimeout(() => router.push("/"), 800);
     } catch (err) {
-      setError("Could not submit right now. Please try again.");
+      setError(t("shortSurvey.messages.error"));
     } finally {
       setLoading(false);
     }
@@ -73,16 +81,15 @@ export default function ShortSurveyPage() {
           <span className="px-2 text-3xl sm:text-4xl font-extrabold tracking-[0.22em] uppercase bg-gradient-to-b from-cyan-200 via-teal-300 to-cyan-500 bg-clip-text text-transparent drop-shadow-[0_6px_24px_rgba(34,211,238,0.35)]">
             ozone
           </span>
-          <h1 className="text-2xl sm:text-3xl font-bold">Be the first to experience.</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">{t("shortSurvey.title")}</h1>
           <p className="text-sm text-white/70">
-            Malaysia’s streaming platform for movies, creators, and entertainments. 
-            Share your details and we’ll reach out with early access and updates.
+            {t("shortSurvey.description")}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <label className="text-sm text-white/80">Name *</label>
+            <label className="text-sm text-white/80">{t("shortSurvey.fields.name")} *</label>
             <input
               type="text"
               className="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
@@ -93,7 +100,7 @@ export default function ShortSurveyPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm text-white/80">Role *</label>
+            <label className="text-sm text-white/80">{t("shortSurvey.fields.role")} *</label>
             <select
               className="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
               value={form.role}
@@ -101,7 +108,7 @@ export default function ShortSurveyPage() {
               required
             >
               <option value="" disabled>
-                Select role
+                {t("shortSurvey.fields.selectRole")}
               </option>
               {roles.map((role) => (
                 <option key={role} value={role}>
@@ -112,7 +119,7 @@ export default function ShortSurveyPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm text-white/80">Email *</label>
+            <label className="text-sm text-white/80">{t("shortSurvey.fields.email")} *</label>
             <input
               type="email"
               className="w-full rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
@@ -123,7 +130,7 @@ export default function ShortSurveyPage() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm text-white/80">Phone (optional)</label>
+            <label className="text-sm text-white/80">{t("shortSurvey.fields.phone")}</label>
             <div className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-2 sm:gap-3">
               <select
                 className="w-full min-w-0 rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
@@ -141,7 +148,7 @@ export default function ShortSurveyPage() {
                 className="w-full min-w-0 rounded-xl border border-white/10 bg-black/40 px-3 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
                 value={form.phone}
                 onChange={(e) => handleChange("phone", e.target.value)}
-                placeholder="Phone number"
+                placeholder={t("shortSurvey.fields.phoneNumber")}
               />
             </div>
           </div>
@@ -155,7 +162,7 @@ export default function ShortSurveyPage() {
               disabled={loading}
               className="w-full rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-6 py-3.5 text-sm font-semibold uppercase tracking-widest text-black shadow-lg shadow-teal-500/30 transition hover:shadow-teal-500/50 disabled:opacity-50"
             >
-              {loading ? "Submitting..." : "Submit"}
+              {loading ? t("shortSurvey.messages.submitting") : t("shortSurvey.messages.submit")}
             </button>
           </div>
         </form>

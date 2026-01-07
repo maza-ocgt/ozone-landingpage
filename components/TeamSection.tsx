@@ -3,40 +3,41 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function TeamSection() {
+  const { t } = useTranslation("common");
   const [hoveredMemberId, setHoveredMemberId] = useState<number | null>(null);
-  const teamMembers = [
   
+  const teamMembers = [
     {
       id: 1,
       image: "/john.png", 
-      name: "John",
-      title: "Chief Innovation Officer",
-      quote: "At Oz, technology is not just a backbone—it’s the storyteller. We’re building an intelligent streaming ecosystem where innovation amplifies creativity and connects audiences without limits"
+      name: t("team.members.john.name"),
+      title: t("team.members.john.title"),
+      quote: t("team.members.john.quote")
     },
     { 
       id: 2, 
       image: "/zizi.png", 
-      name: "Zizi",
-      title: "Lead Developer",
-      quote: "Ozone is developed with one purpose - giving creators and viewers a platform they can finally call their own."
+      name: t("team.members.zizi.name"),
+      title: t("team.members.zizi.title"),
+      quote: t("team.members.zizi.quote")
     },
     { 
       id: 3, 
       image: "/lim.png",
-      name: "Lim",
-      title: "UI/UX Designer Lead",
-      quote: "Landing to peak your interest, explore it like you’re an adventurer. Welcome to Ozone."
+      name: t("team.members.lim.name"),
+      title: t("team.members.lim.title"),
+      quote: t("team.members.lim.quote")
     },
     { 
       id: 4,
       image: "/maza.png",
-      name: "Maza",
-      title: "Junior Frontend App Developer",
-      quote: "A new atmosphere for streaming, built for you."
+      name: t("team.members.maza.name"),
+      title: t("team.members.maza.title"),
+      quote: t("team.members.maza.quote")
     },
-
   ];
 
   const quoteVariants = {
@@ -92,9 +93,9 @@ export default function TeamSection() {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Title */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-12 sm:mb-16 md:mb-20 px-2 sm:px-0">
-          <span className="text-white">Our </span>
+          <span className="text-white">{t("team.title")} </span>
           <span className="bg-gradient-to-r from-teal-300 to-cyan-300 bg-clip-text text-transparent">
-            Team
+            {t("team.team")}
           </span>
         </h2>
 

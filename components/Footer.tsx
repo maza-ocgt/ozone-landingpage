@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation("common");
   const marqueeItems = Array.from({ length: 14 }, (_, index) => `ozone-${index + 1}`);
 
   return (
@@ -46,7 +48,7 @@ export default function Footer() {
 
             {/* Right Side - Copyright */}
             <p className="text-white text-sm md:text-base font-bold">
-              Built by ©️ OC Global Technology
+              {t("footer.builtBy")}
             </p>
           </div>
         </div>

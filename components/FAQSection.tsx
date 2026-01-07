@@ -1,38 +1,41 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 export default function FAQSection() {
+  const { t } = useTranslation("common");
+  
   const faqs = [
     {
       id: 1,
-      question: "Is This App Free?",
-      answer: "Yes. Ozone will launch as a free platform supported by ads. A premium, ad-free option will be available later.",
+      question: t("faq.questions.free.question"),
+      answer: t("faq.questions.free.answer"),
     },
     {
       id: 2,
-      question: "Will this platform allow creator to upload their video?",
-      answer: "Yes. Creators will be able to upload content after completing a simple verification process.",
+      question: t("faq.questions.creatorUpload.question"),
+      answer: t("faq.questions.creatorUpload.answer"),
     },
     {
       id: 3,
-      question: "Will creators earn money on Ozone?",
-      answer: "Yes. Monetization features such as ads, analytics, and rewards will be available for verified creators.",
+      question: t("faq.questions.creatorEarn.question"),
+      answer: t("faq.questions.creatorEarn.answer"),
     },
     {
       id: 4,
-      question: "When will Ozone officially launch?",
-      answer: "We are currently in the preparation and testing phase. Early users who pre-register will be the first to get updates, special premium offers and early access.",
+      question: t("faq.questions.launch.question"),
+      answer: t("faq.questions.launch.answer"),
     },
     {
       id: 5,
-      question: "How does Ozone’s recommendation system work?",
-      answer: "Our AI recommendation engine suggests content based on your interests, without disrupting your feed or overwhelming you with irrelevant content.",
+      question: t("faq.questions.recommendation.question"),
+      answer: t("faq.questions.recommendation.answer"),
     },
     {
       id: 6,
-      question: "What is Watch-to-Earn on Ozone?",
-      answer: "Watch-to-Earn lets viewers collect tokens every time they watch or engage with content. Over time, tokens can be exchanged for rewards or cashed out once you hit the minimum amount.",
+      question: t("faq.questions.watchToEarn.question"),
+      answer: t("faq.questions.watchToEarn.answer"),
     },
   ];
 
@@ -112,7 +115,7 @@ export default function FAQSection() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-left"
           >
             <span className="bg-gradient-to-r from-cyan-300 to-cyan-400 bg-clip-text text-transparent">
-              FAQ
+              {t("faq.title")}
             </span>
           </motion.h2>
 

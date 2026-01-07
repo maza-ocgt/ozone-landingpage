@@ -3,8 +3,10 @@
 import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function OfferSection() {
+  const { t } = useTranslation("common");
   const [expandedCardId, setExpandedCardId] = useState<number | null>(null);
   const [hoveredCardId, setHoveredCardId] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -15,48 +17,49 @@ export default function OfferSection() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+  
   const offers = [
     {
       id: 1,
-      title: "Long-form Streaming",
-      description: "High-quality films, series, dramas, and documentaries.",
+      title: t("offer.longFormStreaming.title"),
+      description: t("offer.longFormStreaming.description"),
       image: "/offer/lfs.jpg",
-      features: ["HD & 4K Ready", "Curated picks", "Global library"],
+      features: t("offer.longFormStreaming.features", { returnObjects: true }) as string[],
     },
     {
       id: 2,
-      title: "Smart Discovery Feed",
-      description: "Feed adapts using smart suggestions tailored to your viewing habits.",
+      title: t("offer.smartDiscovery.title"),
+      description: t("offer.smartDiscovery.description"),
       image: "/offer/sd.jpg",
-      features: ["Personalized", "AI-Powered", "For you"],
+      features: t("offer.smartDiscovery.features", { returnObjects: true }) as string[],
     },
     {
       id: 3,
-      title: "Creator Monetization",
-      description: "Earn revenue through ads and global viewership.",
+      title: t("offer.creatorMonetization.title"),
+      description: t("offer.creatorMonetization.description"),
       image: "/offer/money.jpg",
-      features: ["Ads monetization", "Analytics", "Global reach"],
+      features: t("offer.creatorMonetization.features", { returnObjects: true }) as string[],
     },
     {
       id: 4,
-      title: "Watch-to-Earn Rewards",
-      description: "Earn rewards based on your watch-time and engagement.",
+      title: t("offer.watchToEarn.title"),
+      description: t("offer.watchToEarn.description"),
       image: "/offer/watch.jpeg",
-      features: ["Points", "Badges", "Tokens"],
+      features: t("offer.watchToEarn.features", { returnObjects: true }) as string[],
     },
     {
       id: 5,
-      title: "Global Malaysia Content",
-      description: "Showcasing local creators to the world.",
+      title: t("offer.malaysiaContent.title"),
+      description: t("offer.malaysiaContent.description"),
       image: "/offer/malaysia2.jpg",
-      features: ["Local gems", "Subtitles", "Multi-language"],
+      features: t("offer.malaysiaContent.features", { returnObjects: true }) as string[],
     },
     {
       id: 6,
-      title: "Creator Upload Studio",
-      description: "Complete dashboard for uploading, managing, and tracking videos.",
+      title: t("offer.creatorStudio.title"),
+      description: t("offer.creatorStudio.description"),
       image: "https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?w=1200&auto=format&fit=crop",
-      features: ["Bulk upload", "Scheduling", "Team collab"],
+      features: t("offer.creatorStudio.features", { returnObjects: true }) as string[],
     },
   ];
 
@@ -105,7 +108,7 @@ export default function OfferSection() {
             <div className="absolute -left-6 md:-left-8 top-0 w-1 h-full bg-gradient-to-b from-teal-500/40 via-cyan-500/40 to-transparent blur-md hidden sm:block" />
             
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0">
-              <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">What we</span>{" "}
+              <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">{t("offer.title")}</span>{" "}
               <span className="relative inline-block">
                 <motion.span
                   className="bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent relative z-10"
@@ -121,7 +124,7 @@ export default function OfferSection() {
                     backgroundSize: "200% 200%",
                   }}
                 >
-                  offer
+                  {t("offer.offer")}
                 </motion.span>
                 <motion.div
                   className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400 rounded-full shadow-[0_0_15px_rgba(94,234,212,0.6)]"

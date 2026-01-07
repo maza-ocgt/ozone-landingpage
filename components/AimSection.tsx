@@ -3,8 +3,10 @@
 import { motion } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 export default function AimSection() {
+  const { t } = useTranslation("common");
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [randomVideo, setRandomVideo] = useState<string>("");
@@ -97,7 +99,7 @@ export default function AimSection() {
               <motion.h2
                 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0"
               >
-                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">Our</span>{" "}
+                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]">{t("aim.title")}</span>{" "}
                 <span className="relative inline-block">
                   {/* Holographic gradient effect */}
                   <motion.span
@@ -114,7 +116,7 @@ export default function AimSection() {
                       backgroundSize: "200% 200%",
                     }}
                   >
-                    aim
+                    {t("aim.aim")}
                   </motion.span>
                   
                   {/* Animated underline with glow */}
@@ -252,7 +254,7 @@ export default function AimSection() {
                   viewport={{ once: true }}
                   className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed font-light text-white/90"
                 >
-                  Experience Malaysia's first global streaming revolution -
+                  {t("aim.description1")}
                 </motion.p>
                 <motion.p
                   className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl leading-relaxed font-light text-white"
@@ -275,7 +277,7 @@ export default function AimSection() {
                         backgroundSize: "200% 200%",
                       }}
                     >
-                      movies, creators, and AI entertainment
+                      {t("aim.description2")}
                     </motion.span>
                     <motion.span
                       className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400 rounded-full"
@@ -286,7 +288,7 @@ export default function AimSection() {
                       style={{ transformOrigin: "left" }}
                     />
                   </span>
-                  , all in one place!
+                  {t("aim.description3")}
                 </motion.p>
               </div>
               <motion.p
@@ -296,7 +298,7 @@ export default function AimSection() {
                 transition={{ delay: 0.3 }}
                 className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl leading-relaxed text-white/75 font-light"
               >
-                Join thousands waiting for early access. Your input helps shape the platform.
+                {t("aim.description4")}
               </motion.p>
             </div>
           </motion.div>

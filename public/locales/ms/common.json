@@ -1,0 +1,284 @@
+{
+  "hero": {
+    "title": "Platform Penstriman Global Malaysia",
+    "streaming": "Penstriman",
+    "platform": "Platform",
+    "peopleInterested": "orang berminat",
+    "preregister": "Daftar Sekarang"
+  },
+  "offer": {
+    "title": "Apa yang kami",
+    "offer": "tawarkan",
+    "longFormStreaming": {
+      "title": "Penstriman Kandungan Panjang",
+      "description": "Filem, siri, drama, dan dokumentari berkualiti tinggi.",
+      "features": ["HD & 4K Sedia", "Pilihan terpilih", "Perpustakaan global"]
+    },
+    "smartDiscovery": {
+      "title": "Suapan Penemuan Pintar",
+      "description": "Suapan menyesuaikan menggunakan cadangan pintar yang disesuaikan dengan tabiat menonton anda.",
+      "features": ["Peribadi", "Dikuasakan AI", "Untuk anda"]
+    },
+    "creatorMonetization": {
+      "title": "Pengewangan Pencipta",
+      "description": "Peroleh pendapatan melalui iklan dan penonton global.",
+      "features": ["Pemantauan iklan", "Analitik", "Jangkauan global"]
+    },
+    "watchToEarn": {
+      "title": "Hadiah Tonton-untuk-Peroleh",
+      "description": "Peroleh hadiah berdasarkan masa tontonan dan penglibatan anda.",
+      "features": ["Mata", "Lencana", "Token"]
+    },
+    "malaysiaContent": {
+      "title": "Kandungan Malaysia Global",
+      "description": "Mempamerkan pencipta tempatan kepada dunia.",
+      "features": ["Permata tempatan", "Sari kata", "Pelbagai bahasa"]
+    },
+    "creatorStudio": {
+      "title": "Studio Muat Naik Pencipta",
+      "description": "Papan pemuka lengkap untuk memuat naik, mengurus, dan menjejaki video.",
+      "features": ["Muat naik pukal", "Penjadualan", "Kolaborasi pasukan"]
+    }
+  },
+  "faq": {
+    "title": "Soalan Lazim",
+    "questions": {
+      "free": {
+        "question": "Adakah Aplikasi Ini Percuma?",
+        "answer": "Ya. Ozone akan dilancarkan sebagai platform percuma yang disokong oleh iklan. Pilihan premium tanpa iklan akan tersedia kemudian."
+      },
+      "creatorUpload": {
+        "question": "Adakah platform ini membenarkan pencipta memuat naik video mereka?",
+        "answer": "Ya. Pencipta akan dapat memuat naik kandungan selepas menyelesaikan proses pengesahan yang mudah."
+      },
+      "creatorEarn": {
+        "question": "Adakah pencipta akan memperoleh wang di Ozone?",
+        "answer": "Ya. Ciri pemantauan seperti iklan, analitik, dan hadiah akan tersedia untuk pencipta yang disahkan."
+      },
+      "launch": {
+        "question": "Bilakah Ozone akan dilancarkan secara rasmi?",
+        "answer": "Kami sedang dalam fasa persiapan dan ujian. Pengguna awal yang mendaftar terlebih dahulu akan menjadi yang pertama mendapat kemas kini, tawaran premium khas dan akses awal."
+      },
+      "recommendation": {
+        "question": "Bagaimanakah sistem cadangan Ozone berfungsi?",
+        "answer": "Enjin cadangan AI kami mencadangkan kandungan berdasarkan minat anda, tanpa mengganggu suapan anda atau membebankan anda dengan kandungan yang tidak relevan."
+      },
+      "watchToEarn": {
+        "question": "Apakah Tonton-untuk-Peroleh di Ozone?",
+        "answer": "Tonton-untuk-Peroleh membolehkan penonton mengumpul token setiap kali mereka menonton atau melibatkan diri dengan kandungan. Dari masa ke masa, token boleh ditukar dengan hadiah atau dikeluarkan sebaik sahaja anda mencapai jumlah minimum."
+      }
+    }
+  },
+  "language": {
+    "en": "English",
+    "ms": "Bahasa Malaysia",
+    "zh": "中文",
+    "ta": "தமிழ்"
+  },
+  "aim": {
+    "title": "Matlamat",
+    "aim": "Kami",
+    "description1": "Alami revolusi penstriman global pertama Malaysia -",
+    "description2": "filem, pencipta, dan hiburan AI",
+    "description3": ", semuanya dalam satu tempat!",
+    "description4": "Sertai ribuan yang menunggu akses awal. Input anda membantu membentuk platform."
+  },
+  "team": {
+    "title": "Pasukan",
+    "team": "Kami",
+    "members": {
+      "john": {
+        "name": "John",
+        "title": "Ketua Pegawai Inovasi",
+        "quote": "Di Oz, teknologi bukan sekadar tulang belakang—ia adalah pencerita. Kami membina ekosistem penstriman pintar di mana inovasi memperkuat kreativiti dan menghubungkan penonton tanpa had."
+      },
+      "zizi": {
+        "name": "Zizi",
+        "title": "Ketua Pembangun",
+        "quote": "Ozone dibangunkan dengan satu tujuan - memberikan pencipta dan penonton platform yang akhirnya boleh mereka panggil milik mereka sendiri."
+      },
+      "lim": {
+        "name": "Lim",
+        "title": "Ketua Pereka UI/UX",
+        "quote": "Mendarat untuk memuncak minat anda, terokai seperti anda seorang pengembara. Selamat datang ke Ozone."
+      },
+      "maza": {
+        "name": "Maza",
+        "title": "Pembangun Aplikasi Frontend Junior",
+        "quote": "Suasana baru untuk penstriman, dibina untuk anda."
+      }
+    }
+  },
+  "gallery": {
+    "title": "Filem",
+    "gallery": "Galeri",
+    "watchMore": "Tonton Lagi",
+    "play": "Main",
+    "videos": {
+      "duruva": {
+        "title": "Duruva : The Summit 1993",
+        "description": "Sebuah thriller pengembaraan sinematik tentang perjalanan luar biasa empat pendaki dari negara yang berbeza.",
+        "genres": ["Pengembaraan", "Thriller"]
+      },
+      "silentTides": {
+        "title": "Silent Tides",
+        "description": "Dua orang asing yang terdampar di sebuah pulau belajar kos kepercayaan ketika ribut menghampiri.",
+        "genres": ["Drama", "Kemampuan Hidup"]
+      },
+      "chromaticPulse": {
+        "title": "Chromatic Pulse",
+        "description": "Seorang DJ berlumba dengan masa untuk menghentikan AI jahat daripada merampas gelombang udara dunia.",
+        "genres": ["Aksi", "Muzik"]
+      },
+      "glassSkies": {
+        "title": "Glass Skies",
+        "description": "Seorang juruterbang menemui bandar tersembunyi di atas awan dan konspirasi untuk memadamkannya.",
+        "genres": ["Pengembaraan", "Misteri"]
+      },
+      "lastBroadcast": {
+        "title": "Last Broadcast",
+        "description": "Seorang wartawan bebas menyiarkan kebenaran ketika pemadaman bergulir di seluruh dunia.",
+        "genres": ["Thriller", "Teknologi"]
+      },
+      "moonlitEchoes": {
+        "title": "Moonlit Echoes",
+        "description": "Seorang penyanyi mendengar suara dalam melodi yang membawanya ke arkib lunar yang dilupakan.",
+        "genres": ["Fantasi", "Romantik"]
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Dibina oleh ©️ OC Global Technology"
+  },
+  "survey": {
+    "preregister": "pendaftaran awal",
+    "title": "JADI ANTARA YANG PERTAMA MENGALAMI OZONE.",
+    "subtitle": "Pilih laluan anda dan jawab beberapa soalan pantas.",
+    "roles": {
+      "create": "Cipta",
+      "creator": "Pencipta",
+      "creatorDesc": "Muat naik, monetize, dan capai penonton global.",
+      "watch": "Tonton",
+      "viewer": "Penonton",
+      "viewerDesc": "Temui cerita Malaysia dengan gaya global."
+    },
+    "fields": {
+      "name": "Nama",
+      "nameOrStage": "Nama atau nama pentas",
+      "namePlaceholder": "Nama anda",
+      "nameStagePlaceholder": "Ariana / @yourhandle",
+      "email": "E-mel",
+      "emailPlaceholder": "anda@email.com",
+      "birthdate": "Tarikh lahir",
+      "birthdatePlaceholder": "HH-BB-TTTT",
+      "birthdateHelper": "Pilihan. Hadiah hari jadi untuk yang bertuah.",
+      "country": "Negara",
+      "countryOther": "Beritahu kami negara anda",
+      "contentFocus": "Fokus kandungan utama",
+      "audience": "Saiz penonton semasa",
+      "platforms": "Di mana anda menerbitkan?",
+      "platformsPlaceholder": "YouTube, TikTok, IG, lain-lain",
+      "link": "Pautan portfolio atau saluran (pilihan)",
+      "linkPlaceholder": "https://",
+      "goals": "Apa yang anda mahukan dari Ozone sebagai pencipta?",
+      "goalsPlaceholder": "Pemantauan, jangkauan global, alat yang anda perlukan...",
+      "influencer": "Adakah anda seorang pempengaruh?",
+      "influencerType": "Jika ya, jenis pempengaruh apa?",
+      "influencerTypePlaceholder": "Teknologi, gaya hidup, pelancongan, permainan, dll.",
+      "devices": "Peranti yang anda tonton (pilih semua yang terpakai)",
+      "genres": "Genre yang anda suka",
+      "features": "Ciri yang anda mahukan dalam Ozone",
+      "featuresPlaceholder": "Cadangan pintar, hadiah, tontonan luar talian..."
+    },
+    "options": {
+      "chooseOption": "Pilih pilihan",
+      "yes": "Ya",
+      "no": "Tidak",
+      "other": "Lain-lain (isi)",
+      "countries": {
+        "malaysia": "Malaysia",
+        "india": "India",
+        "china": "China",
+        "indonesia": "Indonesia",
+        "other": "Lain-lain (isi)"
+      },
+      "contentFocus": {
+        "film": "Filem & Siri",
+        "vlogs": "Vlog & Gaya Hidup",
+        "education": "Pendidikan & Cara-cara",
+        "gaming": "Permainan",
+        "music": "Muzik & Persembahan",
+        "podcast": "Podcast / Rancangan bual bicara",
+        "other": "Lain-lain"
+      },
+      "audience": {
+        "less10k": "< 10k",
+        "10k50k": "10k - 50k",
+        "50k250k": "50k - 250k",
+        "250kplus": "250k+"
+      },
+      "devices": {
+        "phone": "Telefon",
+        "tablet": "Tablet",
+        "laptop": "Komputer riba",
+        "desktop": "Desktop",
+        "smartTV": "TV Pintar",
+        "streamingStick": "Stik penstriman"
+      },
+      "genres": {
+        "movies": "Filem",
+        "series": "Siri",
+        "vlogs": "Vlog",
+        "documentaries": "Dokumentari",
+        "sports": "Sukan",
+        "drama": "Drama"
+      }
+    },
+    "messages": {
+      "saving": "Menyimpan...",
+      "submit": "Hantar respons",
+      "success": "Disimpan! Terima kasih atas respons anda.",
+      "error": "Tidak dapat menyimpan sekarang. Sila cuba lagi.",
+      "influencerError": "Sila nyatakan jenis influencer anda.",
+      "birthdateError": "Tarikh lahir mestilah dalam format HH-BB-YYYY.",
+      "moreInfo": "Untuk maklumat lanjut, e-mel kami di"
+    }
+  },
+  "shortSurvey": {
+    "title": "Jadi yang pertama untuk mengalami.",
+    "description": "Platform penstriman Malaysia untuk filem, pencipta, dan hiburan. Kongsi butiran anda dan kami akan menghubungi dengan akses awal dan kemas kini.",
+    "fields": {
+      "name": "Nama",
+      "role": "Peranan",
+      "email": "E-mel",
+      "phone": "Telefon (pilihan)",
+      "phoneNumber": "Nombor telefon",
+      "selectRole": "Pilih peranan"
+    },
+    "roles": {
+      "creator": "Pencipta",
+      "viewer": "Penonton",
+      "influencer": "Influencer",
+      "other": "Lain-lain"
+    },
+    "countryCodes": {
+      "malaysia": "Malaysia (+60)",
+      "singapore": "Singapura (+65)",
+      "indonesia": "Indonesia (+62)",
+      "india": "India (+91)",
+      "china": "China (+86)",
+      "philippines": "Filipina (+63)",
+      "vietnam": "Vietnam (+84)",
+      "japan": "Jepun (+81)",
+      "southKorea": "Korea Selatan (+82)",
+      "usaCanada": "USA/Kanada (+1)"
+    },
+    "messages": {
+      "submit": "Hantar",
+      "submitting": "Menghantar...",
+      "success": "Terima kasih! Kami akan menghubungi anda.",
+      "error": "Tidak dapat menghantar sekarang. Sila cuba lagi.",
+      "errorRequired": "Sila isi nama, peranan, dan e-mel."
+    }
+  }
+}

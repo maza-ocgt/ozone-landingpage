@@ -1,0 +1,285 @@
+{
+  "hero": {
+    "title": "Malaysia's Global",
+    "streaming": "Streaming",
+    "platform": "Platform",
+    "peopleInterested": "people are Interested",
+    "preregister": "Preregister Now"
+  },
+  "offer": {
+    "title": "What we",
+    "offer": "offer",
+    "longFormStreaming": {
+      "title": "Long-form Streaming",
+      "description": "High-quality films, series, dramas, and documentaries.",
+      "features": ["HD & 4K Ready", "Curated picks", "Global library"]
+    },
+    "smartDiscovery": {
+      "title": "Smart Discovery Feed",
+      "description": "Feed adapts using smart suggestions tailored to your viewing habits.",
+      "features": ["Personalized", "AI-Powered", "For you"]
+    },
+    "creatorMonetization": {
+      "title": "Creator Monetization",
+      "description": "Earn revenue through ads and global viewership.",
+      "features": ["Ads monetization", "Analytics", "Global reach"]
+    },
+    "watchToEarn": {
+      "title": "Watch-to-Earn Rewards",
+      "description": "Earn rewards based on your watch-time and engagement.",
+      "features": ["Points", "Badges", "Tokens"]
+    },
+    "malaysiaContent": {
+      "title": "Global Malaysia Content",
+      "description": "Showcasing local creators to the world.",
+      "features": ["Local gems", "Subtitles", "Multi-language"]
+    },
+    "creatorStudio": {
+      "title": "Creator Upload Studio",
+      "description": "Complete dashboard for uploading, managing, and tracking videos.",
+      "features": ["Bulk upload", "Scheduling", "Team collab"]
+    }
+  },
+  "faq": {
+    "title": "FAQ",
+    "questions": {
+      "free": {
+        "question": "Is This App Free?",
+        "answer": "Yes. Ozone will launch as a free platform supported by ads. A premium, ad-free option will be available later."
+      },
+      "creatorUpload": {
+        "question": "Will this platform allow creator to upload their video?",
+        "answer": "Yes. Creators will be able to upload content after completing a simple verification process."
+      },
+      "creatorEarn": {
+        "question": "Will creators earn money on Ozone?",
+        "answer": "Yes. Monetization features such as ads, analytics, and rewards will be available for verified creators."
+      },
+      "launch": {
+        "question": "When will Ozone officially launch?",
+        "answer": "We are currently in the preparation and testing phase. Early users who pre-register will be the first to get updates, special premium offers and early access."
+      },
+      "recommendation": {
+        "question": "How does Ozone's recommendation system work?",
+        "answer": "Our AI recommendation engine suggests content based on your interests, without disrupting your feed or overwhelming you with irrelevant content."
+      },
+      "watchToEarn": {
+        "question": "What is Watch-to-Earn on Ozone?",
+        "answer": "Watch-to-Earn lets viewers collect tokens every time they watch or engage with content. Over time, tokens can be exchanged for rewards or cashed out once you hit the minimum amount."
+      }
+    }
+  },
+  "language": {
+    "en": "English",
+    "ms": "Bahasa Malaysia",
+    "zh": "中文",
+    "ta": "தமிழ்"
+  },
+  "aim": {
+    "title": "Our",
+    "aim": "aim",
+    "description1": "Experience Malaysia's first global streaming revolution -",
+    "description2": "movies, creators, and AI entertainment",
+    "description3": ", all in one place!",
+    "description4": "Join thousands waiting for early access. Your input helps shape the platform."
+  },
+  "team": {
+    "title": "Our",
+    "team": "Team",
+    "members": {
+      "john": {
+        "name": "John",
+        "title": "Chief Innovation Officer",
+        "quote": "At Oz, technology is not just a backbone—it's the storyteller. We're building an intelligent streaming ecosystem where innovation amplifies creativity and connects audiences without limits"
+      },
+      "zizi": {
+        "name": "Zizi",
+        "title": "Lead Developer",
+        "quote": "Ozone is developed with one purpose - giving creators and viewers a platform they can finally call their own."
+      },
+      "lim": {
+        "name": "Lim",
+        "title": "UI/UX Designer Lead",
+        "quote": "Landing to peak your interest, explore it like you're an adventurer. Welcome to Ozone."
+      },
+      "maza": {
+        "name": "Maza",
+        "title": "Junior Frontend App Developer",
+        "quote": "A new atmosphere for streaming, built for you."
+      }
+    }
+  },
+  "gallery": {
+    "title": "Movie",
+    "gallery": "Gallery",
+    "watchMore": "Watch More",
+    "play": "Play",
+    "videos": {
+      "duruva": {
+        "title": "Duruva : The Summit 1993",
+        "description": "A cinematic adventurous triller of the extraordinary journey of four climbers from different nation.",
+        "genres": ["Adventure", "Thriller"]
+      },
+      "silentTides": {
+        "title": "Silent Tides",
+        "description": "Two strangers stranded on an island learn the cost of trust as a storm approaches.",
+        "genres": ["Drama", "Survival"]
+      },
+      "chromaticPulse": {
+        "title": "Chromatic Pulse",
+        "description": "A DJ races against time to stop a rogue AI from hijacking the world's airwaves.",
+        "genres": ["Action", "Music"]
+      },
+      "glassSkies": {
+        "title": "Glass Skies",
+        "description": "A pilot discovers a hidden city above the clouds and a conspiracy to erase it.",
+        "genres": ["Adventure", "Mystery"]
+      },
+      "lastBroadcast": {
+        "title": "Last Broadcast",
+        "description": "An independent journalist streams the truth as a blackout rolls across the globe.",
+        "genres": ["Thriller", "Tech"]
+      },
+      "moonlitEchoes": {
+        "title": "Moonlit Echoes",
+        "description": "A singer hears voices in her melodies that lead her to a forgotten lunar archive.",
+        "genres": ["Fantasy", "Romance"]
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "Built by ©️ OC Global Technology"
+  },
+  "survey": {
+    "preregister": "preregister",
+    "title": "BE AMONG THE FIRST TO EXPERIENCE OZONE.",
+    "subtitle": "Choose your path and answer a few quick questions.",
+    "roles": {
+      "create": "Create",
+      "creator": "Creator",
+      "creatorDesc": "Upload, monetize, and reach a global audience.",
+      "watch": "Watch",
+      "viewer": "Viewer",
+      "viewerDesc": "Discover Malaysian stories with global flair."
+    },
+    "fields": {
+      "name": "Name",
+      "nameOrStage": "Name or stage name",
+      "namePlaceholder": "Your name",
+      "nameStagePlaceholder": "Ariana / @yourhandle",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "birthdate": "Birthdate",
+      "birthdatePlaceholder": "DD-MM-YYYY",
+      "birthdateHelper": "Optional. Birthday rewards for lucky ones.",
+      "country": "Country",
+      "countryOther": "Tell us your country",
+      "contentFocus": "Primary content focus",
+      "audience": "Current audience size",
+      "platforms": "Where do you publish?",
+      "platformsPlaceholder": "YouTube, TikTok, IG, others",
+      "link": "Portfolio or channel link (optional)",
+      "linkPlaceholder": "https://",
+      "goals": "What do you want from Ozone as a creator?",
+      "goalsPlaceholder": "Monetization, global reach, tools you need...",
+      "influencer": "Are you an influencer?",
+      "influencerType": "If yes, what kind of influencer?",
+      "influencerTypePlaceholder": "Tech, lifestyle, travel, gaming, etc.",
+      "devices": "Devices you watch on (choose all that apply)",
+      "genres": "Genres you love",
+      "features": "Features you want in Ozone",
+      "featuresPlaceholder": "Smart recommendations, rewards, offline viewing..."
+    },
+    "options": {
+      "chooseOption": "Choose an option",
+      "yes": "Yes",
+      "no": "No",
+      "other": "Other (fill in)",
+      "countries": {
+        "malaysia": "Malaysia",
+        "india": "India",
+        "china": "China",
+        "indonesia": "Indonesia",
+        "other": "Other (fill in)"
+      },
+      "contentFocus": {
+        "film": "Film & Series",
+        "vlogs": "Vlogs & Lifestyle",
+        "education": "Education & How-to",
+        "gaming": "Gaming",
+        "music": "Music & Performances",
+        "podcast": "Podcast / Talk show",
+        "other": "Other"
+      },
+      "audience": {
+        "less10k": "< 10k",
+        "10k50k": "10k - 50k",
+        "50k250k": "50k - 250k",
+        "250kplus": "250k+"
+      },
+      "devices": {
+        "phone": "Phone",
+        "tablet": "Tablet",
+        "laptop": "Laptop",
+        "desktop": "Desktop",
+        "smartTV": "Smart TV",
+        "streamingStick": "Streaming stick"
+      },
+      "genres": {
+        "movies": "Movies",
+        "series": "Series",
+        "vlogs": "Vlogs",
+        "documentaries": "Documentaries",
+        "sports": "Sports",
+        "drama": "Drama"
+      }
+    },
+    "messages": {
+      "saving": "Saving...",
+      "submit": "Submit response",
+      "success": "Saved! Thank you for the response.",
+      "error": "Could not save right now. Please try again.",
+      "influencerError": "Please specify what kind of influencer you are.",
+      "birthdateError": "Birthdate must be in DD-MM-YYYY format.",
+      "moreInfo": "For more information, email us at"
+    }
+  },
+  "shortSurvey": {
+    "title": "Be the first to experience.",
+    "description": "Malaysia's streaming platform for movies, creators, and entertainments. Share your details and we'll reach out with early access and updates.",
+    "fields": {
+      "name": "Name",
+      "role": "Role",
+      "email": "Email",
+      "phone": "Phone (optional)",
+      "phoneNumber": "Phone number",
+      "selectRole": "Select role"
+    },
+    "roles": {
+      "creator": "Creator",
+      "viewer": "Viewer",
+      "influencer": "Influencer",
+      "other": "Other"
+    },
+    "countryCodes": {
+      "malaysia": "Malaysia (+60)",
+      "singapore": "Singapore (+65)",
+      "indonesia": "Indonesia (+62)",
+      "india": "India (+91)",
+      "china": "China (+86)",
+      "philippines": "Philippines (+63)",
+      "vietnam": "Vietnam (+84)",
+      "japan": "Japan (+81)",
+      "southKorea": "South Korea (+82)",
+      "usaCanada": "USA/Canada (+1)"
+    },
+    "messages": {
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "success": "Thanks! We'll be in touch.",
+      "error": "Could not submit right now. Please try again.",
+      "errorRequired": "Please fill in name, role, and email."
+    }
+  }
+}
+

@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "@/firebase/firebase";
+import { useTranslation } from "react-i18next";
 
 type Role = "creator" | "viewer";
 
@@ -20,124 +21,156 @@ type Field = {
 type FormValue = string | string[];
 type FormState = Record<Role, Record<string, FormValue>>;
 
-const countryOptions = ["Malaysia", "India", "China", "Indonesia", "Other (fill in)"];
+const getRoleFields = (t: any): Record<Role, Field[]> => {
+  const countryOptions = [
+    t("survey.options.countries.malaysia"),
+    t("survey.options.countries.india"),
+    t("survey.options.countries.china"),
+    t("survey.options.countries.indonesia"),
+    t("survey.options.countries.other"),
+  ];
 
-const roleFields: Record<Role, Field[]> = {
-  creator: [
-    { id: "name", label: "Name or stage name", placeholder: "Ariana / @yourhandle", required: true },
-    { id: "email", label: "Email", placeholder: "you@email.com", type: "email", required: true },
-    {
-      id: "birthdate",
-      label: "Birthdate",
-      placeholder: "DD-MM-YYYY",
-      helper: "Optional. Birthday rewards for lucky ones.",
-    },
-    {
-      id: "country",
-      label: "Country",
-      type: "select",
-      options: countryOptions,
-      required: true,
-    },
-    {
-      id: "contentFocus",
-      label: "Primary content focus",
-      type: "select",
-      options: [
-        "Film & Series",
-        "Vlogs & Lifestyle",
-        "Education & How-to",
-        "Gaming",
-        "Music & Performances",
-        "Podcast / Talk show",
-        "Other",
-      ],
-    },
-    {
-      id: "audience",
-      label: "Current audience size",
-      type: "select",
-      options: ["< 10k", "10k - 50k", "50k - 250k", "250k+"],
-    },
-    {
-      id: "platforms",
-      label: "Where do you publish?",
-      placeholder: "YouTube, TikTok, IG, others",
-    },
-    {
-      id: "link",
-      label: "Portfolio or channel link (optional)",
-      placeholder: "https://",
-    },
-    {
-      id: "goals",
-      label: "What do you want from Ozone as a creator?",
-      placeholder: "Monetization, global reach, tools you need...",
-      type: "textarea",
-    },
-  ],
-  viewer: [
-    { id: "name", label: "Name", placeholder: "Your name", required: true },
-    { id: "email", label: "Email", placeholder: "you@email.com", type: "email", required: true },
-    {
-      id: "birthdate",
-      label: "Birthdate",
-      placeholder: "DD-MM-YYYY",
-      helper: "Optional. Birthday rewards for lucky ones.",
-    },
-    {
-      id: "country",
-      label: "Country",
-      type: "select",
-      options: countryOptions,
-      required: true,
-    },
-    {
-      id: "influencer",
-      label: "Are you an influencer?",
-      type: "select",
-      options: ["Yes", "No"],
-      required: true,
-    },
-    {
-      id: "influencerType",
-      label: "If yes, what kind of influencer?",
-      placeholder: "Tech, lifestyle, travel, gaming, etc.",
-    },
-    {
-      id: "devices",
-      label: "Devices you watch on (choose all that apply)",
-      type: "multiselect",
-      options: ["Phone", "Tablet", "Laptop", "Desktop", "Smart TV", "Streaming stick"],
-    },
-    {
-      id: "genres",
-      label: "Genres you love",
-      type: "multiselect",
-      options: ["Movies", "Series", "Vlogs", "Documentaries", "Sports", "Drama"],
-    },
-    {
-      id: "features",
-      label: "Features you want in Ozone",
-      placeholder: "Smart recommendations, rewards, offline viewing...",
-      type: "textarea",
-    },
-
-  ],
+  return {
+    creator: [
+      { id: "name", label: t("survey.fields.nameOrStage"), placeholder: t("survey.fields.nameStagePlaceholder"), required: true },
+      { id: "email", label: t("survey.fields.email"), placeholder: t("survey.fields.emailPlaceholder"), type: "email", required: true },
+      {
+        id: "birthdate",
+        label: t("survey.fields.birthdate"),
+        placeholder: t("survey.fields.birthdatePlaceholder"),
+        helper: t("survey.fields.birthdateHelper"),
+      },
+      {
+        id: "country",
+        label: t("survey.fields.country"),
+        type: "select",
+        options: countryOptions,
+        required: true,
+      },
+      {
+        id: "contentFocus",
+        label: t("survey.fields.contentFocus"),
+        type: "select",
+        options: [
+          t("survey.options.contentFocus.film"),
+          t("survey.options.contentFocus.vlogs"),
+          t("survey.options.contentFocus.education"),
+          t("survey.options.contentFocus.gaming"),
+          t("survey.options.contentFocus.music"),
+          t("survey.options.contentFocus.podcast"),
+          t("survey.options.contentFocus.other"),
+        ],
+      },
+      {
+        id: "audience",
+        label: t("survey.fields.audience"),
+        type: "select",
+        options: [
+          t("survey.options.audience.less10k"),
+          t("survey.options.audience.10k50k"),
+          t("survey.options.audience.50k250k"),
+          t("survey.options.audience.250kplus"),
+        ],
+      },
+      {
+        id: "platforms",
+        label: t("survey.fields.platforms"),
+        placeholder: t("survey.fields.platformsPlaceholder"),
+      },
+      {
+        id: "link",
+        label: t("survey.fields.link"),
+        placeholder: t("survey.fields.linkPlaceholder"),
+      },
+      {
+        id: "goals",
+        label: t("survey.fields.goals"),
+        placeholder: t("survey.fields.goalsPlaceholder"),
+        type: "textarea",
+      },
+    ],
+    viewer: [
+      { id: "name", label: t("survey.fields.name"), placeholder: t("survey.fields.namePlaceholder"), required: true },
+      { id: "email", label: t("survey.fields.email"), placeholder: t("survey.fields.emailPlaceholder"), type: "email", required: true },
+      {
+        id: "birthdate",
+        label: t("survey.fields.birthdate"),
+        placeholder: t("survey.fields.birthdatePlaceholder"),
+        helper: t("survey.fields.birthdateHelper"),
+      },
+      {
+        id: "country",
+        label: t("survey.fields.country"),
+        type: "select",
+        options: countryOptions,
+        required: true,
+      },
+      {
+        id: "influencer",
+        label: t("survey.fields.influencer"),
+        type: "select",
+        options: [t("survey.options.yes"), t("survey.options.no")],
+        required: true,
+      },
+      {
+        id: "influencerType",
+        label: t("survey.fields.influencerType"),
+        placeholder: t("survey.fields.influencerTypePlaceholder"),
+      },
+      {
+        id: "devices",
+        label: t("survey.fields.devices"),
+        type: "multiselect",
+        options: [
+          t("survey.options.devices.phone"),
+          t("survey.options.devices.tablet"),
+          t("survey.options.devices.laptop"),
+          t("survey.options.devices.desktop"),
+          t("survey.options.devices.smartTV"),
+          t("survey.options.devices.streamingStick"),
+        ],
+      },
+      {
+        id: "genres",
+        label: t("survey.fields.genres"),
+        type: "multiselect",
+        options: [
+          t("survey.options.genres.movies"),
+          t("survey.options.genres.series"),
+          t("survey.options.genres.vlogs"),
+          t("survey.options.genres.documentaries"),
+          t("survey.options.genres.sports"),
+          t("survey.options.genres.drama"),
+        ],
+      },
+      {
+        id: "features",
+        label: t("survey.fields.features"),
+        placeholder: t("survey.fields.featuresPlaceholder"),
+        type: "textarea",
+      },
+    ],
+  };
 };
 
-const createEmptyState = (): FormState => {
+const createEmptyState = (roleFields?: Record<Role, Field[]>): FormState => {
   const base: FormState = {
     creator: {},
     viewer: {},
   };
 
-  (["creator", "viewer"] as Role[]).forEach((role) => {
-    roleFields[role].forEach((field) => {
-      base[role][field.id] = field.type === "multiselect" ? [] : "";
+  if (roleFields) {
+    (["creator", "viewer"] as Role[]).forEach((role) => {
+      roleFields[role].forEach((field) => {
+        base[role][field.id] = field.type === "multiselect" ? [] : "";
+      });
+      base[role].countryOther = "";
     });
-    base[role].countryOther = "";
-  });
+  } else {
+    (["creator", "viewer"] as Role[]).forEach((role) => {
+      base[role].countryOther = "";
+    });
+  }
 
   return base;
 };
@@ -148,23 +181,31 @@ type SurveyModalProps = {
 };
 
 export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
+  const { t } = useTranslation("common");
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [formValues, setFormValues] = useState<FormState>(() => createEmptyState());
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const roleFields = useMemo(() => getRoleFields(t), [t]);
+
   const activeFields = useMemo(
     () => (selectedRole ? roleFields[selectedRole] : []),
-    [selectedRole]
+    [selectedRole, roleFields]
   );
+
+  // Initialize form values when roleFields are available
+  useEffect(() => {
+    setFormValues(createEmptyState(roleFields));
+  }, [roleFields]);
 
   useEffect(() => {
     if (!isOpen) {
       setSelectedRole(null);
-      setFormValues(createEmptyState());
+      setFormValues(createEmptyState(roleFields));
       setToast(null);
     }
-  }, [isOpen]);
+  }, [isOpen, roleFields]);
 
   useEffect(() => {
     if (!toast) return;
@@ -227,15 +268,15 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
     if (
       selectedRole === "viewer" &&
-      formValues.viewer.influencer === "Yes" &&
+      formValues.viewer.influencer === t("survey.options.yes") &&
       !formValues.viewer.influencerType
     ) {
-      setToast({ message: "Please specify what kind of influencer you are.", type: "error" });
+      setToast({ message: t("survey.messages.influencerError"), type: "error" });
       return;
     }
 
     if (!birthdateValid) {
-      setToast({ message: "Birthdate must be in DD-MM-YYYY format.", type: "error" });
+      setToast({ message: t("survey.messages.birthdateError"), type: "error" });
       return;
     }
 
@@ -251,12 +292,12 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
       };
 
       await addDoc(collection(db, collectionName), payload);
-      setToast({ message: "Saved! Thank you for the response.", type: "success" });
-      setFormValues(createEmptyState());
+      setToast({ message: t("survey.messages.success"), type: "success" });
+      setFormValues(createEmptyState(roleFields));
       setSelectedRole(null);
     } catch (error) {
       console.error(error);
-      setToast({ message: "Could not save right now. Please try again.", type: "error" });
+      setToast({ message: t("survey.messages.error"), type: "error" });
     } finally {
       setIsSubmitting(false);
     }
@@ -296,13 +337,13 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-[0.3em] text-teal-300">
-                preregister
+                {t("survey.preregister")}
               </p>
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-white leading-tight">
-                BE AMONG THE FIRST TO EXPERIENCE OZONE.
+                {t("survey.title")}
               </h3>
               <p className="text-sm text-white/70 max-w-2xl">
-                Choose your path and answer a few quick questions.
+                {t("survey.subtitle")}
               </p>
             </div>
             <button
@@ -342,15 +383,15 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
               >
                 <div>
                   <p className="text-xs uppercase tracking-[0.24em] text-teal-200">
-                    {role === "creator" ? "Create" : "Watch"}
+                    {role === "creator" ? t("survey.roles.create") : t("survey.roles.watch")}
                   </p>
                   <p className="text-xl font-semibold text-white">
-                    {role === "creator" ? "Creator" : "Viewer"}
+                    {role === "creator" ? t("survey.roles.creator") : t("survey.roles.viewer")}
                   </p>
                   <p className="text-sm text-white/60">
                     {role === "creator"
-                      ? "Upload, monetize, and reach a global audience."
-                      : "Discover Malaysian stories with global flair."}
+                      ? t("survey.roles.creatorDesc")
+                      : t("survey.roles.viewerDesc")}
                   </p>
                 </div>
                 <span
@@ -380,7 +421,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                   const value = formValues[selectedRole][field.id];
                   const stringValue = Array.isArray(value) ? "" : value;
                   const isCountryOther =
-                    field.id === "country" && stringValue === "Other (fill in)";
+                    field.id === "country" && stringValue === t("survey.options.countries.other");
 
                   return (
                     <div key={field.id} className="flex flex-col gap-2">
@@ -409,7 +450,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                             }
                           >
                             <option value="" disabled>
-                              Choose an option
+                              {t("survey.options.chooseOption")}
                             </option>
                             {field.options?.map((option) => (
                               <option key={option} value={option}>
@@ -421,7 +462,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                             <input
                               type="text"
                               className="rounded-xl border border-white/10 bg-black/25 px-3 py-3 text-sm text-white placeholder:text-white/40 outline-none focus:border-teal-300/70 focus:ring-2 focus:ring-teal-400/20"
-                              placeholder="Tell us your country"
+                              placeholder={t("survey.fields.countryOther")}
                               value={formValues[selectedRole].countryOther as string}
                               onChange={(event) =>
                                 handleChange(selectedRole, "countryOther", event.target.value)
@@ -475,7 +516,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-xs text-white/80">
-              For more information, email us at{" "}
+              {t("survey.messages.moreInfo")}{" "}
               <a
                 href="mailto:marketing.admin@ocglobaltech.com"
                 className="text-teal-200 underline underline-offset-2 hover:text-teal-100"
@@ -489,7 +530,7 @@ export default function SurveyModal({ isOpen, onClose }: SurveyModalProps) {
                 className="rounded-full border border-white/15 bg-gradient-to-r from-teal-300/40 via-cyan-400/40 to-blue-500/40 px-5 py-3 text-sm font-semibold uppercase tracking-widest text-white shadow-[0_10px_40px_rgba(59,130,246,0.4)] backdrop-blur-xl transition hover:border-teal-200/70 hover:shadow-[0_10px_55px_rgba(59,130,246,0.55)] disabled:opacity-40 disabled:cursor-not-allowed"
                 disabled={isSubmitting || !selectedRole}
               >
-                {isSubmitting ? "Saving..." : "Submit response"}
+                {isSubmitting ? t("survey.messages.saving") : t("survey.messages.submit")}
               </button>
             </div>
           </div>

@@ -3,60 +3,62 @@
 import { motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 type BottomSectionProps = {
   onOpenSurvey: () => void;
 };
 
 export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
+  const { t } = useTranslation("common");
 
   const videoThumbnails = [
     {
       id: 1,
-      title: "Duruva : The Summit 1993",
+      title: t("gallery.videos.duruva.title"),
       thumbnail: "/gallery/duruva.jpg",
-      description: "A cinematic adventurous triller of the extraordinary journey of four climbers from different nation.",
-      genre: ["Adventure", "Thriller"],
+      description: t("gallery.videos.duruva.description"),
+      genre: t("gallery.videos.duruva.genres", { returnObjects: true }) as string[],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     },
     {
       id: 2,
-      title: "Silent Tides",
+      title: t("gallery.videos.silentTides.title"),
       thumbnail: "/gallery/silentide.jpg",
-      description: "Two strangers stranded on an island learn the cost of trust as a storm approaches.",
-      genre: ["Drama", "Survival"],
+      description: t("gallery.videos.silentTides.description"),
+      genre: t("gallery.videos.silentTides.genres", { returnObjects: true }) as string[],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     },
     {
       id: 3,
-      title: "Chromatic Pulse",
+      title: t("gallery.videos.chromaticPulse.title"),
       thumbnail: "/gallery/chromatic.jpg",
-      description: "A DJ races against time to stop a rogue AI from hijacking the world’s airwaves.",
-      genre: ["Action", "Music"],
+      description: t("gallery.videos.chromaticPulse.description"),
+      genre: t("gallery.videos.chromaticPulse.genres", { returnObjects: true }) as string[],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     },
     {
       id: 4,
-      title: "Glass Skies",
+      title: t("gallery.videos.glassSkies.title"),
       thumbnail: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1200&h=1600&fit=crop",
-      description: "A pilot discovers a hidden city above the clouds and a conspiracy to erase it.",
-      genre: ["Adventure", "Mystery"],
+      description: t("gallery.videos.glassSkies.description"),
+      genre: t("gallery.videos.glassSkies.genres", { returnObjects: true }) as string[],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     },
     {
       id: 5,
-      title: "Last Broadcast",
+      title: t("gallery.videos.lastBroadcast.title"),
       thumbnail: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?w=1200&h=1600&fit=crop",
-      description: "An independent journalist streams the truth as a blackout rolls across the globe.",
-      genre: ["Thriller", "Tech"],
+      description: t("gallery.videos.lastBroadcast.description"),
+      genre: t("gallery.videos.lastBroadcast.genres", { returnObjects: true }) as string[],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
     },
     {
       id: 6,
-      title: "Moonlit Echoes",
+      title: t("gallery.videos.moonlitEchoes.title"),
       thumbnail: "https://images.unsplash.com/photo-1502134249126-9f3755a50d78?w=1200&h=1600&fit=crop",
-      description: "A singer hears voices in her melodies that lead her to a forgotten lunar archive.",
-      genre: ["Fantasy", "Romance"],
+      description: t("gallery.videos.moonlitEchoes.description"),
+      genre: t("gallery.videos.moonlitEchoes.genres", { returnObjects: true }) as string[],
       videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
     },
   ];
@@ -153,7 +155,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
             <div className="absolute -left-6 md:-left-8 top-0 w-1 h-full bg-gradient-to-b from-teal-500/40 via-cyan-500/40 to-transparent blur-md hidden sm:block" />
             
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-left relative px-2 sm:px-0">
-              <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">Movie</span>{" "}
+              <span className="text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">{t("gallery.title")}</span>{" "}
               <span className="relative inline-block">
                 <motion.span
                   className="bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent relative z-10"
@@ -169,7 +171,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
                     backgroundSize: "200% 200%",
                   }}
                 >
-                  Gallery
+                  {t("gallery.gallery")}
                 </motion.span>
                 <motion.div
                   className="absolute -bottom-2 left-0 h-1.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-teal-400 rounded-full shadow-[0_0_15px_rgba(94,234,212,0.6)]"
@@ -252,7 +254,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
                     unoptimized
                   />
                   <div className="absolute top-2 right-2 sm:top-3 sm:right-3 px-2.5 py-1 rounded-full border border-white/20 bg-white/15 backdrop-blur-xl shadow-[0_8px_20px_rgba(0,0,0,0.3)] text-[10px] sm:text-xs font-semibold text-white tracking-wide">
-                    Play
+                    {t("gallery.play")}
                   </div>
                 </div>
 
@@ -345,7 +347,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
               
               {/* Button Text with Glow */}
               <span className="relative z-10 text-white text-sm md:text-base font-semibold uppercase tracking-widest drop-shadow-[0_0_8px_rgba(94,234,212,0.5)]">
-                Watch More
+                {t("gallery.watchMore")}
               </span>
 
               {/* Corner Accents */}

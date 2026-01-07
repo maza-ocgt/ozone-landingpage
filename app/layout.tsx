@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import I18nProvider from "@/components/I18nProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,7 +65,9 @@ export default function RootLayout({
           src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.halo.min.js"
           strategy="beforeInteractive"
         />
-        <SmoothScroll>{children}</SmoothScroll>
+        <I18nProvider>
+          <SmoothScroll>{children}</SmoothScroll>
+        </I18nProvider>
       </body>
     </html>
   );

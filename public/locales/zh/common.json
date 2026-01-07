@@ -1,0 +1,284 @@
+{
+  "hero": {
+    "title": "马来西亚的全球",
+    "streaming": "流媒体",
+    "platform": "平台",
+    "peopleInterested": "人表示感兴趣",
+    "preregister": "立即预注册, 抢先体验"
+  },
+  "offer": {
+    "title": "我们",
+    "offer": "的服务",
+    "longFormStreaming": {
+      "title": "长内容流媒体",
+      "description": "提供高品质电影、剧集、电视剧及纪录片。",
+      "features": ["支持 HD 与 4K 高清播放", "精选内容策划", "全球内容库"]
+    },
+    "smartDiscovery": {
+      "title": "智能内容推送",
+      "description": "由 AI 驱动的个性化推荐系统。",
+      "features": ["根据兴趣精准推荐", "无干扰、无无关内容", "发现真正适合您的作品"]
+    },
+    "creatorMonetization": {
+      "title": "创作者变现",
+      "description": "让创意连接全球观众，实现收益。",
+      "features": ["广告变现机制", "内容与数据分析", "全球观众覆盖"] 
+    },
+    "watchToEarn": {
+      "title": "观看赚取奖励",
+      "description": "观看与互动即可获得奖励。",
+      "features": ["积分系统", "成就徽章", "代币（可兑换奖励，或在达到最低门槛后提现）"]
+    },
+    "malaysiaContent": {
+      "title": "马来西亚内容 · 面向全球",
+      "description": "将本地故事带向世界舞台。",
+      "features": ["精选马来西亚原创内容", "多语言字幕", "全球观众可访问"]
+    },
+    "creatorStudio": {
+      "title": "创作者工作室",
+      "description": "一站式内容管理与发布平台。",
+      "features": ["批量上传", "内容排程管理", "表现与数据追踪"]
+    }
+  },
+  "faq": {
+    "title": "常见问题",
+    "questions": {
+      "free": {
+        "question": "这个应用是免费的吗？",
+        "answer": "是的。Ozone 将以广告支持的免费模式正式推出，后续将提供无广告的高级订阅方案。"
+      },
+      "creatorUpload": {
+        "question": "创作者可以上传自创的内容吗？",
+        "answer": "可以。创作者在完成简单的身份验证流程后即可上传内容。"
+      },
+      "creatorEarn": {
+        "question": "创作者可以在 Ozone 上获得收入吗？",
+        "answer": "可以。经验证的创作者可通过广告分成、数据分析及奖励机制实现变现。"
+      },
+      "launch": {
+        "question": "Ozone 何时正式上线？",
+        "answer": "目前平台正处于准备与测试阶段。已预注册的用户将优先获得最新消息、早期访问权限及特别高级优惠。"
+      },
+      "recommendation": {
+        "question": "推荐系统是如何运作的？",
+        "answer": "我们的 AI 推荐引擎会根据您的兴趣推荐内容，不会干扰您的使用体验，也不会推送不相关内容。"
+      },
+      "watchToEarn": {
+        "question": "什么是“观看赚取奖励”？",
+        "answer": "观看赚取奖励机制允许观众在观看或参与内容时获得代币。代币可兑换奖励，或在达到最低兑换金额后进行提现。"
+      }
+    }
+  },
+  "language": {
+    "en": "English",
+    "ms": "Bahasa Malaysia",
+    "zh": "中文",
+    "ta": "தமிழ்"
+  },
+  "aim": {
+    "title": "我们的",
+    "aim": "目标",
+    "description1": "体验马来西亚首个全球流媒体革新平台",
+    "description2": "电影 · 创作者 · AI 娱乐",
+    "description3": "—— 一站式体验",
+    "description4": "加入数千名正在等待早期访问的用户，您的反馈将直接参与塑造平台的未来。"
+  },
+  "team": {
+    "title": "我们的",
+    "team": "团队",
+    "members": {
+      "john": {
+        "name": "John",
+        "title": "首席创新官",
+        "quote": "在Oz，技术不仅是基础设施，更是讲述故事的力量。我们正在打造一个智能流媒体生态系统，让创新放大创意，让内容无界连接全球观众"
+      },
+      "zizi": {
+        "name": "Zizi",
+        "title": "首席开发工程师",
+        "quote": "Ozone 的诞生只有一个目标——为创作者和观众打造一个真正属于他们的平台。"
+      },
+      "lim": {
+        "name": "Lim",
+        "title": "UI/UX设计主管",
+        "quote": "从着陆页激发好奇，到像探险者般探索内容。欢迎来到 Ozone。"
+      },
+      "maza": {
+        "name": "Maza",
+        "title": "初级前端应用开发工程师",
+        "quote": "为你打造全新的流媒体氛围。"
+      }
+    }
+  },
+  "gallery": {
+    "title": "电影",
+    "gallery": "画廊",
+    "watchMore": "观看更多",
+    "play": "播放",
+    "videos": {
+      "duruva": {
+        "title": "Duruva : The Summit 1993",
+        "description": "一部关于四名来自不同国家的登山者非凡旅程的电影冒险惊悚片。",
+        "genres": ["冒险", "惊悚"]
+      },
+      "silentTides": {
+        "title": "Silent Tides",
+        "description": "两个被困在岛上的陌生人学会了信任的代价，因为风暴即将来临。",
+        "genres": ["剧情", "生存"]
+      },
+      "chromaticPulse": {
+        "title": "Chromatic Pulse",
+        "description": "一名DJ与时间赛跑，阻止一个流氓AI劫持世界广播。",
+        "genres": ["动作", "音乐"]
+      },
+      "glassSkies": {
+        "title": "Glass Skies",
+        "description": "一名飞行员在云层之上发现了一座隐藏的城市，以及一个试图抹除它的阴谋。",
+        "genres": ["冒险", "悬疑"]
+      },
+      "lastBroadcast": {
+        "title": "Last Broadcast",
+        "description": "一名独立记者在全球停电时直播真相。",
+        "genres": ["惊悚", "科技"]
+      },
+      "moonlitEchoes": {
+        "title": "Moonlit Echoes",
+        "description": "一名歌手在她的旋律中听到声音，引导她前往一个被遗忘的月球档案。",
+        "genres": ["奇幻", "浪漫"]
+      }
+    }
+  },
+  "footer": {
+    "builtBy": "由 ©️ OC Global Technology 构建"
+  },
+  "survey": {
+    "preregister": "预注册",
+    "title": "成为首批体验 OZONE 的用户。",
+    "subtitle": "选择您的路径并回答几个快速问题。",
+    "roles": {
+      "create": "创建",
+      "creator": "创作者",
+      "creatorDesc": "上传、变现并触达全球观众。",
+      "watch": "观看",
+      "viewer": "观众",
+      "viewerDesc": "发现具有全球风格的马来西亚故事。"
+    },
+    "fields": {
+      "name": "姓名",
+      "nameOrStage": "姓名或艺名",
+      "namePlaceholder": "您的姓名",
+      "nameStagePlaceholder": "Ariana / @yourhandle",
+      "email": "电子邮件",
+      "emailPlaceholder": "you@email.com",
+      "birthdate": "出生日期",
+      "birthdatePlaceholder": "DD-MM-YYYY",
+      "birthdateHelper": "可选。幸运者将获得生日奖励。",
+      "country": "国家",
+      "countryOther": "请告诉我们您的国家",
+      "contentFocus": "主要内容重点",
+      "audience": "当前观众规模",
+      "platforms": "您在哪里发布？",
+      "platformsPlaceholder": "YouTube、TikTok、IG等",
+      "link": "作品集或频道链接（可选）",
+      "linkPlaceholder": "https://",
+      "goals": "作为创作者，您希望从 Ozone 获得什么？",
+      "goalsPlaceholder": "变现、全球覆盖、您需要的工具...",
+      "influencer": "您是影响者吗？",
+      "influencerType": "如果是，您是什么类型的影响者？",
+      "influencerTypePlaceholder": "科技、生活方式、旅行、游戏等",
+      "devices": "您使用的观看设备（选择所有适用的）",
+      "genres": "您喜欢的类型",
+      "features": "您希望在 Ozone 中看到的功能",
+      "featuresPlaceholder": "智能推荐、奖励、离线观看..."
+    },
+    "options": {
+      "chooseOption": "选择一个选项",
+      "yes": "是",
+      "no": "否",
+      "other": "其他（请填写）",
+      "countries": {
+        "malaysia": "马来西亚",
+        "india": "印度",
+        "china": "中国",
+        "indonesia": "印度尼西亚",
+        "other": "其他（请填写）"
+      },
+      "contentFocus": {
+        "film": "电影和连续剧",
+        "vlogs": "视频博客和生活方式",
+        "education": "教育和教程",
+        "gaming": "游戏",
+        "music": "音乐和表演",
+        "podcast": "播客/脱口秀",
+        "other": "其他"
+      },
+      "audience": {
+        "less10k": "< 10k",
+        "10k50k": "10k - 50k",
+        "50k250k": "50k - 250k",
+        "250kplus": "250k+"
+      },
+      "devices": {
+        "phone": "手机",
+        "tablet": "平板电脑",
+        "laptop": "笔记本电脑",
+        "desktop": "台式电脑",
+        "smartTV": "智能电视",
+        "streamingStick": "流媒体棒"
+      },
+      "genres": {
+        "movies": "电影",
+        "series": "连续剧",
+        "vlogs": "视频博客",
+        "documentaries": "纪录片",
+        "sports": "体育",
+        "drama": "戏剧"
+      }
+    },
+    "messages": {
+      "saving": "保存中...",
+      "submit": "提交回复",
+      "success": "已保存！感谢您的回复。",
+      "error": "现在无法保存。请重试。",
+      "influencerError": "请说明您是什么类型的影响者。",
+      "birthdateError": "出生日期必须为 DD-MM-YYYY 格式。",
+      "moreInfo": "如需更多信息，请发送电子邮件至"
+    }
+  },
+  "shortSurvey": {
+    "title": "成为首批体验者。",
+    "description": "马来西亚的电影、创作者和娱乐流媒体平台。分享您的详细信息，我们将为您提供早期访问权限和更新。",
+    "fields": {
+      "name": "姓名",
+      "role": "角色",
+      "email": "电子邮件",
+      "phone": "电话（可选）",
+      "phoneNumber": "电话号码",
+      "selectRole": "选择角色"
+    },
+    "roles": {
+      "creator": "创作者",
+      "viewer": "观众",
+      "influencer": "影响者",
+      "other": "其他"
+    },
+    "countryCodes": {
+      "malaysia": "马来西亚 (+60)",
+      "singapore": "新加坡 (+65)",
+      "indonesia": "印度尼西亚 (+62)",
+      "india": "印度 (+91)",
+      "china": "中国 (+86)",
+      "philippines": "菲律宾 (+63)",
+      "vietnam": "越南 (+84)",
+      "japan": "日本 (+81)",
+      "southKorea": "韩国 (+82)",
+      "usaCanada": "美国/加拿大 (+1)"
+    },
+    "messages": {
+      "submit": "提交",
+      "submitting": "提交中...",
+      "success": "谢谢！我们会与您联系。",
+      "error": "现在无法提交。请重试。",
+      "errorRequired": "请填写姓名、角色和电子邮件。"
+    }
+  }
+}

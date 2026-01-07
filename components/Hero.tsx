@@ -5,12 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import VantaBackground from "@/components/VantaBackground";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 type HeroProps = {
   onOpenSurvey: () => void;
 };
 
 export default function Hero({ onOpenSurvey }: HeroProps) {
+  const { t } = useTranslation("common");
   const count = useMotionValue(0);
   const springCount = useSpring(count, {
     damping: 60,
@@ -20,13 +23,12 @@ export default function Hero({ onOpenSurvey }: HeroProps) {
   const [displayValue, setDisplayValue] = useState("0");
   
   const lastUpdateRef = useRef(0);
-  const throttleDelay = 16; // ~60fps
+  const throttleDelay = 16; 
 
   useEffect(() => {
     count.set(12000); 
   }, [count]);
   
-  // Throttle updates for better performance
   useMotionValueEvent(springCount, "change", (latest) => {
     const now = Date.now();
     if (now - lastUpdateRef.current >= throttleDelay) {
@@ -48,6 +50,16 @@ export default function Hero({ onOpenSurvey }: HeroProps) {
     <section className="relative flex min-h-screen flex-col items-center justify-center px-4 sm:px-6 md:px-8 text-center text-white overflow-hidden">
       {/* Vanta Halo Background */}
       <VantaBackground />
+      
+      {/* Language Switcher - Top Right */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="absolute top-4 right-3 sm:top-8 sm:right-4 md:top-12 md:right-6 lg:top-16 lg:right-8 z-20"
+      >
+        <LanguageSwitcher />
+      </motion.div>
       
       {/* Top Label - Positioned center top */}
       <motion.div
@@ -109,10 +121,10 @@ export default function Hero({ onOpenSurvey }: HeroProps) {
         transition={{ duration: 0.9, delay: 0.3 }}
         className="relative z-10 max-w-4xl text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight text-white px-2"
       >
-        Malaysia's Global <br />
-        Streaming{" "}
+        {t("hero.title")} <br />
+        {t("hero.streaming")}{" "}
         <span className="bg-gradient-to-r from-teal-300 via-cyan-300 to-teal-400 bg-clip-text text-transparent">
-          Platform
+          {t("hero.platform")}
         </span>
       </motion.h1>
 
@@ -128,7 +140,7 @@ export default function Hero({ onOpenSurvey }: HeroProps) {
         >
           {displayValue}
         </motion.span>{" "}
-        people are Interested
+        {t("hero.peopleInterested")}
       </motion.p>
 
       {/* CTA Button */}
@@ -141,7 +153,7 @@ export default function Hero({ onOpenSurvey }: HeroProps) {
         className="relative z-10 mt-6 sm:mt-8 md:mt-10 rounded-full bg-gradient-to-r from-teal-300 via-cyan-400 to-blue-500 px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-4 text-xs sm:text-sm font-semibold uppercase tracking-widest text-white shadow-lg shadow-teal-500/30 transition-all hover:shadow-xl hover:shadow-teal-500/50"
         onClick={onOpenSurvey}
       >
-        Preregister Now
+        {t("hero.preregister")}
       </motion.button>
     </section>
     </>
