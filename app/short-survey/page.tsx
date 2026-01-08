@@ -106,7 +106,7 @@ export default function ShortSurveyPage() {
         <button
           onClick={() => router.push("/")}
           aria-label="Close and go back"
-          className="absolute top-3 right-3 h-9 w-9 rounded-full border border-white/15 bg-black/30 text-white hover:border-teal-200/70 hover:text-teal-100 transition flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+          className="absolute top-3 right-3 h-9 w-9 rounded-full border border-white/10 bg-black/10 text-white/45 hover:border-teal-200/60 hover:text-teal-30 transition flex items-center justify-center shadow-[0_5px_10px_rgba(0,0,0,0.05)]"
         >
           ×
         </button>
