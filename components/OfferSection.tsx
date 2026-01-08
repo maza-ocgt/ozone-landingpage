@@ -193,10 +193,10 @@ export default function OfferSection() {
                     {offer.title}
                   </div>
                   <div
-                    className={`block max-w-full rounded-2xl px-4 py-3 bg-black/45 border border-white/15 backdrop-blur shadow-[0_12px_28px_rgba(0,0,0,0.35)] overflow-hidden ${
+                    className={`block max-w-full rounded-2xl px-4 py-3 bg-black/45 border border-white/15 backdrop-blur shadow-[0_12px_28px_rgba(0,0,0,0.35)] overflow-hidden transition-all duration-200 ${
                       expandedCardId === offer.id || isMobile
-                        ? "opacity-100 translate-x-0"
-                        : "opacity-80 translate-x-0 md:opacity-100 md:translate-x-0"
+                        ? "opacity-100 translate-y-0"
+                        : "opacity-0 translate-y-1 md:group-hover:opacity-100 md:group-hover:translate-y-0"
                     }`}
                   >
                     <p className="text-sm text-white/90 leading-relaxed">

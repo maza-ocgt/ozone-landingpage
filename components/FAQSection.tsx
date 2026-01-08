@@ -112,7 +112,7 @@ export default function FAQSection() {
             {faqs.map((faq, index) => (
               <div
                 key={faq.id}
-                className="relative group rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-white/[0.08] bg-black/50 backdrop-blur-xl backdrop-saturate-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:border-purple-500/50 transition-all duration-300 overflow-hidden"
+                className="relative group rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 border border-white/[0.08] bg-black/50 backdrop-blur-xl backdrop-saturate-200 shadow-[0_4px_20px_rgba(0,0,0,0.15)] transition-all duration-300 overflow-hidden"
                 style={{
                   backdropFilter: "blur(40px) saturate(200%)",
                   WebkitBackdropFilter: "blur(40px) saturate(200%)",

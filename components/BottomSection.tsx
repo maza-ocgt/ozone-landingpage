@@ -309,31 +309,17 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
                 }}
               />
               
-              {/* Animated Shine Effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full"
-                animate={{
-                  x: ["-100%", "100%"],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatDelay: 1,
-                  ease: "easeInOut",
-                }}
-              />
-
-              {/* Glowing Border */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-300" />
+              {/* Static Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-500 rounded-full opacity-90 blur-sm" />
               
               {/* Button Text with Glow */}
               <span className="relative z-10 text-white text-sm md:text-base font-semibold uppercase tracking-widest drop-shadow-[0_0_8px_rgba(94,234,212,0.5)]">
                 {t("gallery.watchMore")}
               </span>
 
-              {/* Corner Accents */}
-              <div className="absolute top-1 left-4 w-2 h-2 bg-teal-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute top-1 right-4 w-2 h-2 bg-cyan-300 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Corner Accents (static) */}
+              <div className="absolute top-1 left-4 w-2 h-2 bg-teal-300 rounded-full" />
+              <div className="absolute top-1 right-4 w-2 h-2 bg-cyan-300 rounded-full" />
             </motion.button>
           </motion.div>
         </motion.div>
