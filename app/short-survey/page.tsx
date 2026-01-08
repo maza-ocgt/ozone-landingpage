@@ -102,7 +102,14 @@ export default function ShortSurveyPage() {
         <LanguageSwitcher />
       </motion.div>
 
-      <div className="w-full max-w-lg rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_20px_70px_rgba(0,0,0,0.5)] p-6 sm:p-8 space-y-6">
+      <div className="relative w-full max-w-lg rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl shadow-[0_20px_70px_rgba(0,0,0,0.5)] p-6 sm:p-8 space-y-6">
+        <button
+          onClick={() => router.push("/")}
+          aria-label="Close and go back"
+          className="absolute top-3 right-3 h-9 w-9 rounded-full border border-white/15 bg-black/30 text-white hover:border-teal-200/70 hover:text-teal-100 transition flex items-center justify-center shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+        >
+          ×
+        </button>
         <div className="space-y-3 text-center">
           <div className="mx-auto h-17 w-17 relative">
             <Image src="/3dlogo.png" alt="Ozone logo" fill className="object-contain" priority />
