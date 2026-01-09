@@ -19,10 +19,14 @@ export const metadata: Metadata = {
   title: "Ozone | OC Global Technology",
   description:
     "Ozone is OC Global Technology’s streaming platform for movies, creators, and AI-driven entertainment. Sign up for early access.",
+  manifest: "/site.webmanifest",
+  themeColor: "#0b0c10",
   icons: {
     icon: [
       { url: "/favicon.ico" },
       { url: "/icon.png", type: "image/png", sizes: "512x512" },
+      { url: "/android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
+      { url: "/android-chrome-512x512.png", type: "image/png", sizes: "512x512" },
     ],
     apple: [
       { url: "/apple-touch-icon.png", sizes: "180x180" },
