@@ -12,11 +12,8 @@ export default function AimSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const videoPaths = [
+    "/gallery/ozAd.mp4",
     "/gallery/duruva.mp4",
-    "/gallery/popeyesvid.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
   ];
 
   const currentVideo = videoPaths[currentIndex % videoPaths.length] ?? "";
