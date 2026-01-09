@@ -271,7 +271,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
                         ►
                       </button>
                     </div>
-                    <p className="relative text-xs sm:text-sm text-white/85 line-clamp-3">
+                    <p className="relative text-xs sm:text-sm text-white/85">
                       {video.description}
                     </p>
                   </motion.div>
