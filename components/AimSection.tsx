@@ -9,24 +9,27 @@ export default function AimSection() {
   const { t } = useTranslation("common");
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [randomVideo, setRandomVideo] = useState<string>("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const videoPaths = [
+    "/gallery/duruva.mp4",
+    "/gallery/popeyesvid.mp4",
+    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+  ];
+
+  const currentVideo = videoPaths[currentIndex % videoPaths.length] ?? "";
+
+  const handleEnded = () => {
+    setCurrentIndex((prev) => (prev + 1) % videoPaths.length);
+  };
 
   useEffect(() => {
-    // Array of placeholder video URLs - replace with your actual videos later
-    const videoPaths = [
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-    ];
-    
-    // Select random video on mount
-    if (videoPaths.length > 0) {
-      const randomIndex = Math.floor(Math.random() * videoPaths.length);
-      setRandomVideo(videoPaths[randomIndex]);
-    }
-  }, []);
+    if (!videoRef.current) return;
+    videoRef.current.load();
+    videoRef.current.play().catch(() => {});
+  }, [currentVideo]);
 
   return (
     <section
@@ -210,14 +213,14 @@ export default function AimSection() {
               <div className="hidden sm:block absolute bottom-0 left-0 w-12 h-12 md:w-16 md:h-20 border-b-2 border-l-2 border-cyan-400/50 rounded-bl-2xl md:rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="hidden sm:block absolute bottom-0 right-0 w-12 h-12 md:w-16 md:h-20 border-b-2 border-r-2 border-teal-400/50 rounded-br-2xl md:rounded-br-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               
-              {randomVideo && (
+              {currentVideo && (
                 <video
                   ref={videoRef}
-                  src={randomVideo}
+                  src={currentVideo}
                   autoPlay
-                  loop
                   muted
                   playsInline
+                  onEnded={handleEnded}
                   className="w-full h-full object-cover relative z-10 rounded-2xl sm:rounded-3xl"
                 />
               )}

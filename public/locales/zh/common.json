@@ -116,34 +116,34 @@
     "play": "播放",
     "videos": {
       "duruva": {
-        "title": "Duruva : The Summit 1993",
-        "description": "一部关于四名来自不同国家的登山者非凡旅程的电影冒险惊悚片。",
+        "title": "Duruva 2037",
+        "description": "一部紧张刺激的生存惊悚片，讲述一对双胞胎兄弟姐妹在世界最高舞台上直面极端危险的非凡攀登之旅。",
         "genres": ["冒险", "惊悚"]
       },
       "popeyes": {
         "title": "Popeyes",
-        "description": "海岸警卫队与时间赛跑，在巨浪中救援被困船员。",
-        "genres": ["动作", "救援"]
+        "description": "一位搞笑的水手从菠菜中获得超强力量，在欢乐的冒险中解决麻烦并保护朋友们。",
+        "genres": ["动画", "喜剧", "家庭"]
       },
       "ramlee": {
         "title": "Laksamana Do Re Mi",
-        "description": "一名DJ与时间赛跑，阻止一个流氓AI劫持世界广播。",
-        "genres": ["动作", "音乐"]
+        "description": "三位平凡的好友被误认为英勇的海军将领，引发一连串幽默的误会、讽刺桥段以及意想不到的英雄时刻。",
+        "genres": ["喜剧", "歌舞", "讽刺", "家庭"]
       },
       "nold": {
         "title": "Night Of The Living Dead",
-        "description": "一名飞行员在云层之上发现了一座隐藏的城市，以及一个试图抹除它的阴谋。",
-        "genres": ["冒险", "悬疑"]
+        "description": "当亡者神秘复活并袭击活人时，一群陌生人躲进一座农舍，在充满恐惧的夜晚中挣扎求生。",
+        "genres": ["恐怖", "惊悚", "科幻", "生存"]
       },
       "veera": {
         "title": "Enga Veettu Pillai",
-        "description": "一名独立记者在全球停电时直播真相。",
-        "genres": ["惊悚", "科技"]
+        "description": "自出生起被分离、在截然不同的世界中长大的双胞胎兄弟重逢，对抗不公，重拾家族荣誉，并战胜邪恶。",
+        "genres": ["剧情", "动作", "家庭" , "歌舞"]
       },
       "sherlock": {
         "title": "Sherlock Jr.",
-        "description": "一名歌手在她的旋律中听到声音，引导她前往一个被遗忘的月球档案。",
-        "genres": ["奇幻", "浪漫"]
+        "description": "一名平凡的放映员幻想自己走进电影世界，化身侦探破解谜案并赢得爱情。",
+        "genres": ["喜剧", "爱情",  "悬疑"]
       }
     }
   },

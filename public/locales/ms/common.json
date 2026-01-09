@@ -116,34 +116,34 @@
     "play": "Main",
     "videos": {
       "duruva": {
-        "title": "Duruva : The Summit 1993",
-        "description": "Sebuah thriller pengembaraan sinematik tentang perjalanan luar biasa empat pendaki dari negara yang berbeza.",
+        "title": "Duruva 2037",
+        "description": "Sebuah filem thriller kelangsungan hidup yang mendebarkan, mengisahkan pendakian luar biasa sepasang adik-beradik kembar ketika mereka berdepan bahaya ekstrem di pentas tertinggi dunia.",
         "genres": ["Pengembaraan", "Thriller"]
       },
       "popeyes": {
         "title": "Popeyes",
-        "description": "Pasukan pengawal pantai berpacu dengan masa dan ombak untuk menyelamatkan kru yang terkandas.",
-        "genres": ["Aksi", "Penyelamatan"]
+        "description": "Seorang kelasi yang lucu memperoleh kekuatan luar biasa daripada bayam untuk mengatasi masalah dan melindungi rakan-rakannya dalam pengembaraan yang penuh kelucuan.",
+        "genres": ["Animasi", "Komedi","Keluarga"]
       },
       "ramlee": {
         "title": "Laksamana Do Re Mi",
-        "description": "Seorang DJ berlumba dengan masa untuk menghentikan AI jahat daripada merampas gelombang udara dunia.",
-        "genres": ["Aksi", "Muzik"]
+        "description": "Tiga sahabat sederhana tersilap dianggap sebagai laksamana hebat, mencetuskan pelbagai salah faham lucu, sindiran tajam, dan keberanian yang tidak disangka.",
+        "genres": ["Komedi", "Muzikal", "Satira", "Keluarga"]
       },
       "nold": {
         "title": "Night Of The Living Dead",
-        "description": "Seorang juruterbang menemui bandar tersembunyi di atas awan dan konspirasi untuk memadamkannya.",
-        "genres": ["Pengembaraan", "Misteri"]
+        "description": "Apabila mayat hidup bangkit dan menyerang manusia, sekumpulan individu berlindung di sebuah rumah ladang, berjuang untuk terus hidup sepanjang malam yang penuh ketakutan.",
+        "genres": ["Seram", "Thriller", "Sains Fiksyen", "Kelangsungan Hidup"]
       },
       "veera": {
         "title": "Enga Veettu Pillai",
-        "description": "Seorang wartawan bebas menyiarkan kebenaran ketika pemadaman bergulir di seluruh dunia.",
-        "genres": ["Thriller", "Teknologi"]
+        "description": "Dipisahkan sejak lahir dan dibesarkan dalam dunia yang berbeza, dua beradik kembar bersatu semula untuk menentang ketidakadilan, memulihkan maruah keluarga, dan menewaskan kejahatan.",
+        "genres": ["Drama",  "Aksi" ,  "Keluarga" , "Muzikal"]
       },
       "sherlock": {
         "title": "Sherlock Jr.",
-        "description": "Seorang penyanyi mendengar suara dalam melodi yang membawanya ke arkib lunar yang dilupakan.",
-        "genres": ["Fantasi", "Romantik"]
+        "description": "Seorang jurutayang sederhana membayangkan dirinya memasuki dunia filem sebagai seorang detektif untuk menyelesaikan misteri dan memenangi cinta hatinya.",
+        "genres": ["Komedi","Romantik", "Misteri"]
       }
     }
   },

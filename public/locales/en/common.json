@@ -3,7 +3,7 @@
     "title": "Malaysia's Global",
     "streaming": "Streaming",
     "platform": "Platform",
-    "peopleInterested": "people are Interested",
+    "peopleInterested": "people are interested",
     "preregister": "Preregister Now"
   },
   "offer": {
@@ -116,34 +116,34 @@
     "play": "Play",
     "videos": {
       "duruva": {
-        "title": "Duruva : The Summit 1993",
-        "description": "A cinematic adventurous triller of the extraordinary journey of four climbers from different nation.",
+        "title": "Duruva 2037",
+        "description": "An intense survival thriller that chronicles the extraordinary ascent of twin siblings as they face extreme danger on the world’s highest stage.",
         "genres": ["Adventure", "Thriller"]
       },
       "popeyes": {
         "title": "Popeyes",
-        "description": "A daring coast guard team races against time to save a stranded crew in raging seas.",
-        "genres": ["Action", "Rescue"]
+        "description": "A goofy sailor gains super strength from spinach to tackle trouble and protect his friends in hilarious adventures.",
+        "genres": ["Animation", "Comedy", "Family"]
       },
       "ramlee": {
         "title": "Laksamana Do Re Mi",
-        "description": "A DJ races against time to stop a rogue AI from hijacking the world's airwaves.",
-        "genres": ["Action", "Music"]
+        "description": "Three humble friends are mistakenly hailed as heroic admirals, leading to a chain of hilarious misunderstandings, clever satire, and unexpected heroism.",
+        "genres": ["Comedy", "Musical", "Satire", "Family"]
       },
       "nold": {
         "title": "Night Of The Living Dead",
-        "description": "A pilot discovers a hidden city above the clouds and a conspiracy to erase it.",
-        "genres": ["Adventure", "Mystery"]
+        "description": "When the dead mysteriously rise and attack the living, a group of strangers barricade themselves inside a farmhouse, struggling to survive a night of relentless terror.",
+        "genres": ["Horror", "Thriller", "Science Fiction", "Survival"]
       },
       "veera": {
         "title": "Enga Veettu Pillai",
-        "description": "An independent journalist streams the truth as a blackout rolls across the globe.",
-        "genres": ["Thriller", "Tech"]
+        "description": "Separated at birth, twin brothers raised in contrasting worlds reunite to confront injustice, restore family honor, and triumph over evil.",
+        "genres": ["Drama",  "Action",  "Family",  "Musical"]
       },
       "sherlock": {
         "title": "Sherlock Jr.",
-        "description": "A singer hears voices in her melodies that lead her to a forgotten lunar archive.",
-        "genres": ["Fantasy", "Romance"]
+        "description": "A humble projectionist dreams himself into a detective movie, where he becomes a brilliant sleuth to solve a crime and win the woman he loves.",
+        "genres": ["Comedy" , "Romance" , "Mystery"]
       }
     }
   },

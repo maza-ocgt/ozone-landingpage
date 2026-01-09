@@ -28,7 +28,7 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
       thumbnail: "/gallery/duruva1.png",
       description: t("gallery.videos.duruva.description"),
       genre: t("gallery.videos.duruva.genres", { returnObjects: true }) as string[],
-      videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      videoUrl: "/gallery/DURUVA ORIGINAL.mp4",
     },
     {
       id: 3,

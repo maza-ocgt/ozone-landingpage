@@ -26,7 +26,7 @@ export default function Hero({ onOpenSurvey }: HeroProps) {
   const throttleDelay = 16; 
 
   useEffect(() => {
-    count.set(12000); 
+    count.set(904); 
   }, [count]);
   
   useMotionValueEvent(springCount, "change", (latest) => {
