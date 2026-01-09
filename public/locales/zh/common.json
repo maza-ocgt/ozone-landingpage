@@ -110,7 +110,7 @@
     }
   },
   "gallery": {
-    "title": "电影",
+    "title": "Ozone",
     "gallery": "画廊",
     "watchMore": "观看更多",
     "play": "播放",
@@ -120,28 +120,28 @@
         "description": "一部关于四名来自不同国家的登山者非凡旅程的电影冒险惊悚片。",
         "genres": ["冒险", "惊悚"]
       },
-      "silentTides": {
-        "title": "Silent Tides",
-        "description": "两个被困在岛上的陌生人学会了信任的代价，因为风暴即将来临。",
-        "genres": ["剧情", "生存"]
+      "popeyes": {
+        "title": "Popeyes",
+        "description": "海岸警卫队与时间赛跑，在巨浪中救援被困船员。",
+        "genres": ["动作", "救援"]
       },
-      "chromaticPulse": {
-        "title": "Chromatic Pulse",
+      "ramlee": {
+        "title": "Laksamana Do Re Mi",
         "description": "一名DJ与时间赛跑，阻止一个流氓AI劫持世界广播。",
         "genres": ["动作", "音乐"]
       },
-      "glassSkies": {
-        "title": "Glass Skies",
+      "nold": {
+        "title": "Night Of The Living Dead",
         "description": "一名飞行员在云层之上发现了一座隐藏的城市，以及一个试图抹除它的阴谋。",
         "genres": ["冒险", "悬疑"]
       },
-      "lastBroadcast": {
-        "title": "Last Broadcast",
+      "veera": {
+        "title": "Enga Veettu Pillai",
         "description": "一名独立记者在全球停电时直播真相。",
         "genres": ["惊悚", "科技"]
       },
-      "moonlitEchoes": {
-        "title": "Moonlit Echoes",
+      "sherlock": {
+        "title": "Sherlock Jr.",
         "description": "一名歌手在她的旋律中听到声音，引导她前往一个被遗忘的月球档案。",
         "genres": ["奇幻", "浪漫"]
       }

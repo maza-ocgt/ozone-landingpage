@@ -110,7 +110,7 @@
     }
   },
   "gallery": {
-    "title": "Movie",
+    "title": "Ozone",
     "gallery": "Gallery",
     "watchMore": "Watch More",
     "play": "Play",
@@ -120,28 +120,28 @@
         "description": "A cinematic adventurous triller of the extraordinary journey of four climbers from different nation.",
         "genres": ["Adventure", "Thriller"]
       },
-      "silentTides": {
-        "title": "Silent Tides",
-        "description": "Two strangers stranded on an island learn the cost of trust as a storm approaches.",
-        "genres": ["Drama", "Survival"]
+      "popeyes": {
+        "title": "Popeyes",
+        "description": "A daring coast guard team races against time to save a stranded crew in raging seas.",
+        "genres": ["Action", "Rescue"]
       },
-      "chromaticPulse": {
-        "title": "Chromatic Pulse",
+      "ramlee": {
+        "title": "Laksamana Do Re Mi",
         "description": "A DJ races against time to stop a rogue AI from hijacking the world's airwaves.",
         "genres": ["Action", "Music"]
       },
-      "glassSkies": {
-        "title": "Glass Skies",
+      "nold": {
+        "title": "Night Of The Living Dead",
         "description": "A pilot discovers a hidden city above the clouds and a conspiracy to erase it.",
         "genres": ["Adventure", "Mystery"]
       },
-      "lastBroadcast": {
-        "title": "Last Broadcast",
+      "veera": {
+        "title": "Enga Veettu Pillai",
         "description": "An independent journalist streams the truth as a blackout rolls across the globe.",
         "genres": ["Thriller", "Tech"]
       },
-      "moonlitEchoes": {
-        "title": "Moonlit Echoes",
+      "sherlock": {
+        "title": "Sherlock Jr.",
         "description": "A singer hears voices in her melodies that lead her to a forgotten lunar archive.",
         "genres": ["Fantasy", "Romance"]
       }

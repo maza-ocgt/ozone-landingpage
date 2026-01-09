@@ -110,7 +110,7 @@
     }
   },
   "gallery": {
-    "title": "Filem",
+    "title": "Ozone",
     "gallery": "Galeri",
     "watchMore": "Tonton Lagi",
     "play": "Main",
@@ -120,28 +120,28 @@
         "description": "Sebuah thriller pengembaraan sinematik tentang perjalanan luar biasa empat pendaki dari negara yang berbeza.",
         "genres": ["Pengembaraan", "Thriller"]
       },
-      "silentTides": {
-        "title": "Silent Tides",
-        "description": "Dua orang asing yang terdampar di sebuah pulau belajar kos kepercayaan ketika ribut menghampiri.",
-        "genres": ["Drama", "Kemampuan Hidup"]
+      "popeyes": {
+        "title": "Popeyes",
+        "description": "Pasukan pengawal pantai berpacu dengan masa dan ombak untuk menyelamatkan kru yang terkandas.",
+        "genres": ["Aksi", "Penyelamatan"]
       },
-      "chromaticPulse": {
-        "title": "Chromatic Pulse",
+      "ramlee": {
+        "title": "Laksamana Do Re Mi",
         "description": "Seorang DJ berlumba dengan masa untuk menghentikan AI jahat daripada merampas gelombang udara dunia.",
         "genres": ["Aksi", "Muzik"]
       },
-      "glassSkies": {
-        "title": "Glass Skies",
+      "nold": {
+        "title": "Night Of The Living Dead",
         "description": "Seorang juruterbang menemui bandar tersembunyi di atas awan dan konspirasi untuk memadamkannya.",
         "genres": ["Pengembaraan", "Misteri"]
       },
-      "lastBroadcast": {
-        "title": "Last Broadcast",
+      "veera": {
+        "title": "Enga Veettu Pillai",
         "description": "Seorang wartawan bebas menyiarkan kebenaran ketika pemadaman bergulir di seluruh dunia.",
         "genres": ["Thriller", "Teknologi"]
       },
-      "moonlitEchoes": {
-        "title": "Moonlit Echoes",
+      "sherlock": {
+        "title": "Sherlock Jr.",
         "description": "Seorang penyanyi mendengar suara dalam melodi yang membawanya ke arkib lunar yang dilupakan.",
         "genres": ["Fantasi", "Romantik"]
       }
