@@ -116,9 +116,9 @@ export default function Hero({ onOpenSurvey }: HeroProps) {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1, delay: 0.2 }}
-        className="relative z-10 mb-6 sm:mb-8 md:mb-10 mt-6 sm:mt-8 md:mt-10"
+        className="relative z-10 mb-6 sm:mb-8 md:mb-10 mt-6 sm:mt-8 md:mt-10 flex flex-col items-center"
       >
-        <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-48 md:w-48 lg:h-60 lg:w-60">
+        <div className="relative h-32 w-32 sm:h-40 sm:w-40 md:h-48 md:w-48 lg:h-60 lg:w-60 mx-auto">
           {/* <div className="absolute -inset-4 rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(94,234,212,0.25),transparent_55%),radial-gradient(circle_at_70%_70%,rgba(34,211,238,0.2),transparent_60%)] blur-xl opacity-60 pointer-events-none" />
           <div className="absolute -inset-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_20px_60px_rgba(0,0,0,0.4)]" /> */}
           <Image

@@ -69,6 +69,9 @@ export default function BottomSection({ onOpenSurvey }: BottomSectionProps) {
   const [autoPlay, setAutoPlay] = useState(false);
 
   const openModal = (video: (typeof videoThumbnails)[0], play: boolean) => {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("oz-gallery-play"));
+    }
     setModalVideo(video);
     setAutoPlay(play);
   };

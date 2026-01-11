@@ -10,6 +10,7 @@ export default function AimSection() {
   const ref = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
 
   const videoPaths = [
     "/gallery/ozAd.mp4",
@@ -27,6 +28,13 @@ export default function AimSection() {
     videoRef.current.load();
     videoRef.current.play().catch(() => {});
   }, [currentVideo]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = () => setIsMuted(true);
+    window.addEventListener("oz-gallery-play", handler);
+    return () => window.removeEventListener("oz-gallery-play", handler);
+  }, []);
 
   return (
     <section
@@ -200,6 +208,15 @@ export default function AimSection() {
             
             {/* Glass Border with Enhanced Glassmorphism */}
             <div className="relative h-full rounded-2xl sm:rounded-3xl overflow-hidden border border-white/20 bg-gradient-to-br from-white/10 via-white/5 to-white/0 backdrop-blur-md shadow-[0_8px_32px_0_rgba(94,234,212,0.2)] group-hover:border-teal-400/40 group-hover:shadow-[0_8px_32px_0_rgba(94,234,212,0.4)] transition-all duration-500">
+              {/* Mute toggle */}
+              <button
+                onClick={() => setIsMuted((m) => !m)}
+                aria-label={isMuted ? "Unmute" : "Mute"}
+                className="absolute bottom-3 right-3 z-30 h-10 w-10 rounded-full bg-black/50 border border-white/25 text-white backdrop-blur-md shadow-[0_8px_20px_rgba(0,0,0,0.35)] hover:bg-black/65 transition"
+              >
+                {isMuted ? "🔇" : "🔊"}
+              </button>
+
               {/* Inner Multi-layer Glow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/15 via-transparent to-cyan-500/15 pointer-events-none" />
               <div className="absolute inset-0 bg-gradient-to-bl from-purple-500/10 via-transparent to-teal-500/10 pointer-events-none" />
@@ -215,7 +232,7 @@ export default function AimSection() {
                   ref={videoRef}
                   src={currentVideo}
                   autoPlay
-                  muted
+                  muted={isMuted}
                   playsInline
                   onEnded={handleEnded}
                   className="w-full h-full object-cover relative z-10 rounded-2xl sm:rounded-3xl"
